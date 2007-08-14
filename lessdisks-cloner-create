@@ -1,0 +1,281 @@
+#!/bin/bash
+# requires bash, due to mechanism used for excludes
+#/usr/bin/lessdisks-cloner-create
+
+# copyright 2002 vagrant@freegeek.org, distributed under the terms of the
+# GNU General Public License version 2 or any later version.
+
+# TODO split requestModel into two functions, with the
+# creation-specific stuff as it's own function, and the rest in
+# /usr/share/lessdisks/cloner-functions
+# TODO explore using a "pull" style rsync method, instead of the "push" method...
+# TODO post-install stuff such as changing /etc/network/interfaces,
+# moving the XF86Configs around...
+
+otherfunctions="/usr/share/lessdisks/cloner-functions"
+if [ -r "$otherfunctions" ]; then
+  . $otherfunctions
+else
+  echo "can't find $otherfunctions"
+  echo "the functions provided in it are essential."
+  echo "exiting..."
+  exit 1
+fi
+
+loadFileSystemModules() {
+  # load a bunch of filesystems
+  for fstype in $1; do
+    if ! egrep -q $fstype /proc/filesystems; then
+      modprobe $fstype
+    fi
+  done
+}
+
+# change the password of user $2 in file $1
+changePasswd() {
+  local file="$1"
+  local user="$2"
+  local line
+  local old_password
+  local new_password
+  local type
+
+  # get the password entry for the user
+  line=$(egrep "^$user:" $file)
+  old_password=$(echo $line | awk -F: '{ print $2 }')
+
+  # figure out if the password is an md5 or des password, md5 will 
+  # have a $ in it.
+  if echo "$current" | grep -q '\$'; then type="md5"; else type="des"; fi
+
+  # get the new password
+#  passwordBox "Changing Password" \
+#                 "changing root password for clone prototype...\nplease enter the password"
+#  status=$?
+#  if [ $status != 0 ]; then
+#    msgBox "Password Grab Failed" "Grabbing the password failed, using \
+#      the default password 'lessdisks'"
+    REPLY="freegeek"
+#  fi
+
+  new_password=$(echo $REPLY | mkpasswd -s --hash=$type)
+  
+  # rewrite the file
+  sed s,^$user:[^:]*:,$user:$new_password:, < $file > $file.new
+  mv $file.new $file
+}
+
+requestModel() {
+  while [ -z "$model" -o -z "$updatemodel" ] ; do
+    if [ -z "$model" ]; then
+      # build up the available models list, look for the updated line in the
+      # models version file to give the user a little bit of a hint about which
+      # model to use.  of course, the name should be enough
+      local -a availablemodels
+      local i=0
+      for m in $(find $clonepath -mindepth 1 -maxdepth 1 | \
+                   egrep -v cloner-ld.config); do
+        # build up the array to pass to the radioBox
+        availablemodels[$((i++))]=$(basename $m)
+        availablemodels[$((i++))]=$(readVersion $m)
+        availablemodels[$((i++))]=off
+      done
+
+      # create a radio box for the user to choose models from.  one special 
+      # model "create" is used to allow the user to create a brand new model
+      radioBox "Select Prototype" \
+        "Choose one of the existing prototypes or 'create' to build a new prototype." \
+        create "Create a new Prototype" on \
+        "${availablemodels[@]}" || exit $?
+      model=$REPLY
+      # check if the user is creating a model or updating a model
+      if [ "$model" = "create" ]; then
+        # grab the new model name, if the user cancels or enters an empty name
+        # then go back to the beginning
+        model=
+        inputBox "New Prototype Name" \
+                 "Please create a name for the new prototype, something like grumble-bug"
+        [ $? != 0 -o -z "$REPLY" ] && continue
+        model=$REPLY
+        updatemodel="no"
+      else
+        updatemodel="yes"
+      fi
+    fi
+    # sanity check the model name
+    if ! echo $model | egrep -q "^[a-zA-Z0-9.-]+$"; then
+      msgBox "Bad Prototype Name" \
+        "The model name is no good, it should match [a-zA-Z0-9.-]+"
+      model=""
+      updatemodel=""
+    elif [ -z "$updatemodel" ]; then
+      if [ -d "$clonepath/$model" ]; then
+        booleanBox "Update?" \
+          "Are you attempting to update prototype?"
+        case $? in
+        0) updatemodel="yes";;
+        1) model="";;
+        255) exit 1;;
+        esac
+      else
+        booleanBox "New Prototype?" \
+          "Are you creating a new prototype named $model?"
+        case $? in
+        0) updatemodel="no";;
+        1) model="";;
+        255) exit 1;;
+        esac
+      fi
+    fi
+  done
+}
+
+# start of actual script
+
+PATH="/usr/share/easydialog:$PATH" . easydialog.sh
+setApplicationTitle "lessdisks cloner create"
+setDimension 40 0
+
+#TARGET="/mnt"
+
+# set DEBUG to a non-empty string to facilitate debug mode
+DEBUG=${DEBUG-}
+
+if [ -n "$DEBUG" ]; then
+  clonepath=/tmp/foo
+  touch $clonepath/cloner-ld.config
+  mkdir -p $clonepath/1/etc/lessdisks-cloner/
+    (echo version=2.0
+     echo release=1
+     echo updated=Fri Nov 16 11:52:30 PST 2002) > $clonepath/1/etc/lessdisks-cloner/version
+  mkdir -p $clonepath/2/etc/lessdisks-cloner/
+    (echo version=2.0
+     echo release=2) > $clonepath/2/etc/lessdisks-cloner/version
+fi
+
+[ -n "$DEBUG" ] || /sbin/diskmods reload # reload hard-disk modules
+filesystems="ext2 ext3 reiserfs"
+
+#source configfile
+[ -n "$DEBUG" ] || . /etc/lessdisks/cloner.config
+
+# open a shell on another terminal so we can muck around a bit during install process...
+[ -n "$DEBUG" ] || openvt /bin/ash
+
+model="$1"
+updatemodel=
+
+# ask the user for the model
+requestModel
+TARGET="/tmp/$model"
+mkdir -p $TARGET
+echo TARGET is "'$TARGET'"
+
+# load the right fs modules
+loadFileSystemModules $filesystems
+
+# attempt to guess the root device
+guessRootDevice
+
+if [ -z "$rootdevice" ]; then
+  # ask the user for the root device
+  requestRootDevice
+fi
+
+#TODO create cloner-ld.config if none exists
+#source 
+. $TARGET/etc/cloner-ld.config
+
+# get list of partitions to be mounted, excluding root partition and hopefully CDROM
+partitions_to_mount=`egrep "^/dev/hd" $fstab | egrep -v "swap|cdrom|floppy|iso9660|^$rootdevice|^proc" | awk '{print $1}'`
+
+for device in $partitions_to_mount; do
+  mountpoint=`egrep "^$device" $fstab | awk '{print $2}'`
+  fstype=`egrep "^$device" $fstab | awk '{print $3}'`
+  if ! egrep -q $fstype /proc/filesystems ; then
+    modprobe $fstype
+  fi
+  mount -t $fstype $device $TARGET/$mountpoint
+done
+
+echo "changing root password for clone prototype..."
+cd $TARGET/etc
+cp shadow shadow.old
+#chroot $TARGET /usr/bin/passwd
+changePasswd $TARGET/etc/shadow root
+
+# want some sort of versioning during development
+# may remove this part later, or make it optional...
+echo "version number with date..."
+cp -vf $TARGET/etc/lessdisks-cloner/version $TARGET/etc/lessdisks-cloner/version.old
+egrep ^version $TARGET/etc/lessdisks-cloner/version | head -n 1 > /tmp/version
+egrep ^release $TARGET/etc/lessdisks-cloner/version | head -n 1 >> /tmp/version
+echo "updated=\"`date`\"" >> /tmp/version
+cat /tmp/version > $TARGET/etc/lessdisks-cloner/version
+
+# cd to mount before sourcing config file
+# this may make the excludes thing work better
+cd $TARGET
+
+if [ -r /usr/share/lessdisks/common-functions ]; then
+  . /usr/share/lessdisks/common-functions
+else
+  echo "ERROR: /usr/share/lessdisks/common-functions not found"
+  exit 1
+fi
+
+source_files_warn /etc/lessdisks/terminal_chroot.conf /etc/lessdisks/terminal_install.conf
+
+#TODO make the rsync step more flexible...
+
+if [ -z "$sshopts" ]; then
+	sshopts='-i /etc/lessdisks/creation_key'
+fi
+
+if [ -z "$excludes" ]; then
+	exclusions=""
+else
+	exclusions="--exclude-from='<(echo -e $excludes)"
+fi
+
+# TODO keep the echo line in sync with the actual line??
+
+echo rsync $rsyncopts --rsh="/usr/bin/ssh $sshopts" --delete --delete-excluded \
+  $exclusions \
+  $TARGET root@$disk_server:$lessdisks_path/$clonepath/
+rsync $rsyncopts --rsh="/usr/bin/ssh $sshopts" --delete --delete-excluded \
+  $exclusions \
+  $TARGET root@$disk_server:$lessdisks_path/$clonepath/
+
+echo "changing password back to original on golden box..."
+cp -vf $TARGET/etc/shadow.old $TARGET/etc/shadow
+
+cd /
+
+sync
+sleep 1
+sync
+sleep 1
+sync
+
+# turn off swap partitions...
+swapoffs=`egrep "^/dev/ide" /proc/swaps | awk '{print $1}'`
+for device in $swapoffs; do
+  swapoff $device
+done
+
+# determine which disks are mounted, and attempt to unmount them
+# setting to read-only if it fails...
+umounts=`egrep "^/dev/hd" /proc/mounts | cut -d " " -f 1`
+for device in $umounts; do
+  umount -r $device
+done
+umount -r $TARGET
+
+for a in 1 1 1; do
+ echo -e "\a" ; sleep 1 ; echo -e "\a"
+done
+
+sleep 100
+clear
+msgBox "clone creation complete."

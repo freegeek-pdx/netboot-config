@@ -1,0 +1,37 @@
+#!/usr/bin/ruby
+
+# :MC: this depends on the hostname being set.
+#exit if %w[ chasm build futaba juke ].include?( `hostname`.chomp] )
+exit unless /default/.match( `hostname`.chomp )
+
+require 'rubytui'
+
+shutdown = 'echo "-------"; echo "Eject the disk and press Enter to continue..."; read pause; reboot'
+debugMsg "\nhostname is '#{`hostname`.chomp}'\n or '#{ENV['hostname']}'\n"
+
+# $TIMEOUT = 15
+
+choice = menuWithDefault("build boot options","choose a boot option","install freekbox",
+  "install freekbox","update freekbox", "install storebox", "update storebox", "install grantbox", 
+  "update grantbox", "install other system", "diskless terminal", "root")
+
+case choice
+when "install freekbox"
+    system "lessdisks-cloner freekbox || bash ; #{shutdown}"
+when "update freekbox"
+    system "lessdisks-cloner update freekbox || bash ; #{shutdown}"
+when "install storebox"
+    system "lessdisks-cloner storebox || bash ; #{shutdown}"
+when "update storebox"
+    system "lessdisks-cloner update storebox || bash ; #{shutdown}"
+when "install grantbox"
+    system "lessdisks-cloner grantbox || bash ; #{shutdown}"
+when "update grantbox"
+    system "lessdisks-cloner update grantbox || bash ; #{shutdown}"
+when "install other system"
+    system "lessdisks-cloner || bash ; #{shutdown}"
+when "diskless terminal"
+    # do nothing
+when "root"
+    system "/bin/bash ; #{shutdown}"
+end
