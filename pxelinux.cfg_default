@@ -1,49 +1,35 @@
 # this file goes in whatever directory the PXE boot menu is in, for example:
-# /var/lib/lessdisks/boot/pxelinux.cfg/default
+# /var/lib/tftpboot/pxelinux.cfg/default
 
 display build.txt
-default lessdisks
+default ltsp
 prompt 1
 timeout 300
 
-label lessdisks
-  kernel /vmlinuz
-  append initrd=/initrd.img ip=dhcp root=/dev/nfs
-
-label lessdisks.old
-  kernel /vmlinuz.old
-  append initrd=/initrd.img.old ip=dhcp root=/dev/nfs
+label ltsp
+  kernel /ltsp/i386/vmlinuz
+  append initrd=/ltsp/i386/initrd.img ip=dhcp root=/dev/nfs nfsroot=/opt/ltsp/i386
 
 label memtest
   kernel /memtest
 
-label sarge
-	kernel debian-installer/sarge/2.6/linux
-	append vga=normal initrd=debian-installer/sarge/2.6/initrd.gz ramdisk_size=10934 root=/dev/rd/0 devfs=mount,dall rw languagechooser/language-name=English countrychooser/shortlist=US preseed/url=http://apt.fglan/fg-preseeds/mirrors --
+#debian
 
-label expertsarge
-	kernel debian-installer/sarge/2.6/linux
-	append DEBCONF_PRIORITY=low vga=normal initrd=debian-installer/sarge/2.6/initrd.gz ramdisk_size=10934 root=/dev/rd/0 devfs=mount,dall rw languagechooser/language-name=English countrychooser/shortlist=US preseed/url=http://apt.fglan/fg-preseeds/mirrors --
+label etch
+	kernel debian-installer/etch/linux
+	append vga=normal initrd=debian-installer/etch/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
 
-label baseserver
-	kernel debian-installer/sarge/2.6/linux
-	append vga=normal initrd=debian-installer/sarge/2.6/initrd.gz ramdisk_size=10934 root=/dev/rd/0 devfs=mount,dall rw languagechooser/language-name=English countrychooser/shortlist=US preseed/url=http://apt.fglan/fg-preseeds/baseserver --
+#ubuntu
 
-label test
-	kernel debian-installer/sarge/2.6/linux
-	append vga=normal initrd=debian-installer/sarge/2.6/initrd.gz ramdisk_size=10934 root=/dev/rd/0 devfs=mount,dall rw languagechooser/language-name=English countrychooser/shortlist=US preseed/url=http://apt.fglan/fg-preseeds/test --
+label feisty
+        kernel ubuntu-installer/feisty/linux
+	append vga=normal initrd=ubuntu-installer/feisty/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
 
-label defaultbox
-	kernel debian-installer/sarge/2.6/linux
-	append vga=normal initrd=debian-installer/sarge/2.6/initrd.gz ramdisk_size=10934 root=/dev/rd/0 devfs=mount,dall rw languagechooser/language-name=English countrychooser/shortlist=US preseed/url=http://apt.fglan/fg-preseeds/defaultbox --
+#other
 
 label eepro
 	kernel memdisk 
 	append initrd=disks/eepro100cfg.img
-
-label freedos
-	kernel memdisk 
-	append initrd=disks/freedos.img
 
 #label fdoscd
 #	kernel memdisk 
@@ -53,44 +39,21 @@ label gx1
 	kernel memdisk 
 	append initrd=disks/freedos/gx1flash.img
 
-#label install 
-#  kernel /vmlinuz
-#  append initrd=/initrd.img ip=dhcp root=/dev/nfs init=/sbin/lessdisks-init install-clone
+label vectra
+	kernel memdisk 
+	append initrd=disks/freedos/vectra.img
 
-#label update
-#  kernel /vmlinuz
-#  append initrd=/initrd.img ip=dhcp root=/dev/nfs init=/sbin/lessdisks-init install-clone update
+#label compaq
+#	kernel memdisk 
+#	append initrd=disks/sp15782.img
 
-#label freekbox
-#  kernel /vmlinuz
-#  append initrd=/initrd.img ip=dhcp root=/dev/nfs init=/sbin/lessdisks-init install-clone default
+label freedos
+	kernel memdisk 
+	append initrd=disks/freedos.img
 
-#label fb
-#  alias freekbox
+# menu options
+label menu
+kernel menu.c32
 
-#label updatefreekbox
-#label updatefb
-#  kernel /vmlinuz
-#  append initrd=/initrd.img ip=dhcp root=/dev/nfs init=/sbin/lessdisks-init install-clone default update
-
-#label ufb
-#  alias updatefreekbox
-
-#F1 f1.txt
-#F2 f2.txt
-#F3 f3.txt
-#F4 f4.txt
-#F5 f5.txt
-#F6 f6.txt
-#F7 f7.txt
-#F8 f8.txt
-#F9 f9.txt
-#F0 f10.txt
-
-#label linux26
-#	kernel 2.6/linux
-#	append vga=normal initrd=2.6/initrd.gz ramdisk_size=10934 root=/dev/rd/0 devfs=mount,dall rw  --
-#label expert26
-#	kernel 2.6/linux
-#	append DEBCONF_PRIORITY=low vga=normal initrd=2.6/initrd.gz ramdisk_size=10934 root=/dev/rd/0 devfs=mount,dall rw  --
-
+label vesamenu
+kernel vesamenu.c32
