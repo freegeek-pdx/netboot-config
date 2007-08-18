@@ -1,0 +1,543 @@
+#!/bin/bash
+#/usr/bin/lessdisks-cloner
+
+# copyright 2002 vagrant@freegeek.org, distributed under the terms of the
+# GNU General Public License version 2 or any later version.
+
+# When this script starts, we are in / of the nfsroot, running on the
+# machine being cloned to.
+
+# TODO implment an argument processing loop with a case statement
+
+# source master cloner config file
+. /etc/lessdisks/cloner.config
+
+# open up a terminal so we can muck around during install
+openvt /bin/ash
+
+# source easydialog functions
+PATH="/usr/share/easydialog:$PATH" . easydialog.sh
+
+# the path to the clone to be installed 
+if [ -z "$TARGET" ]
+then
+  TARGET="/mnt"
+fi
+
+# attempt to make the directory for $TARGET
+if [ ! -d "$TARGET" ]; then
+  mkdir -p $TARGET
+fi
+
+if [ ! -d "$TARGET" ]; then
+    echo "$TARGET not found" >&2
+    echo "contact the system administrator" >&2
+    exit 1
+fi
+
+. /usr/local/share/lessdisks/cloner-functions
+
+# argument processing
+while [ -n "$1" ]; do
+  case $1 in
+    update) update="yes" ;;
+    *.tar|*.tar.gz|*.tgz) # handle tarballs
+      if [ -e "$clonepath/$1" ]; then
+        model=$(echo $1 | awk -F ".tar|.tar.gz|.tgz" '{print $1}')
+      fi
+      use_tarball="yes"
+      installmethod="tar"
+    ;;
+    *) # set model type
+      if [ -d "$clonepath/$1" ]; then
+        model="$1"
+      else 
+        for type in tar tgz tar.gz; do
+          if [ -e "$clonepath/$1.$type" ]; then
+            use_tarball="yes"
+            installmethod="tarball"
+            model="$1"
+          fi
+        done
+      fi
+      if [ -n "$model" ]; then
+        echo "setting clone type to $model"
+      fi
+    ;;
+  esac
+  shift
+done
+if [ -z "$update" ]; then
+  # assume we're doing a regular install...
+  update="no"
+fi
+
+if [ -z "$model" ]; then
+  requestModel
+elif [ -d $clonepath/$model/ ]; then
+  echo "setting clone type to $model"
+else
+  for type in tar tgz tar.gz; do
+    if [ -e $clonepath/$1.$type ]; then
+      model="$1"
+    fi
+  done
+  if [ -n "$model" ]; then
+    echo "setting clone type to $model"
+  fi
+fi
+
+cd /$clonepath/
+
+fstab="$clonepath/$model/etc/fstab"
+
+if [ -z "$modelconfig" ]; then
+  if [ -r "$clonepath/$model/etc/cloner-ld.config" ]; then
+    modelconfig="$clonepath/$model/etc/cloner-ld.config"
+  elif [ -r "$clonepath/$model/etc/lessdisks-cloner/cloner-ld.config" ]; then
+    modelconfig="$clonepath/$model/etc/lessdisks-cloner/cloner-ld.config"
+  elif [ -r "$clonepath/$model/etc/lessdisks-cloner/cloner.config" ]; then
+    modelconfig="$clonepath/$model/etc/lessdisks-cloner/cloner.config"
+  fi
+fi
+
+if [ -r "$modelconfig" ]; then
+  . $modelconfig
+else
+  echo "model configuration file, $modelconfig,"' not found!'
+  echo "using default values from /etc/lessdisks/cloner.config" 
+fi
+
+getDisks () {
+  dmesg | egrep CHS | egrep ^hd | cut -d : -f 1 | sort -u
+}
+
+loadDiskMods () {
+  modprobe ide-generic
+  modprobe ide-core
+  modprobe ide-disk
+}
+
+PartitionDisks () {
+  # load hard-disk modules
+  #/sbin/diskmods reload
+  loadDiskMods
+  sleep 1
+  if [ -z "$disks" ]; then
+    disks=$(getDisks)
+  fi
+
+  continue="no"
+  while [ "no" = "$continue" ]; do
+    clear
+    echo "This program is distributed in the hope that it will be"
+    echo "useful, but WITHOUT ANY WARRANTY; without even the"
+    echo "implied warranty of MERCHANTABILITY or FITNESS FOR A"
+    echo "PARTICULAR PURPOSE. See the"
+    echo "GNU General Public License (version 2, or any later version)"
+    echo "for more details."
+    echo
+    echo "NOTE: partitioning disks may destroy any and all"
+    echo "data, files, Operating Systems, and other information"
+    echo "on this computer. BACK UP any important data on"
+    echo 'the computer before proceeding!'
+    echo
+    echo "attempt to automatically partition disks? (Y/n/quit)"
+    echo
+    read autopartition
+    case $autopartition in
+      n|no|N) fstab_interactive="yes" ;;
+      q|quit|exit) echo "exiting..."
+        exit 1 ;;
+      *) echo "full-on autopartitioning commencing..." ;;
+    esac
+
+    # test for existence of a schemefile, a model-specific scheme file, or the default scheme file
+    for diskscheme in $schemefile $clonepath/$model/etc/lessdisks-cloner/diskschemes /etc/lessdisks/diskschemes ; do
+      if [ -r "$diskscheme" ]; then
+        schemefile="$diskscheme"
+        echo "schemefile set to $schemefile"
+      fi
+    done
+    if [ -z "$schemefile" ]; then
+        echo 'WARNING: no disk scheme file found! autopartitioning likely to fail'
+        echo "WARNING: please configure $clonepath/$model/etc/lessdisks-cloner/diskschemes"
+        echo "WARNING: or /etc/lessdisks/diskschemes"
+    fi
+    if [ "$fstab_interactive" = "yes" ]; then
+      new_schemefile="/tmp/diskschemes.interactive"
+      cp $schemefile $new_schemefile
+      schemefile=$new_schemefile
+      nano $schemefile
+    fi
+    # TODO better error checking with generate-fstab
+    . generate-fstab
+
+    /usr/local/bin/mkpartitions $fstab
+    for device in $disks; do
+      sfdisk -f /dev/$device < /tmp/$device
+    done
+
+    clear
+    # TODO only display lines which report a size
+    echo "the following is the partitioning scheme required for this configuration:"
+    echo ""
+
+    awk '/#size=/{print $1" "$7}' $fstab | awk -F "#size=" '{print $1" "$2}' | sort
+    echo ""
+
+    echo "this is what the partitioned disks actually look like:"
+
+    for device in $disks; do
+      sfdisk -l -uM /dev/$device | sed s/\*//g | awk '/^\/dev/{print $1" "$3}' | sed s/-//g | sort
+    done
+    echo ""
+
+    echo "there may be slight discrepencies(+/-25MB) in size."
+    echo "if it's a compaq there may be an extra partition (/dev/hda4)"
+    echo ""
+    echo "Do they look similar enough? (Y/n/q/m)"
+    echo "yes is default(hit enter to accept), other options: no, quit, manual"
+    read partitionsok
+    case $partitionsok in
+      Y|Yes|yes|y|"") continue="yes"
+        echo "continuing with installation..." ;;
+      exit|q|quit) echo "exiting at your request..."
+        exit 1 ;;
+      manual|m) echo "will someday support cfdisk and/or fstab editing manually, but not today."
+      ;;
+      *) continue="no"
+        echo "partitioning failed? setting partitioning to interactive mode..."
+        fstab_interactive="yes" ;;
+    esac
+  done
+}
+
+SwapPartitions () {
+  if [ -z "$disks" ]; then
+    disks=$(getDisks)
+  fi
+  # determine devices which have linux swap partitions
+  for device in $disks; do
+    newswap=`sfdisk -l /dev/$device | egrep "Linux swap" | awk '{print $1}'`
+    swapdevices="$swapdevices $newswap"
+  done
+
+  # give a big fat warning if no swap partitions are found...
+  if [ -z "$swapdevices" ]; then
+    echo 'No swap devices found! this might be a problem'
+  fi
+  # make swap partitions, and we may as well use em...
+  for device in $swapdevices; do
+    if [ "no" = "$update" ]; then
+      mkswap $swapoptions $device
+    fi
+    swapon $device
+  done
+}
+
+MakeFilesystems () {
+  # Filesystem creation
+
+  # determine devices which have linux partitions
+  if [ -z "$disk" ]; then
+    disk=$(getDisks)
+  fi
+  for device in $disk; do
+    newfsdevice=`sfdisk -l /dev/$device | egrep "Linux" | egrep -v "swap" | awk '{print $1}'`
+    fsdevices="$fsdevices $newfsdevice"
+  done
+
+  if [ -z "$fsdevices" ]; then
+    echo 'ERROR: No Linux partitions found! exiting....'
+    exit 1
+  fi
+
+  # make filesystem on linux partitions
+  for device in $fsdevices; do
+    fstype=`egrep ^$device $fstab | awk '{print $3}' | cut -d "," -f 1`
+    if [ -z "$fstype" ]; then
+      echo 'WARNING: fstab format incorrect, or no entry for '"$device"
+    else
+      if [ -z "$(egrep $fstype /proc/filesystems)" ]; then
+        modprobe $fstype
+      fi
+      mkfs -t $fstype $fsoptions $device
+    fi
+  done
+}
+
+installTarBall () {
+  if [ "yes" = "$update" ]; then
+    echo "updates not available for tarballs."
+    echo "exiting.."
+    exit 1
+  fi
+
+  cd /$clonepath
+  for extension in tgz tar tar.gz; do
+    if [ -r "$model.$extension" ]; then
+      tarball="/$clonepath/$model.$extension"
+    elif [ -r "$model/$model.$extension" ]; then
+      tarball="/$clonepath/$model/$model.$extension"
+    fi
+  done
+
+  if [ -z "$tarball" ]; then
+    echo "no tarball found, exiting..."
+    exit 1
+  fi
+
+  taropts="xvzpf"
+  if [ -r "$model.tar" ] || [ -r "$model/$model.tar" ]; then
+    taropts="xvpf"
+  fi
+
+  cd $TARGET
+  tar $taropts $tarball
+}
+
+backupFiles () {
+  echo "updating from previous installation"
+  echo "backing up configuration files..."
+  # TODO we should really back these up some more intelligent way.
+  # TODO back up the log files
+  if [ -z "$BACKUP_FILES" ]
+  then
+    BACKUP_FILES="
+    etc/X11/XF86Config
+    etc/X11/XF86Config-4 
+    etc/X11/X 
+    etc/sysconfig/hwconf 
+    etc/sysconfig/soundcard 
+    etc/modules 
+    etc/modules.conf
+    etc/fstab 
+    etc/modutils/sndconfig 
+    dev/mouse 
+    dev/modem
+    "
+  fi
+
+  echo "backing up configuration files in /tmp/backups.tgz"
+  cd $TARGET
+  tar cvzpf /tmp/backups.tgz $BACKUP_FILES
+  cd -
+}
+
+keepUserDataRsync() {
+  cd $TARGET/home
+  users=$(ls -d * | egrep -v ^backup)
+  for user in $users
+  do
+    egrep ^$user $TARGET/etc/passwd >> /tmp/backup_passwd
+    egrep ^$user $TARGET/etc/shadow >> /tmp/backup_shadow
+    egrep $user $TARGET/etc/group >> /tmp/backup_group
+  done
+  tar cvzpf /tmp/backups2.tgz /tmp/backup_* 
+  # put backups on the hard-drive, in case something goes wrong during rsync.
+  cd -
+  cp -vf /tmp/backups*.tgz $TARGET/home/
+  chmod og-wrx $TARGET/home/backups*.tgz
+
+  cd home
+  rsync $rsyncopts . $TARGET/home
+  cd -
+
+  rsync $rsyncopts . --delete --exclude=var/log --exclude=home $TARGET/
+}
+
+updateRsyncLocal() {
+  cd /$clonepath/$model
+  backupFiles
+
+  booleanBox "delete user data?" "do you wish to delete all the user data on this system and wipe it totally clean?"
+  case $? in
+    0) deleteusers="yes" ;;
+    1) deleteusers="no" ;;
+  esac
+
+  # TODO handle /var/log stuff better.  if /var/log/ doesn't exist, 
+  # as well as subdirectories... but none of the files...
+  if [ "yes" = "$deleteusers" ]
+  then
+    rsync $rsyncopts . --delete --exclude=var/log $TARGET/
+  else
+    keepUserDataRsync
+  fi
+
+  mkdir -p /var/log
+
+  echo "extracting backup files..."
+  cd $TARGET/
+  tar xvzpf /tmp/backups.tgz
+  cd -
+}
+
+installRsyncLocal () {
+  cd /$clonepath/$model
+  if [ "yes" = "$update" ]; then
+    updateRsyncLocal
+  else
+    command="rsync $rsyncopts . --delete $TARGET/"
+    echo "$command"
+    $command
+  fi
+}
+
+installCopy () {
+  # like the original method
+  cd /$clonepath/$model
+  if [ "yes" = "$update" ]; then
+    updateRsyncLocal
+  else
+    command="cp -av . $TARGET/"
+    echo $command
+    $command
+  fi
+}
+
+if [ "no" = "$update" ]; then
+  PartitionDisks
+fi
+
+# ensure partition table up to date and hard-drive modules loaded
+#/sbin/diskmods reload
+loadDiskMods
+
+SwapPartitions
+
+guessRootDevice
+
+if [ -z "$rootdevice" ]; then
+  requestRootDevice
+fi
+
+if [ "no" = "$update" ]; then
+  MakeFilesystems
+fi
+
+# mounting root device
+fstype=""
+fstype=`egrep ^$rootdevice $fstab | awk '{print $3}'`
+mount -t "$fstype" "$rootdevice" $TARGET/
+if [ "yes" = "$update" ]; then
+  cp -vf $TARGET/etc/fstab /tmp/fstab
+  fstab="/tmp/fstab"
+fi
+
+# determine and mount other partitions
+partitions_to_mount=`egrep $fstype $fstab | awk '{print $1}' | \
+  egrep -v "^$rootdevice"`
+
+for device in $partitions_to_mount; do
+  mountpoint=`egrep ^$device $fstab | awk '{print $2}'`
+  mkdir -p $TARGET/$mountpoint
+  fstype=`egrep ^$device $fstab | awk '{print $3}'`
+  mount -t $fstype $device $TARGET/$mountpoint
+done
+
+if [ -z "$default_method" ]; then
+  default_method="rsync-local"
+fi
+
+if [ -z "$installmethod" ] || [ "default" = "$installmethod" ]; then
+  installmethod="$default_method"
+fi
+
+if [ "yes" = "$use_tarball" ]; then
+  echo "installmethod set to use tar"
+  installmethod="tar"
+fi
+
+echo "selected method: $installmethod"
+case $installmethod in
+  custom)
+    if [ -r /etc/lessdisks/cloner.customtype ]; then
+      . /etc/lessdisks/cloner.customtype
+    fi
+    ;;
+  tarball|tar) installTarBall ;;
+  rsync-local|rsync-nfs) installRsyncLocal ;;
+  copy|cp-local) installCopy ;;
+  "") echo 'ERROR: no method defined! exiting...'
+    exit 1 ;;
+  *) echo "method $installmethod not yet implemented. sorry. exiting..."
+    exit 1 ;;
+esac
+
+cd /
+
+# the postclone script should install the boot loader, and
+# anything else needed before first reboot
+postclone="$TARGET/etc/lessdisks-cloner/postclone"
+
+if [ -x "$postclone" ]
+then
+    echo "Running postclone hook ($postclone)"
+    export TARGET
+    if [ "yes" = "$update" ]
+    then
+      echo "doing update clone"
+      $postclone update
+    else
+      echo "doing regular clone"
+      $postclone
+    fi
+else
+  echo "something's wrong with postclone, pausing..."
+  read pause
+fi
+
+# if we're not using the standard fstab, put appropriate fstab
+# into place
+#if [ "$clonepath/$model/etc/fstab" != "$fstab" ]; then
+#  if [ -e "$fstab" ]; then
+#      cp -vf $fstab $TARGET/etc/fstab
+#  fi
+#fi
+
+if [ -r $TARGET/var/log/cloner-install.dmesg ]; then
+   cp -vf $TARGET/var/log/cloner-install.dmesg $TARGET/var/log/cloner-install.dmesg.old
+fi
+
+dmesg > $TARGET/var/log/cloner-install.dmesg
+
+# make sure all data is synced
+sync
+sleep 1
+sync
+sleep 1
+sync
+
+# turn off swap partitions...
+swapoffs=`egrep "^/dev/ide" /proc/swaps | awk '{print $1}'`
+for device in $swapoffs; do
+  swapoff $device
+done
+
+# determine which disks are mounted, and attempt to unmount them
+# setting to read-only if it fails...
+umounts=`egrep "^/dev/hd" /proc/mounts | cut -d " " -f 2`
+for device in $umounts; do
+  umount -r $device
+done
+umount -r $TARGET
+
+disksmounted=`mount | egrep "^/dev/hd"`
+if [ -n "$disksmounted" ]; then
+  echo "disks still appear to be mounted..."
+  echo "starting a shell so you can correct the problem"
+  echo -e "type \"mount\" to find out what is mounted\a"
+  sleep 1
+  echo -e "and type \"umount\" /dev/hd?? to unmount any remaining hard drives\a"
+  sleep 1
+  echo -e "then type \"exit\"\a"
+  /bin/bash
+else
+  echo -e "umounted all filesystems successfully...\a"
+  sleep 1
+fi
+echo -e 'finished!'"\a"
+sleep 1
+echo -e "\a"
