@@ -1,0 +1,25 @@
+
+welcome to build
+================
+
+your options are currently (unless we forgot something):
+
+hit ENTER or RETURN for harddrive cloning,
+or a diskless terminal
+
+installer images:
+
+etch (etch release) 
+feisty (ubuntu feisty)
+
+other options:
+
+memtest (for memtest86+)
+gx1 (gx1 bios flasher)
+vectra (vectra vl bios flasher)
+eepro (eepro100 etherboot flasher)
+freedos (generic freedos image)
+
+
+or probably you should just hit ENTER or RETURN
+
