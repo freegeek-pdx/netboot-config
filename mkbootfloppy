@@ -1,0 +1,54 @@
+#!/bin/sh
+#/usr/sbin/mkbootfloppy
+
+# copyright 2004,2007 vagrant@freegeek.org, distributed under the terms of the
+# GNU General Public License version 2 or any later version.
+
+disk_dir=/usr/local/disks
+cd $disk_dir
+
+if [ -r "$1" ]; then
+  floppyimage="$1"
+else
+  PATH="/usr/share/easydialog:$PATH" . easydialog.sh
+
+  if [ -r default.img ]; then
+    defaultimage=$(ls -l default.img | awk '{print $9" "$11}' ; echo on)
+  fi
+
+  otherimages=$(ls *.img | egrep -v default.img)
+
+  for thisimage in $otherimages; do
+    images="$images $thisimage . off"
+  done
+
+  radioBox "select floppy image" \
+    "which floppy disk image would you like to create?" \
+    $defaultimage \
+    $images
+
+  case $? in
+    0) ;;
+    1) echo "floppy image selection cancelled..." 
+      exit 0 ;;
+    255) echo "something went wrong, exiting..."
+      exit 1 ;;
+  esac
+
+  floppyimage="$REPLY"
+fi
+
+if [ -r $disk_dir/$floppyimage ]; then
+  echo "making boot floppy with $floppyimage"
+  dd if=$disk_dir/$floppyimage of=/dev/fd0 bs=1k
+  status="$?"
+else
+  echo "no valid floppy image found, exiting..."
+  exit 1
+fi
+
+sleep 3
+
+echo "floppy image finished..."
+
+exit "$?"
