@@ -54,6 +54,3 @@ label freedos
 # menu options
 label menu
 kernel menu.c32
-
-label vesamenu
-kernel vesamenu.c32
