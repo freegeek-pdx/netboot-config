@@ -2,11 +2,17 @@
 # /var/lib/tftpboot/pxelinux.cfg/default
 
 display build.txt
-default ltsp
+default menu
 prompt 1
 timeout 300
 
+# menu options
+label menu
+menu hide
+kernel menu.c33
+
 label ltsp
+menu label Freekbox install, diskless terminal, etc. etc.
   kernel /ltsp/i386/vmlinuz
   append initrd=/ltsp/i386/initrd.img ip=dhcp root=/dev/nfs nfsroot=/opt/ltsp/i386
 
@@ -24,6 +30,10 @@ label etch
 label feisty
         kernel ubuntu-installer/feisty/linux
 	append vga=normal initrd=ubuntu-installer/feisty/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
+
+label gutsy
+        kernel ubuntu-installer/gutsy/linux
+	append vga=normal initrd=ubuntu-installer/gutsy/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
 
 #other
 
@@ -50,7 +60,3 @@ label vectra
 label freedos
 	kernel memdisk 
 	append initrd=disks/freedos.img
-
-# menu options
-label menu
-kernel menu.c32
