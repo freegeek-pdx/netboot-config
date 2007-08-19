@@ -1,7 +1,6 @@
 # this file goes in whatever directory the PXE boot menu is in, for example:
 # /var/lib/tftpboot/pxelinux.cfg/default
 
-display build.txt
 default menu.c32
 prompt 0
 timeout 300
