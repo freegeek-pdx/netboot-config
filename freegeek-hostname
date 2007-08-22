@@ -1,0 +1,11 @@
+# include this file near the top of /opt/ltsp/i386/etc/init.d/hostname.sh:
+#
+# . /usr/local/build/freegeek-hostname
+
+ip_addresses="$(ifconfig | /usr/bin/awk '/inet addr:/{print $2}' | /usr/bin/cut -d : -f 2)"
+for ip in $ip_addresses ; do
+    short_ip="$(echo $ip | /usr/bin/cut -d . -f 4)"
+    case $ip in
+        192.168.2.*) export HOSTNAME="build$short_ip" ;;
+    esac
+done
