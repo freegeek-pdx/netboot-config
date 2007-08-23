@@ -4,34 +4,42 @@
 
 # :MC: this depends on the hostname being set.
 # tweak /etc/init.d/hostname.sh to set the host names
-require 'rubytui'
-include RubyTUI
 
 shutdown = 'echo "-------"; echo "Eject the disk and press Enter to continue..."; read pause; reboot'
 
-if /build/.match( `hostname`.chomp )
+hostname = `hostname`.chomp
 
-  cloner = '/usr/local/bin/lessdisks-cloner'
+disktest = "echo '*.* /var/log/kmsg.pipe' >> /etc/syslog.conf ; invoke-rc.d sysklogd restart ; /usr/bin/diag-disk"
 
-  choice = menuWithDefault("build boot options","choose a boot option","install default OS",
-    "install default OS","update default OS",
-    "install other system", "diskless terminal", "root")
-
-  case choice
-  when "install default OS"
-      system "#{cloner} default || bash ; #{shutdown}"
-  when "update default OS"
-      system "#{cloner} update default || bash ; #{shutdown}"
-  when "install other system"
-      system "#{cloner} || bash ; #{shutdown}"
-  when "diskless terminal"
-      # do nothing
-  when "root"
-      system "/bin/bash ; #{shutdown}"
-  end
-
-elsif /diskless/.match( `hostname`.chomp )
-  # do nothing
+if /build/.match(hostname)
+    default = "install default OS"
+elsif /test/.match(hostname)
+    #default = "disk test"
+    system "#{disktest} || bash ; #{shutdown}"
 else
-  system "echo '*.* /var/log/kmsg.pipe' >> /etc/syslog.conf ; invoke-rc.d sysklogd restart ; /usr/bin/diag-disk || bash ; #{shutdown}"
+    exit
+end
+
+require 'rubytui'
+include RubyTUI
+
+cloner = '/usr/local/bin/lessdisks-cloner'
+
+choice = menuWithDefault("build boot options","choose a boot option",default,
+    "install default OS","update default OS",
+    "install other system", "diskless terminal", "disk test", "root")
+
+case choice
+when "install default OS"
+    system "#{cloner} default || bash ; #{shutdown}"
+when "update default OS"
+    system "#{cloner} update default || bash ; #{shutdown}"
+when "install other system"
+    system "#{cloner} || bash ; #{shutdown}"
+when "diskless terminal"
+    # do nothing
+when "disk test"
+    system "#{disktest} || bash ; #{shutdown}"
+when "root"
+    system "/bin/bash ; #{shutdown}"
 end
