@@ -16,11 +16,7 @@ export http_proxy=http://proxy.fglan:3128
 
 for sys in $systems ; do
   if [ -x "$sys/bin/true" ] && [ "$sys/bin/true" ] && [ -x "$sys/usr/bin/apt-get" ] ; then
-    if [ "$(date +%w)" = "3" ]; then
-      clean="clean"
-      weekly="-qq -y -d --reinstall install $(chroot $sys dpkg --get-selections | egrep -v deinstall | awk '{print $1}')"
-    fi
-    for opts in "$clean" "-qq update" "$weekly" "--force-yes -yudqq dist-upgrade" "-qq autoclean" ; do
+    for opts in "-qq update" "--force-yes -yudqq dist-upgrade" "-qq autoclean" ; do
       if [ -n "$opts" ]; then
         chroot $sys apt-get $opts || echo "WARNING failed to upgrade: chroot $sys apt-get $opts"
       fi
