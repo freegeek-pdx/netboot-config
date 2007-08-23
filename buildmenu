@@ -11,17 +11,22 @@ hostname = `hostname`.chomp
 
 disktest = "echo '*.* /var/log/kmsg.pipe' >> /etc/syslog.conf ; invoke-rc.d sysklogd restart ; /usr/bin/diag-disk"
 
+timeout = false
+
 if /build/.match(hostname)
+    timeout = 30
     default = "install default OS"
 elsif /test/.match(hostname)
-    #default = "disk test"
-    system "#{disktest} || bash ; #{shutdown}"
+    timeout = 5
+    default = "disk test"
 else
     exit
 end
 
 require 'rubytui'
 include RubyTUI
+
+$TIMEOUT = timeout
 
 cloner = '/usr/local/bin/lessdisks-cloner'
 
