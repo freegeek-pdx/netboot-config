@@ -30,6 +30,8 @@ if /build/.match( `hostname`.chomp )
       system "/bin/bash ; #{shutdown}"
   end
 
+elsif /diskless/.match( `hostname`.chomp )
+  # do nothing
 else
   system "echo '*.* /var/log/kmsg.pipe' >> /etc/syslog.conf ; invoke-rc.d sysklogd restart ; /usr/bin/diag-disk || bash ; #{shutdown}"
 end

@@ -7,5 +7,6 @@ for ip in $ip_addresses ; do
     short_ip="$(echo $ip | /usr/bin/cut -d . -f 4)"
     case $ip in
         192.168.2.*) export HOSTNAME="build$short_ip" ;;
+        10.2.2.*) export HOSTNAME="diskless$short_ip" ;;
     esac
 done
