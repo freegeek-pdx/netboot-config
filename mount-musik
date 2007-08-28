@@ -1,0 +1,29 @@
+#!/bin/sh -e
+
+. /lib/lsb/init-functions
+
+case "$1" in
+    start)
+	log_daemon_msg "Mounting music server" "mount-musik"
+    mount -o ro,nolock ceol:/usr/local/music /mnt
+	log_end_msg 0
+	;;
+    stop)
+	log_daemon_msg "Unmounting music server" "mount-musik"
+    umount /mnt
+	log_end_msg 0
+	;;
+    restart)
+	checkportmap
+	log_daemon_msg "Restarting music mount" "mount-musik"
+    umount /mnt
+    mount -o ro,nolock ceol:/usr/local/music /mnt
+	log_end_msg 0
+	;;
+    *)
+	echo "Usage: mount-musik {start|stop|restart}"
+	exit 2
+	;;
+esac
+
+exit 0
