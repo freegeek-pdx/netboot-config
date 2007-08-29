@@ -1,3 +1,5 @@
 #!/bin/sh
 
+killall -9 pulseaudio
+mount -o ro,nolock ceol:/usr/local/music /mnt
 xinit xmms
