@@ -18,7 +18,7 @@ esac
 
 name="ltsp$ttynum-music"
 logfile="/var/log/$name"
-command="/usr/local/ass/configs/build/play-music"
+command="/usr/sbin/play-music"
 opts="vt$ttynum"
 daemon=/usr/bin/daemon
 if [ -x "$daemon" ]; then
