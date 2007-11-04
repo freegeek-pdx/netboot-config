@@ -13,21 +13,30 @@ menu label Freekbox install, diskless terminal, etc. etc.
 label memtest
   kernel /memtest
 
+#ubuntu
+
+label gutsy
+        kernel ubuntu-installer/gutsy/linux
+	append vga=normal initrd=ubuntu-installer/gutsy/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
+
+label gutsy-freekbox
+menu label Experimental Freekbox with gutsy
+        kernel ubuntu-installer/gutsy/linux
+	append vga=normal initrd=ubuntu-installer/gutsy/initrd.gz root=/dev/ram rw  -- locale=en_US console-setup/ask_detect=false preseed/url=http://glacier.fglan/preseeds/gutsy-freekbox console-setup/layoutcode=us
+
 #debian
 
 label etch
 	kernel debian-installer/etch/linux
 	append vga=normal initrd=debian-installer/etch/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
 
-#ubuntu
+label etch-test
+	kernel debian-installer/etch/linux
+	append vga=normal initrd=debian-installer/etch/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us preseed/url=http://glacier.fglan/preseeds/debian-etch
 
-label feisty
-        kernel ubuntu-installer/feisty/linux
-	append vga=normal initrd=ubuntu-installer/feisty/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
 
-label gutsy
-        kernel ubuntu-installer/gutsy/linux
-	append vga=normal initrd=ubuntu-installer/gutsy/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
+# setting this just causes it not to ask the question and use dhcp-NNN:
+#netcfg/get_hostname=freekbox 
 
 #other
 
