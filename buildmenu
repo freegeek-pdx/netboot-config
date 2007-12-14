@@ -9,6 +9,8 @@ shutdown = 'echo "-------"; echo "Eject the disk and press Enter to continue..."
 
 hostname = `hostname`.chomp
 
+newdisktest = "/usr/bin/disktest"
+
 disktest = "echo '*.* /var/log/kmsg.pipe' >> /etc/syslog.conf ; invoke-rc.d sysklogd restart ; /usr/bin/diag-disk"
 
 timeout = false
@@ -18,7 +20,7 @@ if /build/.match(hostname)
     default = "install default OS"
 elsif /test/.match(hostname)
     timeout = 5
-    default = "disk test"
+    default = "new disk test"
 else
     exit
 end
@@ -32,7 +34,7 @@ cloner = '/usr/local/bin/lessdisks-cloner'
 
 choice = menuWithDefault("build boot options","choose a boot option",default,
     "install default OS","update default OS",
-    "install other system", "diskless terminal", "disk test", "root")
+    "install other system", "diskless terminal", "new disk test", "disk test", "root")
 
 case choice
 when "install default OS"
@@ -41,10 +43,12 @@ when "update default OS"
     system "#{cloner} update default || bash ; #{shutdown}"
 when "install other system"
     system "#{cloner} || bash ; #{shutdown}"
-when "diskless terminal"
-    # do nothing
+when "new disk test"
+    system "#{newdisktest} || bash; /bin/sleep 10d"
 when "disk test"
     system "#{disktest} || bash ; #{shutdown}"
+when "diskless terminal"
+    # do nothing
 when "root"
     system "/bin/bash ; #{shutdown}"
 end
