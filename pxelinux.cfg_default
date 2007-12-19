@@ -17,7 +17,8 @@ label memtest
 
 label gutsy
         kernel ubuntu-installer/gutsy/linux
-	append vga=normal initrd=ubuntu-installer/gutsy/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
+	append vga=normal initrd=ubuntu-installer/gutsy/initrd.gz root=/dev/ram rw  -- preseed/url=http://glacier.fglan/preseeds/gutsy-freekbox
+
 
 label gutsy-freekbox
 menu label Experimental Freekbox with gutsy
@@ -30,7 +31,7 @@ menu label Experimental Freekbox with gutsy
 
 label etch
 	kernel debian-installer/etch/linux
-	append vga=normal initrd=debian-installer/etch/initrd.gz ramdisk_size=10275 root=/dev/ram rw  --
+	append vga=normal initrd=debian-installer/etch/initrd.gz root=/dev/ram rw  --
 
 label etch-test
 	kernel debian-installer/etch/linux
