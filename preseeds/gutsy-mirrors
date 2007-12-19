@@ -1,0 +1,13 @@
+# setup of mirrors for gutsy
+
+# hack around the appropriate keyrings, 
+# queue the freegeek-archive-keyring-di udeb for installation
+d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+# prefer local mirror, configure external mirrors
+d-i mirror/country string enter information manually
+d-i mirror/http/hostname string apt.freegeek.org
+d-i mirror/http/directory string /ubuntu
+d-i mirror/http/proxy string
+d-i apt-setup/local0/repository string http://us.archive.ubuntu.com/ubuntu gutsy main restricted universe
+d-i apt-setup/local1/repository string http://web.freegeek.org/ freegeek public ubuntu

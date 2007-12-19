@@ -1,8 +1,9 @@
 # for examples, see: http://d-i.alioth.debian.org/manual/example-preseed.txt
 
+#:TODO: include the gutsy-mirrors preseed rather than copy it
+
 # hack around the appropriate keyrings, 
 # queue the freegeek-archive-keyring-di udeb for installation
-#d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /usr/share/keyrings/ubuntu-archive-keyring.gpg ; anna-install freegeek-archive-keyring-di
 d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
 # prefer local mirror, configure external mirrors
