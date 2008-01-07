@@ -5,7 +5,7 @@
 # :MC: this depends on the hostname being set.
 # tweak /etc/init.d/hostname.sh to set the host names
 
-shutdown = 'echo "-------"; echo "Eject the disk and press Enter to continue..."; read pause; reboot'
+shutdown = 'echo "-------"; echo "Press enter to shutdown..."; read pause; poweroff -f'
 
 hostname = `hostname`.chomp
 
@@ -44,7 +44,7 @@ when "update default OS"
 when "install other system"
     system "#{cloner} || bash ; #{shutdown}"
 when "new disk test"
-    system "#{newdisktest} || bash; /bin/sleep 10d"
+    system "#{newdisktest} || bash; #{shutdown}"
 when "disk test"
     system "#{disktest} || bash ; #{shutdown}"
 when "diskless terminal"
