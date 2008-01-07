@@ -6,6 +6,9 @@
 # queue the freegeek-archive-keyring-di udeb for installation
 d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
+## CORRECT WAY; NOT TESTED
+#d-i apt-setup/local0/key string http://glacier.fglan/freegeek-archive-keyring.gpg
+
 # prefer local mirror, configure external mirrors
 d-i mirror/country string enter information manually
 d-i mirror/http/hostname string apt.freegeek.org

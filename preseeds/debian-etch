@@ -1,6 +1,12 @@
 # for examples, see: http://d-i.alioth.debian.org/manual/example-preseed.txt
 
-d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /usr/share/keyrings/archive.gpg 
+
+
+## THIS WAS THE HACKED WAY
+#d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /usr/share/keyrings/archive.gpg 
+
+## THIS IS THE WAY THAT IS SUPPOSED TO BE CORRECT; NOT TESTED
+d-i apt-setup/local0/key string http://glacier.fglan/freegeek-archive-keyring.gpg
 
 d-i mirror/country string enter information manually
 d-i mirror/http/hostname string apt.freegeek.org
