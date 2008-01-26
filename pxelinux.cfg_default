@@ -13,7 +13,7 @@ menu label Freekbox install, diskless terminal, etc. etc.
 label debian-freekbox
 menu label Debian Freekbox (EXPERIMENTAL)
         kernel debian-installer/etch/linux
-        append quiet auto=true priority=critical vga=normal initrd=debian-installer/etch/initrd.gz root=/dev/ram rw  -- url=http://llama.freegeek.org/~ryan52/test/preseed.cfg
+        append quiet auto=true priority=critical vga=normal initrd=debian-installer/etch/initrd.gz root=/dev/ram rw  -- url=http://glacier.fglan/preseeds/debian-freekbox
 
 label memtest
   kernel /memtest
