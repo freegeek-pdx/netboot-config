@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd /tmp
+
+wget http://archive.ubuntu.com/ubuntu/dists/hardy/main/installer-i386/current/images/netboot/netboot.tar.gz
+[ -d /var/lib/tftpboot/ubuntu-installer/hardy.old ] && rm -fr /var/lib/tftpboot/ubuntu-installer/hardy.old
+[ -d /var/lib/tftpboot/ubuntu-installer/hardy ] && mv /var/lib/tftpboot/ubuntu-installer/hardy /var/lib/tftpboot/ubuntu-installer/hardy.old
+mkdir /tmp/current-netboot-downloading-thingy
+cd /tmp/current-netboot-downloading-thingy
+tar xvzf /tmp/netboot.tar.gz
+rm /tmp/netboot.tar.gz
+mv /tmp/current-netboot-downloading-thingy/ubuntu-installer/i386 /var/lib/tftpboot/ubuntu-installer/hardy
+rm -fr /tmp/current-netboot-downloading-thingy
