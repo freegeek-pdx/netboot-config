@@ -18,4 +18,5 @@ tar xvzf /tmp/netboot.tar.gz
 rm /tmp/netboot.tar.gz
 mv /tmp/current-netboot-downloading-thingy/$DISTRO-installer/i386 /var/lib/tftpboot/$DISTRO-installer/$CODENAME
 rm -fr /tmp/current-netboot-downloading-thingy
-done < $config_file
+done < "$config_file"
+
