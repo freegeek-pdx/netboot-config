@@ -12,14 +12,18 @@ while read DISTRO CODENAME; do
     if [ "$DISTRO" = "debian" ]; then
 	wget http://ftp.debian.org/dists/$CODENAME/main/installer-i386/current/images/netboot/netboot.tar.gz
     fi
-    [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old ] && rm -fr /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
-    [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME ] && mv /var/lib/tftpboot/$DISTRO-installer/$CODENAME /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
-    mkdir $tmp/current-netboot-downloading-thingy
-    cd $tmp/current-netboot-downloading-thingy
-    tar xvzf $tmp/netboot.tar.gz
-    rm $tmp/netboot.tar.gz
-    mv $tmp/current-netboot-downloading-thingy/$DISTRO-installer/i386 /var/lib/tftpboot/$DISTRO-installer/$CODENAME
-    rm -fr $tmp/current-netboot-downloading-thingy
+    if [ -f $tmp/netboot.tar.gz ] && tar tzf $tmp/netboot.tar.gz ; then
+        [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old ] && rm -fr /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
+        [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME ] && mv /var/lib/tftpboot/$DISTRO-installer/$CODENAME /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
+        mkdir $tmp/current-netboot-downloading-thingy
+        cd $tmp/current-netboot-downloading-thingy
+        tar xvzf $tmp/netboot.tar.gz
+        rm $tmp/netboot.tar.gz
+        mv $tmp/current-netboot-downloading-thingy/$DISTRO-installer/i386 /var/lib/tftpboot/$DISTRO-installer/$CODENAME
+        rm -fr $tmp/current-netboot-downloading-thingy
+    else
+        echo "ERROR: netboot.tar.gz failed to download or was invalid for $DISTRO $CODENAME"
+    fi
 done < "$config_file"
 
 rm -rf $tmp
