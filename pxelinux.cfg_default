@@ -32,6 +32,10 @@ menu label Experimental Freekbox with gutsy
 # setting this just causes it not to ask the question and use dhcp-NNN:
 #netcfg/get_hostname=freekbox 
 
+label hardy
+        kernel ubuntu-installer/hardy/linux
+        append vga=normal initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw
+
 #debian
 
 label etch
