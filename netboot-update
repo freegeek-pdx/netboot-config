@@ -6,10 +6,10 @@ tmp=$(mktemp -d)
 
 while read DISTRO CODENAME; do
     cd $tmp
-    if [[ $DISTRO == "ubuntu" ]]; then
+    if [ "$DISTRO" = "ubuntu" ]; then
 	wget http://archive.ubuntu.com/ubuntu/dists/$CODENAME/main/installer-i386/current/images/netboot/netboot.tar.gz
     fi
-    if [[ $DISTRO == "debian" ]]; then
+    if [ "$DISTRO" = "debian" ]; then
 	wget http://ftp.debian.org/dists/$CODENAME/main/installer-i386/current/images/netboot/netboot.tar.gz
     fi
     [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old ] && rm -fr /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
