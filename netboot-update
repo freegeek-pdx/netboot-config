@@ -14,11 +14,11 @@ while read DISTRO CODENAME; do
     fi
     if [ -f $tmp/netboot.tar.gz ] && tar tzf $tmp/netboot.tar.gz ; then
         [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old ] && rm -fr /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
-        [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME ] && mv /var/lib/tftpboot/$DISTRO-installer/$CODENAME /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
         mkdir $tmp/current-netboot-downloading-thingy
         cd $tmp/current-netboot-downloading-thingy
         tar xvzf $tmp/netboot.tar.gz
         rm $tmp/netboot.tar.gz
+        [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME ] && mv /var/lib/tftpboot/$DISTRO-installer/$CODENAME /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
         mv $tmp/current-netboot-downloading-thingy/$DISTRO-installer/i386 /var/lib/tftpboot/$DISTRO-installer/$CODENAME
         rm -fr $tmp/current-netboot-downloading-thingy
     else
