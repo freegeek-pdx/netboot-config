@@ -46,6 +46,10 @@ label etch-test
 	kernel debian-installer/etch/linux
 	append vga=normal initrd=debian-installer/etch/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us preseed/url=http://glacier.fglan/preseeds/debian-etch
 
+label lenny 
+        kernel debian-installer/lenny/linux
+        append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  --
+
 #other
 
 label eepro
