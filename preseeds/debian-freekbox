@@ -63,7 +63,7 @@ d-i mirror/country string manual
 d-i mirror/http/hostname string apt.freegeek.org
 d-i mirror/http/directory string /debian
 d-i mirror/http/proxy string
-d-i apt-setup/local0/repository string http://mirrors.kernel.org/debian/ etch main 
+d-i apt-setup/local0/repository string http://debian.osuosl.org/debian/ etch main 
 d-i apt-setup/local1/repository string http://web.freegeek.org/ freegeek public ubuntu
 
 
