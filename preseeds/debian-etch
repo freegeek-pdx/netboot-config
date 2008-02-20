@@ -1,12 +1,8 @@
 # for examples, see: http://d-i.alioth.debian.org/manual/example-preseed.txt
 
-
-
-## THIS WAS THE HACKED WAY
+## Preeseed the GPG key in an early enough phase so the entire installer can come early enough for the mirror:
+## (kind of hackish, but less hackful than modifying the initrd itself)
 d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /usr/share/keyrings/archive.gpg 
-
-## THIS IS THE WAY THAT IS SUPPOSED TO BE CORRECT; NOT TESTED
-#d-i apt-setup/local0/key string http://glacier.fglan/freegeek-archive-keyring.gpg
 
 d-i mirror/country string enter information manually
 d-i mirror/http/hostname string apt.freegeek.org
