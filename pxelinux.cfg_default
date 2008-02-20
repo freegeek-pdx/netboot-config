@@ -64,6 +64,10 @@ label gx1
 	kernel memdisk 
 	append initrd=disks/freedos/gx1flash.img
 
+label dimension
+	kernel memdisk 
+	append initrd=disks/freedos/dimension.img
+
 label vectra
 	kernel memdisk 
 	append initrd=disks/freedos/vectra.img
