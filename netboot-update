@@ -13,11 +13,6 @@ ubuntu_arches=$ARCHES
 tftpdir=/var/lib/tftpboot
 log=/var/log/$(basename $0).log
 
-#### DELETEME ####
-log=/tmp/$(basename $0).log
-tftpdir=/tmp/tmp.gczWa15285$
-#### DELETEME ####
-
 download_netboot()
 {
     dest_file=$1
