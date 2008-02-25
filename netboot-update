@@ -20,13 +20,15 @@ download_netboot()
 
     if [ -f "$dest_file" ]; then
         checksum="$(md5sum $dest_file)"
+        curl_opts="-z $dest_file"
     else
+        curl_opts=""
         checksum=""
     fi
 
     echo checking for updates: $source_url 
     # -z and -R make it only download the file if it is newer than the existing
-    curl $source_url -o $dest_file -z $dest_file -R --silent
+    curl $source_url -o $dest_file -R --silent $curl_opts
 
     new_checksum="$(md5sum $dest_file)"
     if [ "$checksum" = "$new_checksum" ]; then
