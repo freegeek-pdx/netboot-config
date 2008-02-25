@@ -1,29 +1,89 @@
 #!/bin/bash
 
-config_file="/usr/local/ass/configs/build/netboot_update_config"
+ARCHES=i386
 
-tmp=$(mktemp -d)
+debian_mirror="debian.osuosl.org"
+debian_codenames="etch lenny"
+debian_arches=$ARCHES
 
-while read DISTRO CODENAME; do
-    cd $tmp
-    if [ "$DISTRO" = "ubuntu" ]; then
-        wget http://archive.ubuntu.com/ubuntu/dists/$CODENAME/main/installer-i386/current/images/netboot/netboot.tar.gz
-    fi
-    if [ "$DISTRO" = "debian" ]; then
-        wget http://mirrors.kernel.org/debian/dists/$CODENAME/main/installer-i386/current/images/netboot/netboot.tar.gz
-    fi
-    if [ -f $tmp/netboot.tar.gz ] && tar tzf $tmp/netboot.tar.gz ; then
-        [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old ] && rm -fr /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
-        mkdir $tmp/current-netboot-downloading-thingy
-        cd $tmp/current-netboot-downloading-thingy
-        tar xvzf $tmp/netboot.tar.gz
-        rm $tmp/netboot.tar.gz
-        [ -d /var/lib/tftpboot/$DISTRO-installer/$CODENAME ] && mv /var/lib/tftpboot/$DISTRO-installer/$CODENAME /var/lib/tftpboot/$DISTRO-installer/$CODENAME.old
-        mv $tmp/current-netboot-downloading-thingy/$DISTRO-installer/i386 /var/lib/tftpboot/$DISTRO-installer/$CODENAME
-        rm -fr $tmp/current-netboot-downloading-thingy
+ubuntu_mirror="us.archive.ubuntu.com"
+ubuntu_codenames="gutsy hardy"
+ubuntu_arches=$ARCHES
+
+tftpdir=/var/lib/tftpboot
+log=/var/log/$(basename $0).log
+
+#### DELETEME ####
+log=/tmp/$(basename $0).log
+tftpdir=/tmp/tmp.gczWa15285$
+#### DELETEME ####
+
+download_netboot()
+{
+    dest_file=$1
+    source_url=$2
+
+    if [ -f "$dest_file" ]; then
+        checksum="$(md5sum $dest_file)"
     else
-        echo "ERROR: netboot.tar.gz failed to download or was invalid for $DISTRO $CODENAME"
+        checksum=""
     fi
-done < "$config_file"
 
-rm -rf $tmp
+    echo checking for updates: $source_url 
+    # -z and -R make it only download the file if it is newer than the existing
+    curl $source_url -o $dest_file -z $dest_file -R --silent
+
+    new_checksum="$(md5sum $dest_file)"
+    if [ "$checksum" = "$new_checksum" ]; then
+        return 1
+    fi
+    echo updated: $dest_file
+    return 0
+}
+
+unpack_netboot(){
+    dest_dir=$1
+    dest_file=$2
+    dist=$3
+    tmp=$(mktemp -d)
+    cd $tmp
+    tar xzpf $dest_file || return 1
+    rm -rf $dest_dir.old 
+    mv -f $dest_dir $dest_dir.old 
+    mv ${dist}-installer/* $dest_dir || return 1
+    echo updated: $dest_dir
+    rm -rf $tmp
+    return 0
+}
+
+update_netboot(){
+    DIST=$1
+    CODENAME=$2
+    ARCH=$3
+    MIRROR=$4
+    base_dir="$tftpdir/${DIST}-installer"
+    destination_dir="$base_dir/${CODENAME}-${ARCH}"
+    destination_file="$base_dir/${CODENAME}.${ARCH}.netboot.tar.gz"
+    source_url="http://${MIRROR}/${DIST}/dists/${CODENAME}/main/installer-${ARCH}/current/images/netboot/netboot.tar.gz" 
+
+    mkdir -p $destination_dir
+    if download_netboot $destination_file $source_url ; then
+        unpack_netboot $destination_dir $destination_file $DIST
+    fi
+}
+
+echo starting $(date) >> $log
+
+for CODENAME in $debian_codenames ; do
+    for ARCH in $debian_arches ; do
+        update_netboot debian $CODENAME $ARCH $debian_mirror >> $log
+    done
+done
+
+for CODENAME in $ubuntu_codenames ; do
+    for ARCH in $ubuntu_arches ; do
+        update_netboot ubuntu $CODENAME $ARCH $ubuntu_mirror >> $log
+    done
+done
+
+echo finished $(date) >> $log
