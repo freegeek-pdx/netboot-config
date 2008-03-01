@@ -42,6 +42,10 @@ label etch
 	kernel debian-installer/etch/linux
 	append vga=normal initrd=debian-installer/etch/initrd.gz root=/dev/ram rw  --
 
+label etch-gtk
+	kernel debian-installer/etch-gtk/linux
+	append video=vesa:ywrap,mtrr vga=788 initrd=debian-installer/etch-gtk/initrd.gz -- locale=en_US console-keymaps-at/keymap=us preseed/url=http://glacier.fglan/preseeds/debian-etch
+
 label etch-test
 	kernel debian-installer/etch/linux
 	append vga=normal initrd=debian-installer/etch/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us preseed/url=http://glacier.fglan/preseeds/debian-etch
