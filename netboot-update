@@ -81,8 +81,8 @@ for CODENAME in $debian_codenames ; do
 done
 
 # daily images
-update_netboot debian daily i386 http://people.debian.org/~joeyh/d-i/images/daily/netboot/netboot.tar.gz
-update_netboot debian daily-gtk i386 http://people.debian.org/~joeyh/d-i/images/daily/netboot/gtk/netboot.tar.gz
+update_netboot debian daily i386 http://people.debian.org/~joeyh/d-i/images/daily/netboot/netboot.tar.gz >> $log
+update_netboot debian daily-gtk i386 http://people.debian.org/~joeyh/d-i/images/daily/netboot/gtk/netboot.tar.gz >> $log
 
 for CODENAME in $ubuntu_codenames ; do
     for ARCH in $ubuntu_arches ; do
