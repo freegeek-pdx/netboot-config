@@ -50,6 +50,16 @@ label lenny
         kernel debian-installer/lenny/linux
         append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  --
 
+label debian-daily
+menu label Debian daily lenny (EXPERIMENTAL)
+        kernel debian-installer/daily/linux
+        append vga=normal initrd=debian-installer/daily/initrd.gz root=/dev/ram rw  --
+
+#label debian-daily-gtk
+#menu label Debian daily lenny gtk (EXPERIMENTAL)
+#        kernel debian-installer/daily-gtk/linux
+#        append video=vesa:ywrap,mtrr vga=788 initrd=debian-installer/daily-gtk/initrd.gz -- quiet
+
 #other
 
 label eepro
