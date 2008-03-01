@@ -80,6 +80,9 @@ for CODENAME in $debian_codenames ; do
     done
 done
 
+# GUI gtk image for etch
+update_netboot debian etch-gtk i386 http://debian.osuosl.org/debian/dists/etch/main/installer-i386/current/images/netboot/gtk/netboot.tar.gz >> $log
+
 # daily images
 update_netboot debian daily i386 http://people.debian.org/~joeyh/d-i/images/daily/netboot/netboot.tar.gz >> $log
 #update_netboot debian daily-gtk i386 http://people.debian.org/~joeyh/d-i/images/daily/netboot/gtk/netboot.tar.gz >> $log
