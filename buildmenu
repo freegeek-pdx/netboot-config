@@ -34,7 +34,7 @@ cloner = '/usr/local/bin/lessdisks-cloner'
 
 choice = menuWithDefault("build boot options","choose a boot option",default,
     "install default OS","update default OS",
-    "install other system", "diskless terminal", "new disk test", "disk test", "root", "Fix GRUB")
+    "install other system", "diskless terminal", "new disk test", "disk test", "root", "Fix GRUB", "Video Card Detector")
 
 case choice
 when "install default OS"
@@ -51,6 +51,8 @@ when "diskless terminal"
     # do nothing
 when "root"
     system "/bin/bash ; #{shutdown}"
-when  "Fix GRUB"
+when "Fix GRUB"
     system "/etc/fgdiag/clone-config/lessdisks-postclone/boot-loader || bash ; #{shutdown}"
+when "Video Card Detector"
+    system "/usr/bin/video-detect || bash ; #{shutdown}"
 end
