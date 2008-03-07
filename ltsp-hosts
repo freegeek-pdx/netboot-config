@@ -3,5 +3,6 @@ case $(hostname) in
   diskless*) 
     echo 10.2.2.22 ryukin >> /etc/hosts
     echo 10.2.2.14 gimpy >> /etc/hosts
+    echo 10.2.2.17 dapper >> /etc/hosts
     ;;
 esac
