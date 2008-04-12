@@ -99,3 +99,7 @@ label vectra
 label freedos
 	kernel memdisk 
 	append initrd=disks/freedos.img
+
+label inspiron8100
+	kernel memdisk 
+	append initrd=disks/freedos/insp8100.img
