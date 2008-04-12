@@ -1,5 +1,4 @@
-# for examples, see: 
-http://d-i.alioth.debian.org/manual/example-preseed.txt
+# for examples, see: http://d-i.alioth.debian.org/manual/example-preseed.txt
 
 #:TODO: include the gutsy-mirrors preseed rather than copy it
 
