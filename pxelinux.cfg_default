@@ -33,8 +33,14 @@ menu label Experimental Freekbox with gutsy
 #netcfg/get_hostname=freekbox 
 
 label hardy
+menu label Ubuntu daily hardy (EXPERIMENTAL)
         kernel ubuntu-installer/hardy/linux
         append vga=normal initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw
+
+label hardy-freekbox
+menu label Ubuntu daily hardy-freekbox (EXPERIMENTAL)
+        kernel ubuntu-installer/hardy/linux
+	append vga=normal initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- locale=en_US console-setup/ask_detect=false preseed/url=http://glacier.fglan/preseeds/hardy-freekbox console-setup/layoutcode=us
 
 #debian
 
