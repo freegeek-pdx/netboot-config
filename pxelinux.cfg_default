@@ -40,7 +40,7 @@ menu label Ubuntu daily hardy (EXPERIMENTAL)
 label hardy-freekbox
 menu label Ubuntu daily hardy-freekbox (EXPERIMENTAL)
         kernel ubuntu-installer/hardy/linux
-	append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- locale=en_US console-setup/ask_detect=false preseed/url=http://glacier.fglan/preseeds/hardy-freekbox console-setup/layoutcode=us
+	append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://glacier.fglan/preseeds/hardy-freekbox
 
 #debian
 
