@@ -10,6 +10,7 @@ d-i console-keymaps-at/keymap select us
 d-i contrychooser/country-name string US
 
 #:TODO: include the gutsy-mirrors preseed rather than copy it
+#d-i preseed/include string x.cfg???
 
 # hack around the appropriate keyrings, 
 # queue the freegeek-archive-keyring-di udeb for installation
@@ -25,6 +26,7 @@ d-i mirror/country string enter information manually
 d-i mirror/http/hostname string apt.freegeek.org
 d-i mirror/http/directory string /ubuntu
 d-i mirror/http/proxy string
+
 d-i apt-setup/local0/repository string http://web.freegeek.org/ freegeek public ubuntu
 d-i apt-setup/local1/repository string http://us.archive.ubuntu.com/ubuntu hardy main restricted universe
 
