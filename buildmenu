@@ -15,7 +15,10 @@ disktest = "echo '*.* /var/log/kmsg.pipe' >> /etc/syslog.conf ; invoke-rc.d sysk
 
 timeout = false
 
-if /build/.match(hostname)
+if ENV['DEFAULT_MENU']
+    default = ENV['DEFAULT_MENU']
+    timeout = 5
+elsif /build/.match(hostname)
     timeout = 30
     default = "install default OS"
 elsif /test/.match(hostname)
