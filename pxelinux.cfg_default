@@ -5,8 +5,13 @@ default menu.c32
 prompt 0
 timeout 300
 
+label hardy-freekbox
+menu label Freekbox (Ubuntu Hardy 8.04 lts)
+        kernel ubuntu-installer/hardy/linux
+	 append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://glacier.fglan/preseeds/hardy-freekbox
+
 label ltsp
-menu label Freekbox install, diskless terminal, etc. etc.
+menu label diskless terminal, Disk testing, old freekbox, etc. etc.
   kernel /ltsp/i386/vmlinuz
   append initrd=/ltsp/i386/initrd.img ip=dhcp root=/dev/nfs nfsroot=/opt/ltsp/i386
 
@@ -36,11 +41,6 @@ label hardy
 menu label Ubuntu daily hardy (EXPERIMENTAL)
         kernel ubuntu-installer/hardy/linux
         append vga=normal initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw
-
-label hardy-freekbox
-menu label Ubuntu daily hardy-freekbox (EXPERIMENTAL)
-        kernel ubuntu-installer/hardy/linux
-	append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://glacier.fglan/preseeds/hardy-freekbox
 
 #debian
 
