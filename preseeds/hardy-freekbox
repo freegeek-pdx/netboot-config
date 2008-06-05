@@ -15,17 +15,20 @@ d-i contrychooser/country-name string US
 # hack around the appropriate keyrings, 
 # queue the freegeek-archive-keyring-di udeb for installation
 
-#add "/tmp/keyring; cat /tmp/keyring >> "?
-d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /usr/share/keyrings/ubuntu-archive-keyring.gpg
+#take out "/tmp/keyring; cat /tmp/keyring >> " to use our mirror
+d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /tmp/keyring; cat /tmp/keyring >> /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
-## CORRECT WAY; NOT TESTED
+## CORRECT WAY; NOT TESTED 
 #d-i apt-setup/local0/key string http://glacier.fglan/freegeek-archive-keyring.gpg
 
 # prefer local mirror, configure external mirrors
 d-i mirror/country string enter information manually
-d-i mirror/http/hostname string apt.freegeek.org
+#d-i mirror/http/hostname string apt.freegeek.org
+d-i mirror/http/hostname string us.archive.ubuntu.com
 d-i mirror/http/directory string /ubuntu
 d-i mirror/http/proxy string
+
+d-i apt-setup/multiverse boolean false
 
 d-i apt-setup/local0/repository string http://web.freegeek.org/ freegeek public ubuntu
 d-i apt-setup/local1/repository string http://us.archive.ubuntu.com/ubuntu hardy main restricted universe
@@ -46,6 +49,7 @@ tasksel tasksel/first multiselect standard, ubuntu-desktop
 # install freegeek-extras package, and some others
 # NOTE: additional packages should be added as dependencies of freegeek-extras
 # temporarily we can work around this
+d-i debian-installer/allow_unauthenticated string true
 pkgsel pkgsel/include string freegeek-extras debconf-utils oem-config 
 
 # select partitioning method
@@ -55,12 +59,15 @@ d-i partman/choose_partition \
        select Finish partitioning and write changes to disk
 d-i partman/confirm boolean true
 
-#??? ummm...the installation guide says this should work!?!?
-# Currently devfs names are not supported. maybe will /dev/hda work...if so, then we will have to wait until the next (or the one after that) release.
+#doesnt work...whatever!
 d-i partman-auto/disk string /dev/sda
 
-# broken: sets it to whatever dhcp says. We work around this in freegeek-extras
+# sets it to whatever dhcp says. We work around this in freegeek-extras
 d-i netcfg/get_hostname string freekbox
 d-i netcfg/get_domain string 
 
 
+#time stuff...UNTESTED!
+#  --Ryan52
+#d-i clock-setup/ntp boolean true
+#d-i clock-setup/ntp-server ntp.example.com
