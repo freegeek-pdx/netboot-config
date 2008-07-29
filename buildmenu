@@ -5,7 +5,7 @@
 # :MC: this depends on the hostname being set.
 # tweak /etc/init.d/hostname.sh to set the host names
 
-shutdown = 'echo "-------"; echo "You can now shutdown..."; sleep 600d'
+shutdown = 'echo "-------"; echo "Press enter to shutdown..."; read pause; poweroff -f'
 
 hostname = `hostname`.chomp
 
