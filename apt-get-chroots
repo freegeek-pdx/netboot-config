@@ -8,6 +8,7 @@
 
 systems="/opt/ltsp/i386"
 clones="default"
+clones=""
 for s in $clones ; do
   systems="$systems /usr/local/clones/$s"
 done
