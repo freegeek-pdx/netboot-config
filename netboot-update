@@ -68,7 +68,7 @@ update_netboot(){
 
     mkdir -p $destination_dir
     if download_netboot $destination_file $source_url ; then
-        unpack_netboot $destination_dir $destination_file $DIST
+        unpack_netboot $destination_dir $destination_file $DIST || echo failed to unpack $destination_file
     fi
 }
 
