@@ -11,3 +11,5 @@ for ip in $ip_addresses ; do
         10.1.11.*) export HOSTNAME="test$short_ip" ;;
     esac
 done
+# needed on lenny:
+echo $HOSTNAME > /proc/sys/kernel/hostname || true
