@@ -93,4 +93,22 @@ for CODENAME in $ubuntu_codenames ; do
     done
 done
 
+download_powerpc(){
+    DIST=$1
+    CODENAME=$2
+    ARCH=$3
+    MIRROR=$4
+    base_dir="$tftpdir/${DIST}-installer"
+    destination_dir="$base_dir/${CODENAME}-${ARCH}"
+    mkdir -p $destination_dir
+
+    # powerpc doesn't have a netboot.tar.gz, and it also contains sub-arches, 
+    # so download vmlinux and initrd.gz manually
+    for filename in vmlinux initrd.gz ; do
+        download_netboot $destination_dir/$filename $MIRROR/$filename
+    done
+}
+
+download_powerpc debian lenny powerpc http://debian.osuosl.org/debian/dists/lenny/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+
 echo finished $(date) >> $log
