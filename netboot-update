@@ -7,7 +7,7 @@ debian_codenames="etch lenny"
 debian_arches=$ARCHES
 
 ubuntu_mirror="us.archive.ubuntu.com"
-ubuntu_codenames="gutsy hardy"
+ubuntu_codenames="gutsy hardy intrepid"
 ubuntu_arches=$ARCHES
 
 tftpdir=/var/lib/tftpboot

@@ -10,6 +10,11 @@ menu label Freekbox (Ubuntu Hardy 8.04 lts)
         kernel ubuntu-installer/hardy/linux
 	 append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://glacier.fglan/preseeds/hardy-freekbox
 
+label intrepid
+menu label Ubuntu Intrepid 8.10
+        kernel ubuntu-installer/intrepid/linux
+        append vga=normal initrd=ubuntu-installer/intrepid/initrd.gz -- quiet
+
 label ltsp
 menu label diskless terminal, Disk testing, old freekbox, etc. etc.
   kernel /ltsp/i386/vmlinuz
