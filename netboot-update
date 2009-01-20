@@ -110,5 +110,6 @@ download_powerpc(){
 }
 
 download_powerpc debian lenny powerpc http://debian.osuosl.org/debian/dists/lenny/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+download_powerpc debian daily powerpc http://people.debian.org/~wouter/d-i/powerpc/daily/powerpc/netboot/ >> $log
 
 echo finished $(date) >> $log
