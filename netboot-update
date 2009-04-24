@@ -3,11 +3,11 @@
 ARCHES=i386
 
 debian_mirror="debian.osuosl.org"
-debian_codenames="etch lenny"
+debian_codenames="lenny"
 debian_arches=$ARCHES
 
 ubuntu_mirror="us.archive.ubuntu.com"
-ubuntu_codenames="gutsy hardy intrepid"
+ubuntu_codenames="hardy intrepid jaunty"
 ubuntu_arches=$ARCHES
 
 tftpdir=/var/lib/tftpboot
@@ -80,12 +80,11 @@ for CODENAME in $debian_codenames ; do
     done
 done
 
-# GUI gtk image for etch
-update_netboot debian etch-gtk i386 http://debian.osuosl.org/debian/dists/etch/main/installer-i386/current/images/netboot/gtk/netboot.tar.gz >> $log
+# GUI gtk image for lenny
+update_netboot debian lenny-gtk i386 http://$debian_mirror/debian/dists/lenny/main/installer-i386/current/images/netboot/gtk/netboot.tar.gz >> $log
 
 # daily images
 update_netboot debian daily i386 http://people.debian.org/~joeyh/d-i/images/daily/netboot/netboot.tar.gz >> $log
-#update_netboot debian daily-gtk i386 http://people.debian.org/~joeyh/d-i/images/daily/netboot/gtk/netboot.tar.gz >> $log
 
 for CODENAME in $ubuntu_codenames ; do
     for ARCH in $ubuntu_arches ; do
@@ -109,7 +108,7 @@ download_powerpc(){
     done
 }
 
-download_powerpc debian lenny powerpc http://debian.osuosl.org/debian/dists/lenny/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+download_powerpc debian lenny powerpc http://$debian_mirror/debian/dists/lenny/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
 download_powerpc debian daily powerpc http://people.debian.org/~wouter/d-i/powerpc/daily/powerpc/netboot/ >> $log
 
 echo finished $(date) >> $log
