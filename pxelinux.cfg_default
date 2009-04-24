@@ -34,7 +34,7 @@ label lenny
         append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  --
 
 label debian-daily
-menu label Debian daily lenny (EXPERIMENTAL)
+menu label Debian daily (EXPERIMENTAL)
         kernel debian-installer/daily/linux
         append vga=normal initrd=debian-installer/daily/initrd.gz root=/dev/ram rw  --
 
