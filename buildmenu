@@ -37,7 +37,7 @@ cloner = '/usr/local/bin/lessdisks-cloner'
 
 choice = menuWithDefault("build boot options","choose a boot option",default,
     "install default OS","update default OS",
-    "install other system", "diskless terminal", "new disk test", "disk test", "root", "Fix GRUB", "Video Card Detector")
+    "install other system", "diskless terminal", "new disk test", "disk test", "root", "Fix GRUB", "Video Card Detector", "keyboard tester")
 
 case choice
 when "install default OS"
@@ -59,4 +59,6 @@ when "Fix GRUB"
 when "Video Card Detector"
     system "/usr/bin/openvt -- /bin/bash --login"
     system "/usr/bin/video-detect || bash ; #{shutdown}"
+when "keyboard tester"
+    system "/usr/bin/xinit /root/wxKeyboardTester/bin/keyboard.pl"
 end
