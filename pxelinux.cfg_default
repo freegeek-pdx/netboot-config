@@ -3,7 +3,7 @@
 
 default menu.c32
 prompt 0
-timeout 300
+timeout 900
 
 #ubuntu
 
@@ -22,17 +22,17 @@ menu label Ubuntu Jaunty 9.04 (no preconfiguration)
         kernel ubuntu-installer/jaunty/linux
         append vga=normal initrd=ubuntu-installer/jaunty/initrd.gz -- quiet
 
-label intrepid
-menu label Ubuntu Intrepid 8.10
-        kernel ubuntu-installer/intrepid/linux
-        append vga=normal initrd=ubuntu-installer/intrepid/initrd.gz -- quiet
+#label intrepid
+#menu label Ubuntu Intrepid 8.10
+#        kernel ubuntu-installer/intrepid/linux
+#        append vga=normal initrd=ubuntu-installer/intrepid/initrd.gz -- quiet
 
 # other
 
 label ltsp
-menu label diskless terminal, Disk testing, old freekbox, etc. etc.
+menu label diskless terminal
   kernel /ltsp/i386/vmlinuz
-  append initrd=/ltsp/i386/initrd.img ip=dhcp root=/dev/nfs nfsroot=/opt/ltsp/i386
+  append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs
 
 label memtest
   kernel /memtest
@@ -42,6 +42,11 @@ label memtest
 label lenny 
         kernel debian-installer/lenny/linux
         append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  --
+
+label lenny-server
+menu label Debian Lenny Server
+        kernel debian-installer/lenny/linux
+        append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false
 
 label debian-daily
 menu label Debian daily (EXPERIMENTAL)
