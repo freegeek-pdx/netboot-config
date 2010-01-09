@@ -41,24 +41,27 @@ choice = menuWithDefault("build boot options","choose a boot option",default,
 
 case choice
 when "install default OS"
-    system "#{cloner} default || bash ; #{shutdown}"
+    system "#{cloner} default || bash"
 when "update default OS"
-    system "#{cloner} update default || bash ; #{shutdown}"
+    system "#{cloner} update default || bash"
 when "install other system"
-    system "#{cloner} || bash ; #{shutdown}"
+    system "#{cloner} || bash"
 when "new disk test"
-    system "#{newdisktest} || bash; #{shutdown}"
+    system "#{newdisktest} || bash"
 when "disk test"
-    system "#{disktest} || bash ; #{shutdown}"
+    system "#{disktest} || bash"
 when "diskless terminal"
     # do nothing
+    exit
 when "root"
-    system "/bin/bash ; #{shutdown}"
+    system "/bin/bash"
 when "Fix GRUB"
-    system "/etc/fgdiag/clone-config/lessdisks-postclone/boot-loader || bash ; #{shutdown}"
+    system "/etc/fgdiag/clone-config/lessdisks-postclone/boot-loader || bash"
 when "Video Card Detector"
     system "/usr/bin/openvt -- /bin/bash --login"
-    system "/usr/bin/video-detect || bash ; #{shutdown}"
+    system "/usr/bin/video-detect || bash"
 when "keyboard tester"
-    system "/usr/bin/xinit /root/wxKeyboardTester/bin/keyboard.pl"
+    system "/usr/bin/xinit /usr/bin/wx-keyboard-tester"
 end
+
+system shutdown
