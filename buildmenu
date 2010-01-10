@@ -18,9 +18,6 @@ timeout = false
 if ENV['DEFAULT_MENU']
     default = ENV['DEFAULT_MENU']
     timeout = 10
-elsif /build/.match(hostname)
-    timeout = 60
-    default = "install default OS"
 elsif /test/.match(hostname)
     timeout = 5
     default = "new disk test"
@@ -36,16 +33,9 @@ $TIMEOUT = timeout
 cloner = '/usr/local/bin/lessdisks-cloner'
 
 choice = menuWithDefault("build boot options","choose a boot option",default,
-    "install default OS","update default OS",
-    "install other system", "diskless terminal", "new disk test", "disk test", "root", "Fix GRUB", "Video Card Detector", "keyboard tester")
+    "diskless terminal", "new disk test", "disk test", "root", "Video Card Detector", "keyboard tester")
 
 case choice
-when "install default OS"
-    system "#{cloner} default || bash"
-when "update default OS"
-    system "#{cloner} update default || bash"
-when "install other system"
-    system "#{cloner} || bash"
 when "new disk test"
     system "#{newdisktest} || bash"
 when "disk test"
@@ -55,8 +45,6 @@ when "diskless terminal"
     exit
 when "root"
     system "/bin/bash"
-when "Fix GRUB"
-    system "/etc/fgdiag/clone-config/lessdisks-postclone/boot-loader || bash"
 when "Video Card Detector"
     system "/usr/bin/openvt -- /bin/bash --login"
     system "/usr/bin/video-detect || bash"
