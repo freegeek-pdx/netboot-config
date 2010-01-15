@@ -1,2 +1,0 @@
-command="rsync --server -vlHogDtprR --delete-excluded . /var/lib/lessdisks//usr/local/clones/" ssh-dss (insert the text from /var/lib/lessdisks/etc/lessdisks/creation_key.pub here)
-
