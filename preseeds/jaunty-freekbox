@@ -16,10 +16,10 @@ d-i contrychooser/country-name string US
 # queue the freegeek-archive-keyring-di udeb for installation
 
 #take out "/tmp/keyring; cat /tmp/keyring >> " to use our mirror
-d-i preseed/early_command string wget http://glacier.fglan/freegeek-archive-keyring.gpg -O /tmp/keyring; cat /tmp/keyring >> /usr/share/keyrings/ubuntu-archive-keyring.gpg
+d-i preseed/early_command string wget http://preseeds.fglan/freegeek-archive-keyring.gpg -O /tmp/keyring; cat /tmp/keyring >> /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
 ## CORRECT WAY; NOT TESTED 
-#d-i apt-setup/local0/key string http://glacier.fglan/freegeek-archive-keyring.gpg
+#d-i apt-setup/local0/key string http://preseeds.fglan/freegeek-archive-keyring.gpg
 
 # prefer local mirror, configure external mirrors
 d-i mirror/country string enter information manually
