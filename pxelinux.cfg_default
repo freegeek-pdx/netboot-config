@@ -10,12 +10,12 @@ timeout 900
 label hardy-freekbox
 menu label Freekbox (Ubuntu Hardy 8.04 lts)
         kernel ubuntu-installer/hardy/linux
-	 append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://glacier.fglan/preseeds/hardy-freekbox
+	 append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/hardy-freekbox
 
 label jaunty-freekbox
 menu label Ubuntu Jaunty 9.04 (configured as freekbox)
         kernel ubuntu-installer/jaunty/linux
-        append vga=normal initrd=ubuntu-installer/jaunty/initrd.gz -- quiet console-setup/ask_detect=false preseed/url=http://glacier.fglan/preseeds/jaunty-freekbox
+        append vga=normal initrd=ubuntu-installer/jaunty/initrd.gz -- quiet console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/jaunty-freekbox
 
 label jaunty
 menu label Ubuntu Jaunty 9.04 (no preconfiguration)
