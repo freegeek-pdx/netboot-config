@@ -30,8 +30,6 @@ include RubyTUI
 
 $TIMEOUT = timeout
 
-cloner = '/usr/local/bin/lessdisks-cloner'
-
 choice = menuWithDefault("build boot options","choose a boot option",default,
     "diskless terminal", "new disk test", "disk test", "root", "Video Card Detector", "keyboard tester")
 
