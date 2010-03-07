@@ -11,8 +11,6 @@ hostname = `hostname`.chomp
 
 newdisktest = "/usr/bin/disktest"
 
-disktest = "echo '*.* /var/log/kmsg.pipe' >> /etc/syslog.conf ; invoke-rc.d sysklogd restart ; /usr/bin/diag-disk"
-
 timeout = false
 
 if ENV['DEFAULT_MENU']
@@ -33,18 +31,21 @@ $TIMEOUT = timeout
 choice = menuWithDefault("build boot options","choose a boot option",default,
     "diskless terminal", "new disk test", "disk test", "root", "Video Card Detector", "keyboard tester")
 
+def start_shell
+    system "/usr/bin/openvt -- /bin/bash --login"
+end
+
 case choice
 when "new disk test"
+    start_shell
     system "#{newdisktest} || bash"
-when "disk test"
-    system "#{disktest} || bash"
 when "diskless terminal"
     # do nothing
     exit
 when "root"
     system "/bin/bash"
 when "Video Card Detector"
-    system "/usr/bin/openvt -- /bin/bash --login"
+    start_shell
     system "/usr/bin/video-detect || bash"
 when "keyboard tester"
     system "/usr/bin/xinit /usr/bin/wx-keyboard-tester"
