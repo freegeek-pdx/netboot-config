@@ -7,7 +7,7 @@ debian_codenames="lenny"
 debian_arches=$ARCHES
 
 ubuntu_mirror="us.archive.ubuntu.com"
-ubuntu_codenames="hardy intrepid jaunty karmic"
+ubuntu_codenames="hardy intrepid karmic lucid"
 ubuntu_arches=$ARCHES
 
 tftpdir=/var/lib/tftpboot
@@ -113,5 +113,6 @@ download_powerpc debian daily powerpc http://people.debian.org/~wouter/d-i/power
 
 # jaunty's powerpc image
 download_powerpc ubuntu jaunty powerpc http://ports.ubuntu.com/dists/jaunty/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+download_powerpc ubuntu lucid powerpc http://ports.ubuntu.com/dists/lucid/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
 
 echo finished $(date) >> $log
