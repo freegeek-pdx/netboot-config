@@ -113,6 +113,9 @@ download_powerpc debian daily powerpc http://people.debian.org/~wouter/d-i/power
 
 # jaunty's powerpc image
 download_powerpc ubuntu jaunty powerpc http://ports.ubuntu.com/dists/jaunty/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+# lucid powerpc image
 download_powerpc ubuntu lucid powerpc http://ports.ubuntu.com/dists/lucid/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+# hardy powerpc image
+download_powerpc ubuntu hardy powerpc http://ports.ubuntu.com/dists/hardy/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
 
 echo finished $(date) >> $log
