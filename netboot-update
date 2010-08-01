@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARCHES=i386
+ARCHES="i386 amd64"
 
 debian_mirror="debian.osuosl.org"
 debian_codenames="lenny"
@@ -109,10 +109,12 @@ download_powerpc(){
 }
 
 download_powerpc debian lenny powerpc http://$debian_mirror/debian/dists/lenny/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
-download_powerpc debian daily powerpc http://people.debian.org/~wouter/d-i/powerpc/daily/powerpc/netboot/ >> $log
+#download_powerpc debian daily powerpc http://people.debian.org/~wouter/d-i/powerpc/daily/powerpc/netboot/ >> $log
 
 # jaunty's powerpc image
 download_powerpc ubuntu jaunty powerpc http://ports.ubuntu.com/dists/jaunty/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+# jaunty's powerpc64 image
+download_powerpc ubuntu jaunty powerpc64 http://ports.ubuntu.com/dists/jaunty/main/installer-powerpc/current/images/powerpc64/netboot/ >> $log
 # lucid powerpc image
 download_powerpc ubuntu lucid powerpc http://ports.ubuntu.com/dists/lucid/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
 # hardy powerpc image
