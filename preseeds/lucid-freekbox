@@ -1,3 +1,8 @@
+# new stuff
+d-i user-setup/encrypt-home boolean false
+d-i grub-installer/only_debian boolean true
+pkgsel pkgsel/update-policy select none
+
 # for examples, see: http://d-i.alioth.debian.org/manual/example-preseed.txt
 
 #This takes about 45 minutes to install
