@@ -25,7 +25,7 @@ menu label Ubuntu karmic 9.10 (no preconfiguration)
 label lucid-freekbox
 menu label Ubuntu Lucid 10.04 EXPERIMENTAL (configured as freekbox)
         kernel ubuntu-installer/lucid/linux
-        append auto=true vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox 
+        append auto=true vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
 label lucid 
 menu label Ubuntu Lucid 10.04 EXPERIMENTAL (no preconfiguration)
