@@ -5,111 +5,95 @@ default menu.c32
 prompt 0
 timeout 900
 
+label local
+  menu label Boot from local hard drive
+  menu default
+  localboot 0
+
 #ubuntu
 
 label lucid-freekbox
-menu label Ubuntu Lucid 10.04 EXPERIMENTAL (configured as freekbox)
-        kernel ubuntu-installer/lucid/linux
-        append auto=true vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
-
-label hardy-freekbox
-menu label Freekbox (Ubuntu Hardy 8.04 lts)
-        kernel ubuntu-installer/hardy/linux
-	 append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/hardy-freekbox
-
-label karmic-freekbox
-menu label Ubuntu karmic 9.10 (configured as freekbox)
-        kernel ubuntu-installer/karmic/linux
-        append vga=normal initrd=ubuntu-installer/karmic/initrd.gz -- quiet console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/karmic-freekbox locale=en_US
-
-label karmic
-menu label Ubuntu karmic 9.10 (no preconfiguration)
-        kernel ubuntu-installer/karmic/linux
-        append vga=normal initrd=ubuntu-installer/karmic/initrd.gz -- quiet locale=en_US
+  menu label Ubuntu 10.04 Lucid Lynx (Freekbox)
+  kernel ubuntu-installer/lucid/linux
+  append auto=true vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
 label lucid 
-menu label Ubuntu Lucid 10.04 EXPERIMENTAL (no preconfiguration)
-        kernel ubuntu-installer/lucid/linux
-        append vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US
+  menu label Ubuntu 10.04 Lucid Lynx (no preconfiguration)
+  kernel ubuntu-installer/lucid/linux
+  append vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US
+
+label karmic-freekbox
+  menu label Ubuntu 9.10 Karmic Koala (Freekbox)
+  kernel ubuntu-installer/karmic/linux
+  append vga=normal initrd=ubuntu-installer/karmic/initrd.gz -- quiet console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/karmic-freekbox locale=en_US
+
+label karmic
+  menu label Ubuntu 9.10 Karmic Koala (no preconfiguration)
+  kernel ubuntu-installer/karmic/linux
+  append vga=normal initrd=ubuntu-installer/karmic/initrd.gz -- quiet locale=en_US
+
+label hardy-freekbox
+  menu label Ubuntu 8.04 LTS Hardy Heron (Freekbox)
+  kernel ubuntu-installer/hardy/linux
+	append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/hardy-freekbox
+
+label hardy
+  menu label Ubuntu 8.04 LTS Hardy Heron (no preconfiguration)
+  kernel ubuntu-installer/hardy/linux
+	append vga=normal initrd=ubuntu-installer/hardy/initrd.gz -- quiet locale=en_US
 
 # other
 
+label memtest
+  menu label Memtest86+
+  kernel /memtest
+
 label ltsp
-menu label diskless terminal
+  menu label diskless terminal
   kernel /ltsp/i386/vmlinuz
   append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs
 
-label memtest
-  kernel /memtest
-
 label ltsp-fat
-menu label fat diskless terminal (printme)
+  menu label fat diskless terminal (printme)
   kernel /ltsp/i386-fat/vmlinuz
   append initrd=/ltsp/i386-fat/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-fat/
 
 #debian
 
-label lenny 
-        kernel debian-installer/lenny/linux
-        append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  --
+label lenny
+  menu label Debian 5.0 Lenny (32 bit)
+  kernel debian-installer/lenny/linux
+  append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  --
+
+label lenny
+  menu label Debian 5.0 Lenny (64 bit)
+  kernel debian-installer/lennyi-amd64/linux
+  append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  --
 
 label lenny-server
-menu label Debian Lenny Server
-        kernel debian-installer/lenny/linux
-        append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+  menu label Debian 5.0 Lenny (FG Server) (32 bit)
+  kernel debian-installer/lenny/linux
+  append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
 label lenny-server64
-menu label Debian Lenny Server (64 bit)
-        kernel debian-installer/lenny-amd64/linux
-        append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
-
+  menu label Debian 5.0 Lenny (FG Server) (64 bit)
+  kernel debian-installer/lenny-amd64/linux
+  append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
 label debian-daily
-menu label Debian daily (EXPERIMENTAL)
-        kernel debian-installer/daily/linux
-        append vga=normal initrd=debian-installer/daily/initrd.gz root=/dev/ram rw  --
+  menu label Debian Daily (EXPERIMENTAL)
+  kernel debian-installer/daily/linux
+  append vga=normal initrd=debian-installer/daily/initrd.gz root=/dev/ram rw  --
 
 #other
 
 label glacier
-menu label LTSP server: glacier
+  menu label LTSP server: glacier
   kernel /ltsp/i386/vmlinuz
   append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.29:/opt/ltsp/i386/
 
 label floe
-menu label LTSP server: floe
+  menu label LTSP server: floe
   kernel /ltsp/i386/vmlinuz
   append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/
 
-
-label eepro
-	kernel memdisk 
-	append initrd=disks/eepro100cfg.img
-
-#label fdoscd
-#	kernel memdisk 
-#	append initrd=disks/fdbootcd.iso
-
-label gx1
-	kernel memdisk 
-	append initrd=disks/freedos/gx1flash.img
-
-label dimension
-	kernel memdisk 
-	append initrd=disks/freedos/dimension.img
-
-label vectra
-	kernel memdisk 
-	append initrd=disks/freedos/vectra.img
-
-#label compaq
-#	kernel memdisk 
-#	append initrd=disks/sp15782.img
-
-label freedos
-	kernel memdisk 
-	append initrd=disks/freedos.img
-
-label inspiron8100
-	kernel memdisk 
-	append initrd=disks/freedos/insp8100.img
