@@ -7,18 +7,18 @@ timeout 900
 
 label local
   menu label Boot from local hard drive
-  menu default
   localboot 0
 
 #ubuntu
 
 label lucid-freekbox
-  menu label Ubuntu 10.04 Lucid Lynx (Freekbox)
+  menu label Ubuntu 10.04 LTS Lucid Lynx (Freekbox)
+  menu default
   kernel ubuntu-installer/lucid/linux
   append auto=true vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
 label lucid 
-  menu label Ubuntu 10.04 Lucid Lynx (no preconfiguration)
+  menu label Ubuntu 10.04 LTS Lucid Lynx (no preconfiguration)
   kernel ubuntu-installer/lucid/linux
   append vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US
 
@@ -65,15 +65,15 @@ label lenny
   kernel debian-installer/lenny/linux
   append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  --
 
-label lenny
-  menu label Debian 5.0 Lenny (64 bit)
-  kernel debian-installer/lennyi-amd64/linux
-  append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  --
-
 label lenny-server
   menu label Debian 5.0 Lenny (FG Server) (32 bit)
   kernel debian-installer/lenny/linux
   append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+
+label lenny
+  menu label Debian 5.0 Lenny (64 bit)
+  kernel debian-installer/lennyi-amd64/linux
+  append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  --
 
 label lenny-server64
   menu label Debian 5.0 Lenny (FG Server) (64 bit)
