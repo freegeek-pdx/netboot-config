@@ -24,6 +24,26 @@ menu begin ubuntu-menu
     menu label Main menu
     menu exit
 
+  label maverick32-freekbox
+    menu label Ubuntu 10.10 Maverick Meerkat (32 bit) (Freekbox)
+    kernel ubuntu-installer/maverick/linux
+    append auto=true vga=normal initrd=ubuntu-installer/maverick/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
+  label maverick32
+    menu label Ubuntu 10.10 Maverick Meerkat (32 bit) (no preconfiguration)
+    kernel ubuntu-installer/maverick/linux
+    append vga=normal initrd=ubuntu-installer/maverick/initrd.gz -- quiet locale=en_US
+
+  label maverick64-freekbox
+    menu label Ubuntu 10.10 Maverick Meerkat (64 bit) (Freekbox)
+    kernel ubuntu-installer/maverick-amd64/linux
+    append auto=true vga=normal initrd=ubuntu-installer/maverick/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
+  label maverick64
+    menu label Ubuntu 10.10 Maverick Meerkat (64 bit) (no preconfiguration)
+    kernel ubuntu-installer/maverick-amd64/linux
+    append vga=normal initrd=ubuntu-installer/maverick-amd64/initrd.gz -- quiet locale=en_US
+
   label lucid32
     menu label Ubuntu 10.04 LTS Lucid Lynx (32 bit) (no preconfiguration)
     kernel ubuntu-installer/lucid/linux
@@ -60,7 +80,6 @@ menu begin ubuntu-menu
     append vga=normal initrd=ubuntu-installer/hardy/initrd.gz -- quiet locale=en_US
 
 menu end
-# other
 
 label memtest
   menu label Memtest86+
@@ -131,12 +150,8 @@ menu begin debian-menu
     append vga=normal initrd=debian-installer/daily/initrd.gz root=/dev/ram rw  --
 
 menu end
-#other
 
-label glacier
-  menu label LTSP server: glacier
-  kernel /ltsp/i386/vmlinuz
-  append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.29:/opt/ltsp/i386/
+#other
 
 label floe
   menu label LTSP server: floe
