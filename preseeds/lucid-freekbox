@@ -36,7 +36,7 @@ d-i mirror/http/proxy string
 d-i apt-setup/multiverse boolean false
 
 #d-i apt-setup/local0/repository string http://web.freegeek.org/ freegeek public ubuntu
-d-i apt-setup/local0/repository string http://apt.freegeek.org/ubuntu dapper main
+d-i apt-setup/local0/repository string http://apt.freegeek.org/ubuntu lucid main
 
 ## commented out, as we just use the default mirror now, and it causes 
 ## duplicate sources.list entries
