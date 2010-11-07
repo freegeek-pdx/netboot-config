@@ -59,7 +59,7 @@ tasksel tasksel/first multiselect standard, ubuntu-desktop
 # NOTE: additional packages should be added as dependencies of freegeek-extras
 # temporarily we can work around this
 d-i debian-installer/allow_unauthenticated string true
-pkgsel pkgsel/include string freegeek-extras debconf-utils oem-config-gtk
+pkgsel pkgsel/include string freegeek-extras debconf-utils oem-config-gtk freegeek-manual
 
 # select partitioning method
 d-i partman-auto/init_automatically_partition select Guided - use entire disk
