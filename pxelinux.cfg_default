@@ -59,22 +59,22 @@ menu begin ubuntu-menu
     kernel ubuntu-installer/lucid-amd64/linux
     append auto=true vga=normal initrd=ubuntu-installer/lucid-amd64/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
-  label karmic-freekbox
+  label karmic32-freekbox
     menu label Ubuntu 9.10 Karmic Koala (Freekbox)
     kernel ubuntu-installer/karmic/linux
     append vga=normal initrd=ubuntu-installer/karmic/initrd.gz -- quiet console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/karmic-freekbox locale=en_US
 
-  label karmic
+  label karmic32
     menu label Ubuntu 9.10 Karmic Koala (no preconfiguration)
     kernel ubuntu-installer/karmic/linux
     append vga=normal initrd=ubuntu-installer/karmic/initrd.gz -- quiet locale=en_US
 
-  label hardy-freekbox
+  label hardy32-freekbox
     menu label Ubuntu 8.04 LTS Hardy Heron (Freekbox)
     kernel ubuntu-installer/hardy/linux
     append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/hardy-freekbox
 
-  label hardy
+  label hardy32
     menu label Ubuntu 8.04 LTS Hardy Heron (no preconfiguration)
     kernel ubuntu-installer/hardy/linux
     append vga=normal initrd=ubuntu-installer/hardy/initrd.gz -- quiet locale=en_US
@@ -92,13 +92,13 @@ menu begin memtest-menu
     menu label Main menu
     menu exit
 
-label memtest-2
-  menu label Memtest86+ 2.0.1-1.1
-  kernel /othermemtest/2.0.1-1.1/boot/memtest
+  label memtest-2
+    menu label Memtest86+ 2.0.1-1.1
+    kernel /othermemtest/2.0.1-1.1/boot/memtest
 
-label memtest-4.1
-  menu label Memtest86+ 4.10-1.1
-  kernel /othermemtest/4.10-1.1/boot/memtest
+  label memtest-4.1
+    menu label Memtest86+ 4.10-1.1
+    kernel /othermemtest/4.10-1.1/boot/memtest
 
 menu end
 
@@ -114,7 +114,15 @@ label ltsp-fat
 
 #debian
 
-label lenny-server
+#label lenny-server
+#  menu label Debian 5.0 Lenny (32/64) (FG Server)
+#  kernel ifcpu64.c32
+#  append lenny64-server -- lenny32-server
+#  text help
+#    Install preseeded Lenny 64-bit if supported, or 32-bit if not
+#  endtext
+
+label lenny32-server
   menu label Debian 5.0 Lenny (32 bit) (FG Server)
   kernel debian-installer/lenny/linux
   append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
@@ -131,7 +139,7 @@ menu begin debian-menu
     menu label Main menu
     menu exit
 
-  label lenny
+  label lenny32
     menu label Debian 5.0 Lenny (32 bit) (no preconfiguration)
     kernel debian-installer/lenny/linux
     append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  --
@@ -141,12 +149,12 @@ menu begin debian-menu
     kernel debian-installer/lenny-amd64/linux
     append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  --
 
-  label squeeze
+  label squeeze32
     menu label Debian 6.0 Squeeze - TESTING (32 bit) (no preconfiguration)
     kernel debian-installer/squeeze-i386/linux
     append vga=normal initrd=debian-installer/squeeze-i386/initrd.gz root=/dev/ram rw  --
 
-  label squeeze-server
+  label squeeze32-server
     menu label Debian 6.0 Squeeze - TESTING (32 bit) (FG Server)
     kernel debian-installer/squeeze-i386/linux
     append vga=normal initrd=debian-installer/squeeze-i386/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
@@ -161,7 +169,7 @@ menu begin debian-menu
     kernel debian-installer/squeeze-amd64/linux
     append vga=normal initrd=debian-installer/squeeze-amd64/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
-  label debian-daily
+  label debian32-daily
     menu label Debian Daily - EXPERIMENTAL (32 bit) (no preconfiguration)
     kernel debian-installer/daily/linux
     append vga=normal initrd=debian-installer/daily/initrd.gz root=/dev/ram rw  --
