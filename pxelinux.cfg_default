@@ -114,23 +114,14 @@ label ltsp-fat
 
 #debian
 
-#label lenny-server
-#  menu label Debian 5.0 Lenny (32/64) (FG Server)
-#  kernel ifcpu64.c32
-#  append lenny64-server -- lenny32-server
-#  text help
-#    Install preseeded Lenny 64-bit if supported, or 32-bit if not
-#  endtext
+label lenny-server
+  menu label Debian 5.0 Lenny (32/64) (FG Server)
+  kernel ifcpu64.c32
+  append lenny64-server -- lenny32-server
+  text help
+    Install preseeded Lenny 64-bit if supported, or 32-bit if not
+  endtext
 
-label lenny32-server
-  menu label Debian 5.0 Lenny (32 bit) (FG Server)
-  kernel debian-installer/lenny/linux
-  append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
-
-label lenny64-server
-  menu label Debian 5.0 Lenny (64 bit) (FG Server)
-  kernel debian-installer/lenny-amd64/linux
-  append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
 menu begin debian-menu
   menu label Debian
@@ -144,10 +135,20 @@ menu begin debian-menu
     kernel debian-installer/lenny/linux
     append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  --
 
+  label lenny32-server
+    menu label Debian 5.0 Lenny (32 bit) (FG Server)
+    kernel debian-installer/lenny/linux
+    append vga=normal initrd=debian-installer/lenny/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+
   label lenny64
     menu label Debian 5.0 Lenny (64 bit) (no preconfiguration)
     kernel debian-installer/lenny-amd64/linux
     append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  --
+
+  label lenny64-server
+    menu label Debian 5.0 Lenny (64 bit) (FG Server)
+    kernel debian-installer/lenny-amd64/linux
+    append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
   label squeeze32
     menu label Debian 6.0 Squeeze - TESTING (32 bit) (no preconfiguration)
