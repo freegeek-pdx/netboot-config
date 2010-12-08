@@ -7,7 +7,7 @@ debian_codenames="lenny squeeze"
 debian_arches=$ARCHES
 
 ubuntu_mirror="us.archive.ubuntu.com"
-ubuntu_codenames="hardy intrepid karmic lucid maverick"
+ubuntu_codenames="hardy karmic lucid maverick"
 ubuntu_arches=$ARCHES
 
 tftpdir=/var/lib/tftpboot
