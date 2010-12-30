@@ -85,6 +85,7 @@ update_netboot debian lenny-gtk i386 http://$debian_mirror/debian/dists/lenny/ma
 
 # daily images
 update_netboot debian daily i386 http://people.debian.org/~joeyh/d-i/images/daily/netboot/netboot.tar.gz >> $log
+update_netboot debian daily amd64 http://d-i.debian.org/daily-images/amd64/daily/netboot/netboot.tar.gz >> $log
 
 for CODENAME in $ubuntu_codenames ; do
     for ARCH in $ubuntu_arches ; do
