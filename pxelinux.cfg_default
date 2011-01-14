@@ -116,6 +116,11 @@ label ltsp-fat
   kernel /ltsp/i386-fat/vmlinuz
   append initrd=/ltsp/i386-fat/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-fat/
 
+label ltsp-squeeze
+  menu label diskless terminal (squeeze)
+  kernel /ltsp/i386-squeeze/vmlinuz
+  append initrd=/ltsp/i386-squeeze/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/
+
 #debian
 
 label squeeze-server
