@@ -28,6 +28,26 @@ menu begin ubuntu-menu
     menu label Main menu
     menu exit
 
+  label natty32-freekbox
+    menu label Ubuntu 11.04 Natty Narwhal (32 bit) (Freekbox)
+    kernel ubuntu-installer/natty-i386/linux
+    append auto=true vga=normal initrd=ubuntu-installer/natty-i386/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
+  label natty32
+    menu label Ubuntu 11.04 Natty Narwhal (32 bit) (no preconfiguration)
+    kernel ubuntu-installer/natty-i386/linux
+    append vga=normal initrd=ubuntu-installer/natty-i386/initrd.gz -- quiet locale=en_US
+
+  label natty64-freekbox
+    menu label Ubuntu 11.04 Natty Narwhal (64 bit) (Freekbox)
+    kernel ubuntu-installer/natty-amd64/linux
+    append auto=true vga=normal initrd=ubuntu-installer/natty-amd64/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
+  label natty64
+    menu label Ubuntu 11.04 Natty Narwhal (64 bit) (no preconfiguration)
+    kernel ubuntu-installer/natty-amd64/linux
+    append vga=normal initrd=ubuntu-installer/natty-amd64/initrd.gz -- quiet locale=en_US
+
   label maverick32-freekbox
     menu label Ubuntu 10.10 Maverick Meerkat (32 bit) (Freekbox)
     kernel ubuntu-installer/maverick/linux
