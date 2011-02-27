@@ -1,8 +1,6 @@
 #!/bin/sh
 case $(hostname) in
   diskless*) 
-    echo 10.2.2.22 ryukin >> /etc/hosts
-    echo 10.2.2.14 gimpy >> /etc/hosts
     echo 10.2.2.66 hardy >> /etc/hosts
     echo 10.2.2.46 mustard >> /etc/hosts
     ;;
