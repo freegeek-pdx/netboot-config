@@ -16,13 +16,16 @@ label hdt
 #ubuntu
 
 label lucid32-freekbox
-  menu label Ubuntu 10.04 LTS Lucid Lynx (32 bit) (Freekbox)
+  menu label Install Ubuntu 10.04 LTS Lucid Lynx (32 bit) (Freekbox)
   menu default
   kernel ubuntu-installer/lucid/linux
   append auto=true vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+  text help
+    Wipe drive and install preseeded Lucid Lynx Freekbox
+  endtext
 
 menu begin ubuntu-menu
-  menu label Ubuntu
+  menu label Ubuntu Installers
 
   label ubuntu-menu-exit
     menu label Main menu
@@ -144,7 +147,7 @@ label ltsp-squeeze
 #debian
 
 label squeeze-server
-  menu label Debian 6.0 Squeeze (32/64) (FG Server)
+  menu label Install Debian 6.0 Squeeze (32/64) (FG Server)
   kernel ifcpu64.c32
   append squeeze64-server -- squeeze32-server
   text help
@@ -152,7 +155,7 @@ label squeeze-server
   endtext
 
 menu begin debian-menu
-  menu label Debian
+  menu label Debian Installers
 
   label debian-menu-exit
     menu label Main menu
