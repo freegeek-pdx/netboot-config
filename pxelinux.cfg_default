@@ -3,7 +3,6 @@
 
 default menu.c32
 prompt 0
-timeout 900
 
 label local
   menu label Boot from local hard drive
@@ -129,21 +128,6 @@ menu begin memtest-menu
 
 menu end
 
-label ltsp
-  menu label diskless terminal
-  kernel /ltsp/i386/vmlinuz
-  append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs
-
-label ltsp-fat
-  menu label fat diskless terminal (printme)
-  kernel /ltsp/i386-fat/vmlinuz
-  append initrd=/ltsp/i386-fat/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-fat/
-
-label ltsp-squeeze
-  menu label diskless terminal (squeeze)
-  kernel /ltsp/i386-squeeze/vmlinuz
-  append initrd=/ltsp/i386-squeeze/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/
-
 #debian
 
 label squeeze-server
@@ -245,10 +229,38 @@ menu begin debian-menu
 
 menu end
 
-#other
+# ltsp
+
+label printme
+  menu label printme (new)
+  kernel /ltsp/i386-squeeze/vmlinuz
+  append initrd=/ltsp/i386-squeeze/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+
+label ltsp-squeeze
+  menu label diskless terminal
+  kernel /ltsp/i386-squeeze/vmlinuz
+  append initrd=/ltsp/i386-squeeze/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/
+
+menu begin ltsp-menu
+  menu label Ltsp
+
+  label ltsp-menu-exit
+    menu label Main menu
+    menu exit
+
+label ltsp
+  menu label diskless terminal (lenny)
+  kernel /ltsp/i386/vmlinuz
+  append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs
+
+label ltsp-fat
+  menu label fat diskless terminal (lenny, old printme)
+  kernel /ltsp/i386-fat/vmlinuz
+  append initrd=/ltsp/i386-fat/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-fat/
 
 label floe
-  menu label LTSP server: floe
+  menu label LTSP server: floe (disk and other testing)
   kernel /ltsp/i386/vmlinuz
   append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/
 
+menu end

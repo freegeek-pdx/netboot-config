@@ -1,0 +1,2 @@
+include pxelinux.cfg/default
+timeout 900
