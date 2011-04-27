@@ -26,7 +26,7 @@ download_netboot()
         checksum=""
     fi
 
-    echo checking for updates: $source_url >> $log
+    echo $(date --rfc-3339=seconds) checking for updates: $source_url >> $log
     # -z and -R make it only download the file if it is newer than the existing
     curl $source_url -o $dest_file -R --silent $curl_opts
 
@@ -34,7 +34,7 @@ download_netboot()
     if [ "$checksum" = "$new_checksum" ]; then
         return 1
     fi
-    echo updated: $dest_file >> $log
+    echo $(date --rfc-3339=seconds) updated: $dest_file >> $log
     return 0
 }
 
@@ -48,7 +48,8 @@ unpack_netboot(){
     rm -rf $dest_dir.old 
     mv -f $dest_dir $dest_dir.old 
     mv ${dist}-installer/* $dest_dir || return 1
-    echo updated: $dest_dir >> $log
+    mv version.info $dest_dir || return 1
+    echo $(date --rfc-3339=seconds) updated: $dest_dir >> $log
     rm -rf $tmp
     return 0
 }
@@ -68,11 +69,11 @@ update_netboot(){
 
     mkdir -p $destination_dir
     if download_netboot $destination_file $source_url ; then
-        unpack_netboot $destination_dir $destination_file $DIST || echo failed to unpack $destination_file | tee -a $log >&2
+        unpack_netboot $destination_dir $destination_file $DIST || echo $(date --rfc-3339=seconds) failed to unpack $destination_file | tee -a $log >&2
     fi
 }
 
-echo starting $(date) >> $log
+echo $(date --rfc-3339=seconds) starting >> $log
 
 for CODENAME in $debian_codenames ; do
     for ARCH in $debian_arches ; do
@@ -118,4 +119,4 @@ download_powerpc ubuntu hardy powerpc http://ports.ubuntu.com/dists/hardy/main/i
 # lucid powerpc image
 download_powerpc ubuntu lucid powerpc http://ports.ubuntu.com/dists/lucid/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
 
-echo finished $(date) >> $log
+echo $(date --rfc-3339=seconds) finished >> $log
