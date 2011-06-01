@@ -264,3 +264,14 @@ label floe
   append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/
 
 menu end
+
+label rescue
+  menu label Debian Rescue
+  kernel live/vmlinuz-2.6.32-5-686
+  initrd live/initrd.img-2.6.32-5-686
+  append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/rescue/debian-live
+
+#label test
+#  menu label Test HTTP Boot - Debian Squeeze i386 (no preseed)
+#  kernel http://debian.osuosl.org/debian/dists/squeeze/main/installer-i386/current/images/netboot/debian-installer/i386/linux
+#  initrd http://debian.osuosl.org/debian/dists/squeeze/main/installer-i386/current/images/netboot/debian-installer/i386/initrd.gz
