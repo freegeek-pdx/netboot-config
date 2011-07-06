@@ -275,3 +275,42 @@ label rescue
 #  menu label Test HTTP Boot - Debian Squeeze i386 (no preseed)
 #  kernel http://debian.osuosl.org/debian/dists/squeeze/main/installer-i386/current/images/netboot/debian-installer/i386/linux
 #  initrd http://debian.osuosl.org/debian/dists/squeeze/main/installer-i386/current/images/netboot/debian-installer/i386/initrd.gz
+
+menu begin bios-menu
+  menu label BIOS Updates
+
+  label bios-menu-exit
+    menu label Main menu
+    menu exit
+
+  label bios-dell-dimension-4600
+    menu label Dell Dimension 4600 A12
+    kernel memdisk
+    initrd bios/dell-dimension-4600.img
+    append raw
+
+  label bios-dell-xps200
+    menu label Dell Dimension 5150C / XPS 200 - A07
+    kernel memdisk
+    initrd bios/dell-xps-200.img
+    append raw
+
+  label bios-dell-latitude-d505
+    menu label Dell Latitude D505 - A11
+    kernel memdisk
+    initrd bios/dell-latitude-d505.img
+    append raw
+
+  label bios-dell-pe1425sc
+    menu label Dell PowerEdge 1425SC - A03
+    kernel memdisk
+    initrd bios/dell-pe1425sc.img
+    append raw
+
+  label bios-dell-pe2650
+    menu label Dell PowerEdge 2650 - A21
+    kernel memdisk
+    initrd bios/dell-pe2650.img
+    append raw
+
+menu end
