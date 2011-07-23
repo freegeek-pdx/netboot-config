@@ -209,6 +209,47 @@ menu begin debian-menu
     kernel debian-installer/squeeze-amd64/linux
     append vga=normal initrd=debian-installer/squeeze-amd64/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
+  label wheezy
+    menu label Debian 7.0 Wheezy (32/64) (no preseed)
+    kernel ifcpu64.c32
+    append wheezy64 -- wheezy32
+    text help
+      Install Wheezy 64-bit if supported, or 32-bit if not
+    endtext
+
+  label wheezy-server
+    menu label Debian 7.0 Wheezy (32/64) (FG Server)
+    kernel ifcpu64.c32
+    append wheezy64-server -- wheezy32-server
+    text help
+      Install preseeded Wheezy 64-bit if supported, or 32-bit if not
+    endtext
+
+  label wheezy32
+    menu label Debian 7.0 Wheezy (32 bit) (no preconfiguration)
+    kernel debian-installer/wheezy-i386/linux
+    initrd debian-installer/wheezy-i386/initrd.gz
+    append vga=normal root=/dev/ram rw  --
+
+  label wheezy32-server
+    menu label Debian 7.0 Wheezy (32 bit) (FG Server)
+    kernel debian-installer/wheezy-i386/linux
+    initrd debian-installer/wheezy-i386/initrd.gz
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+
+  label wheezy64
+    menu label Debian 7.0 Wheezy (64 bit) (no preconfiguration)
+    kernel debian-installer/wheezy-amd64/linux
+    initrd debian-installer/wheezy-amd64/initrd.gz
+    append vga=normal root=/dev/ram rw  --
+
+  label wheezy64-server
+    menu label Debian 7.0 Wheezy (64 bit) (FG Server)
+    kernel debian-installer/wheezy-amd64/linux
+    initrd=debian-installer/wheezy-amd64/initrd.gz
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+
+
   label daily
     menu label Debian Daily - EXPERIMENTAL (32/64) (no preconfiguration)
     kernel ifcpu64.c32
@@ -311,6 +352,12 @@ menu begin bios-menu
     menu label Dell PowerEdge 2650 - A21
     kernel memdisk
     initrd bios/dell-pe2650.img
+    append raw
+
+  label bios-dell-pe2850
+    menu label Dell PowerEdge 2850 - A07
+    kernel memdisk
+    initrd bios/dell-pe2850.img
     append raw
 
 menu end
