@@ -21,3 +21,5 @@ d-i passwd/make-user boolean false
 
 d-i passwd/root-password password freegeek
 d-i passwd/root-password-again password freegeek
+
+d-i debian-installer/add-kernel-opts string rootdelay=60

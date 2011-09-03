@@ -81,3 +81,5 @@ d-i netcfg/get_domain string
 #  --Ryan52
 #d-i clock-setup/ntp boolean true
 #d-i clock-setup/ntp-server ntp.example.com
+
+d-i debian-installer/add-kernel-opts string rootdelay=60
