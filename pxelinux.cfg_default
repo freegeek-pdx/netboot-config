@@ -30,6 +30,26 @@ menu begin ubuntu-menu
     menu label Main menu
     menu exit
 
+  label oneiric32-freekbox
+    menu label Ubuntu 11.10 Oneiric Ocelot (32 bit) (Freekbox)
+    kernel ubuntu-installer/oneiric-i386/linux
+    append auto=true vga=normal initrd=ubuntu-installer/oneiric-i386/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
+  label oneiric32
+    menu label Ubuntu 11.10 Oneiric Ocelot (32 bit) (no preconfiguration)
+    kernel ubuntu-installer/oneiric-i386/linux
+    append vga=normal initrd=ubuntu-installer/oneiric-i386/initrd.gz -- quiet locale=en_US
+
+  label oneiric64-freekbox
+    menu label Ubuntu 11.10 Oneiric Ocelot (64 bit) (Freekbox)
+    kernel ubuntu-installer/oneiric-amd64/linux
+    append auto=true vga=normal initrd=ubuntu-installer/oneiric-amd64/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
+  label oneiric64
+    menu label Ubuntu 11.10 Oneiric Ocelot (64 bit) (no preconfiguration)
+    kernel ubuntu-installer/oneiric-amd64/linux
+    append vga=normal initrd=ubuntu-installer/oneiric-amd64/initrd.gz -- quiet locale=en_US
+
   label natty32-freekbox
     menu label Ubuntu 11.04 Natty Narwhal (32 bit) (Freekbox)
     kernel ubuntu-installer/natty-i386/linux
@@ -348,10 +368,10 @@ menu begin bios-menu
     initrd bios/dell-pe1425sc.img
     append raw
 
-  label bios-dell-pe2650
-    menu label Dell PowerEdge 2650 - A21
+  label bios-dell-pe1800
+    menu label Dell PowerEdge 1800 - A07
     kernel memdisk
-    initrd bios/dell-pe2650.img
+    initrd bios/dell-pe1800.img
     append raw
 
   label bios-dell-pe2850
