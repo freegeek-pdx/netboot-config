@@ -17,8 +17,9 @@ label hdt
 label lucid32-freekbox
   menu label Install Ubuntu 10.04 LTS Lucid Lynx (32 bit) (Freekbox)
   menu default
-  kernel ubuntu-installer/lucid/linux
-  append auto=true vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+  kernel ubuntu-installer/lucid-i386/linux
+  initrd ubuntu-installer/lucid-i386/initrd.gz
+  append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
   text help
     Wipe drive and install preseeded Lucid Lynx Freekbox
   endtext
@@ -33,97 +34,104 @@ menu begin ubuntu-menu
   label oneiric32-freekbox
     menu label Ubuntu 11.10 Oneiric Ocelot (32 bit) (Freekbox)
     kernel ubuntu-installer/oneiric-i386/linux
-    append auto=true vga=normal initrd=ubuntu-installer/oneiric-i386/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    initrd ubuntu-installer/oneiric-i386/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label oneiric32
     menu label Ubuntu 11.10 Oneiric Ocelot (32 bit) (no preconfiguration)
     kernel ubuntu-installer/oneiric-i386/linux
-    append vga=normal initrd=ubuntu-installer/oneiric-i386/initrd.gz -- quiet locale=en_US
+    initrd ubuntu-installer/oneiric-i386/initrd.gz
+    append vga=normal -- quiet locale=en_US
 
   label oneiric64-freekbox
     menu label Ubuntu 11.10 Oneiric Ocelot (64 bit) (Freekbox)
     kernel ubuntu-installer/oneiric-amd64/linux
-    append auto=true vga=normal initrd=ubuntu-installer/oneiric-amd64/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    initrd ubuntu-installer/oneiric-amd64/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label oneiric64
     menu label Ubuntu 11.10 Oneiric Ocelot (64 bit) (no preconfiguration)
     kernel ubuntu-installer/oneiric-amd64/linux
-    append vga=normal initrd=ubuntu-installer/oneiric-amd64/initrd.gz -- quiet locale=en_US
+    initrd ubuntu-installer/oneiric-amd64/initrd.gz
+    append vga=normal -- quiet locale=en_US
 
   label natty32-freekbox
     menu label Ubuntu 11.04 Natty Narwhal (32 bit) (Freekbox)
     kernel ubuntu-installer/natty-i386/linux
-    append auto=true vga=normal initrd=ubuntu-installer/natty-i386/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    initrd ubuntu-installer/natty-i386/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label natty32
     menu label Ubuntu 11.04 Natty Narwhal (32 bit) (no preconfiguration)
     kernel ubuntu-installer/natty-i386/linux
-    append vga=normal initrd=ubuntu-installer/natty-i386/initrd.gz -- quiet locale=en_US
+    initrd ubuntu-installer/natty-i386/initrd.gz
+    append vga=normal -- quiet locale=en_US
 
   label natty64-freekbox
     menu label Ubuntu 11.04 Natty Narwhal (64 bit) (Freekbox)
     kernel ubuntu-installer/natty-amd64/linux
-    append auto=true vga=normal initrd=ubuntu-installer/natty-amd64/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    initrd ubuntu-installer/natty-amd64/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label natty64
     menu label Ubuntu 11.04 Natty Narwhal (64 bit) (no preconfiguration)
     kernel ubuntu-installer/natty-amd64/linux
-    append vga=normal initrd=ubuntu-installer/natty-amd64/initrd.gz -- quiet locale=en_US
+    initrd ubuntu-installer/natty-amd64/initrd.gz
+    append vga=normal -- quiet locale=en_US
 
   label maverick32-freekbox
     menu label Ubuntu 10.10 Maverick Meerkat (32 bit) (Freekbox)
-    kernel ubuntu-installer/maverick/linux
-    append auto=true vga=normal initrd=ubuntu-installer/maverick/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    kernel ubuntu-installer/maverick-i386/linux
+    initrd ubuntu-installer/maverick-i386/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label maverick32
     menu label Ubuntu 10.10 Maverick Meerkat (32 bit) (no preconfiguration)
-    kernel ubuntu-installer/maverick/linux
-    append vga=normal initrd=ubuntu-installer/maverick/initrd.gz -- quiet locale=en_US
+    kernel ubuntu-installer/maverick-i386/linux
+    initrd ubuntu-installer/maverick-i386/initrd.gz
+    append vga=normal -- quiet locale=en_US
 
   label maverick64-freekbox
     menu label Ubuntu 10.10 Maverick Meerkat (64 bit) (Freekbox)
     kernel ubuntu-installer/maverick-amd64/linux
-    append auto=true vga=normal initrd=ubuntu-installer/maverick/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    initrd ubuntu-installer/maverick-amd64/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label maverick64
     menu label Ubuntu 10.10 Maverick Meerkat (64 bit) (no preconfiguration)
     kernel ubuntu-installer/maverick-amd64/linux
-    append vga=normal initrd=ubuntu-installer/maverick-amd64/initrd.gz -- quiet locale=en_US
+    initrd ubuntu-installer/maverick-amd64/initrd.gz
+    append vga=normal -- quiet locale=en_US
 
   label lucid32
     menu label Ubuntu 10.04 LTS Lucid Lynx (32 bit) (no preconfiguration)
-    kernel ubuntu-installer/lucid/linux
-    append vga=normal initrd=ubuntu-installer/lucid/initrd.gz -- quiet locale=en_US
+    kernel ubuntu-installer/lucid-i386/linux
+    initrd ubuntu-installer/lucid-i386/initrd.gz
+    append vga=normal -- quiet locale=en_US
 
   label lucid64
     menu label Ubuntu 10.04 LTS Lucid Lynx (64 bit) (no preconfiguration)
     kernel ubuntu-installer/lucid-amd64/linux
-    append vga=normal initrd=ubuntu-installer/lucid-amd64/initrd.gz -- quiet locale=en_US
+    initrd ubuntu-installer/lucid-amd64/initrd.gz
+    append vga=normal -- quiet locale=en_US
 
   label lucid64-freekbox
     menu label Ubuntu 10.04 LTS Lucid Lynx (64 bit) (Freekbox)
     kernel ubuntu-installer/lucid-amd64/linux
-    append auto=true vga=normal initrd=ubuntu-installer/lucid-amd64/initrd.gz -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
-
-  label karmic32-freekbox
-    menu label Ubuntu 9.10 Karmic Koala (Freekbox)
-    kernel ubuntu-installer/karmic/linux
-    append vga=normal initrd=ubuntu-installer/karmic/initrd.gz -- quiet console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/karmic-freekbox locale=en_US
-
-  label karmic32
-    menu label Ubuntu 9.10 Karmic Koala (no preconfiguration)
-    kernel ubuntu-installer/karmic/linux
-    append vga=normal initrd=ubuntu-installer/karmic/initrd.gz -- quiet locale=en_US
+    initrd ubuntu-installer/lucid-amd64/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label hardy32-freekbox
     menu label Ubuntu 8.04 LTS Hardy Heron (Freekbox)
-    kernel ubuntu-installer/hardy/linux
-    append vga=normal auto=true priority=critical initrd=ubuntu-installer/hardy/initrd.gz root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/hardy-freekbox
+    kernel ubuntu-installer/hardy-i386/linux
+    initrd ubuntu-installer/hardy-i386/initrd.gz
+    append vga=normal auto=true priority=critical root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/hardy-freekbox
 
   label hardy32
     menu label Ubuntu 8.04 LTS Hardy Heron (no preconfiguration)
-    kernel ubuntu-installer/hardy/linux
-    append vga=normal initrd=ubuntu-installer/hardy/initrd.gz -- quiet locale=en_US
+    kernel ubuntu-installer/hardy-i386/linux
+    initrd ubuntu-installer/hardy-i386/initrd.gz
+    append vga=normal -- quiet locale=en_US
 
 menu end
 
@@ -184,22 +192,26 @@ menu begin debian-menu
   label lenny32
     menu label Debian 5.0 Lenny (32 bit) (no preconfiguration)
     kernel debian-installer/lenny-i386/linux
-    append vga=normal initrd=debian-installer/lenny-i386/initrd.gz root=/dev/ram rw  --
+    initrd debian-installer/lenny-i386/initrd.gz
+    append vga=normal root=/dev/ram rw  --
 
   label lenny32-server
     menu label Debian 5.0 Lenny (32 bit) (FG Server)
     kernel debian-installer/lenny-i386/linux
-    append vga=normal initrd=debian-installer/lenny-i386/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+    initrd debian-installer/lenny-i386/initrd.gz
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
   label lenny64
     menu label Debian 5.0 Lenny (64 bit) (no preconfiguration)
     kernel debian-installer/lenny-amd64/linux
-    append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  --
+    initrd debian-installer/lenny-amd64/initrd.gz
+    append vga=normal root=/dev/ram rw  --
 
   label lenny64-server
     menu label Debian 5.0 Lenny (64 bit) (FG Server)
     kernel debian-installer/lenny-amd64/linux
-    append vga=normal initrd=debian-installer/lenny-amd64/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+    initrd debian-installer/lenny-amd64/initrd.gz
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
   label squeeze
     menu label Debian 6.0 Squeeze (32/64) (no preseed)
@@ -212,22 +224,26 @@ menu begin debian-menu
   label squeeze32
     menu label Debian 6.0 Squeeze (32 bit) (no preconfiguration)
     kernel debian-installer/squeeze-i386/linux
-    append vga=normal initrd=debian-installer/squeeze-i386/initrd.gz root=/dev/ram rw  --
+    initrd debian-installer/squeeze-i386/initrd.gz
+    append vga=normal root=/dev/ram rw  --
 
   label squeeze32-server
     menu label Debian 6.0 Squeeze (32 bit) (FG Server)
     kernel debian-installer/squeeze-i386/linux
-    append vga=normal initrd=debian-installer/squeeze-i386/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+    initrd debian-installer/squeeze-i386/initrd.gz
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
   label squeeze64
     menu label Debian 6.0 Squeeze (64 bit) (no preconfiguration)
     kernel debian-installer/squeeze-amd64/linux
-    append vga=normal initrd=debian-installer/squeeze-amd64/initrd.gz root=/dev/ram rw  --
+    initrd debian-installer/squeeze-amd64/initrd.gz
+    append vga=normal root=/dev/ram rw  --
 
   label squeeze64-server
     menu label Debian 6.0 Squeeze (64 bit) (FG Server)
     kernel debian-installer/squeeze-amd64/linux
-    append vga=normal initrd=debian-installer/squeeze-amd64/initrd.gz root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+    initrd debian-installer/squeeze-amd64/initrd.gz
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
   label wheezy
     menu label Debian 7.0 Wheezy (32/64) (no preseed)
@@ -266,7 +282,7 @@ menu begin debian-menu
   label wheezy64-server
     menu label Debian 7.0 Wheezy (64 bit) (FG Server)
     kernel debian-installer/wheezy-amd64/linux
-    initrd=debian-installer/wheezy-amd64/initrd.gz
+    initrd debian-installer/wheezy-amd64/initrd.gz
     append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
 
 
@@ -281,12 +297,14 @@ menu begin debian-menu
   label daily32
     menu label Debian Daily - EXPERIMENTAL (32 bit) (no preconfiguration)
     kernel debian-installer/daily-i386/linux
-    append vga=normal initrd=debian-installer/daily-i386/initrd.gz root=/dev/ram rw  --
+    initrd debian-installer/daily-i386/initrd.gz
+    append vga=normal root=/dev/ram rw  --
 
   label daily64
     menu label Debian Daily - EXPERIMENTAL (64 bit) (no preconfiguration)
     kernel debian-installer/daily-amd64/linux
-    append vga=normal initrd=debian-installer/daily-amd64/initrd.gz root=/dev/ram rw  --
+    initrd debian-installer/daily-amd64/initrd.gz
+    append vga=normal root=/dev/ram rw  --
 
 menu end
 
@@ -295,12 +313,14 @@ menu end
 label printme
   menu label printme (new)
   kernel /ltsp/i386-squeeze/vmlinuz
-  append initrd=/ltsp/i386-squeeze/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  initrd /ltsp/i386-squeeze/initrd.img
+  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
 
 label ltsp-squeeze
   menu label diskless terminal
   kernel /ltsp/i386-squeeze/vmlinuz
-  append initrd=/ltsp/i386-squeeze/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/
+  initrd /ltsp/i386-squeeze/initrd.img
+  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/
 
 menu begin ltsp-menu
   menu label Ltsp
@@ -312,17 +332,20 @@ menu begin ltsp-menu
 label ltsp
   menu label diskless terminal (lenny)
   kernel /ltsp/i386/vmlinuz
-  append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs
+  initrd /ltsp/i386/initrd.img
+  append quiet root=/dev/nfs ip=dhcp boot=nfs
 
 label ltsp-fat
   menu label fat diskless terminal (lenny, old printme)
   kernel /ltsp/i386-fat/vmlinuz
-  append initrd=/ltsp/i386-fat/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-fat/
+  initrd /ltsp/i386-fat/initrd.img
+  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-fat/
 
 label floe
   menu label LTSP server: floe (disk and other testing)
   kernel /ltsp/i386/vmlinuz
-  append initrd=/ltsp/i386/initrd.img quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/
+  initrd /ltsp/i386/initrd.img
+  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/
 
 menu end
 
