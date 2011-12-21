@@ -145,18 +145,6 @@ menu begin ubuntu-menu
     initrd ubuntu-installer/lucid-amd64/initrd.gz
     append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
-  label hardy32-freekbox
-    menu label Ubuntu 8.04 LTS Hardy Heron (Freekbox)
-    kernel ubuntu-installer/hardy-i386/linux
-    initrd ubuntu-installer/hardy-i386/initrd.gz
-    append vga=normal auto=true priority=critical root=/dev/ram rw  -- console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/hardy-freekbox
-
-  label hardy32
-    menu label Ubuntu 8.04 LTS Hardy Heron (no preconfiguration)
-    kernel ubuntu-installer/hardy-i386/linux
-    initrd ubuntu-installer/hardy-i386/initrd.gz
-    append vga=normal -- quiet locale=en_US
-
 menu end
 
 label memtest
@@ -338,7 +326,7 @@ label printme
   menu label printme (new)
   kernel /ltsp/i386-squeeze/vmlinuz
   initrd /ltsp/i386-squeeze/initrd.img
-  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
 
 label ltsp-squeeze
   menu label diskless terminal
