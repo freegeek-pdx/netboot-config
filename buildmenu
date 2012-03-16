@@ -5,6 +5,9 @@
 # :MC: this depends on the hostname being set.
 # tweak /etc/init.d/hostname.sh to set the host names
 
+# buildmenu will exit unless either $DEFAULT_MENU is set or the
+# hostname is set and includes the word "test" (for disktesting).
+
 shutdown = 'echo "-------"; echo "Press enter to shutdown..."; read pause; poweroff -f'
 
 hostname = `hostname`.chomp
