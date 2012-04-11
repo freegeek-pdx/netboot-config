@@ -107,13 +107,14 @@ download_powerpc(){
     done
 }
 
-download_powerpc debian lenny powerpc http://$debian_mirror/debian/dists/lenny/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+# debian powerpc images
 download_powerpc debian squeeze powerpc http://$debian_mirror/debian/dists/squeeze/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+download_powerpc debian squeeze powerpc64 http://$debian_mirror/debian/dists/squeeze/main/installer-powerpc/current/images/powerpc64/netboot/ >> $log
 download_powerpc debian daily powerpc http://d-i.debian.org/daily-images/powerpc/daily/powerpc/netboot/ >> $log
+download_powerpc debian daily powerpc64 http://d-i.debian.org/daily-images/powerpc/daily/powerpc64/netboot/ >> $log
 
-# hardy powerpc image
-download_powerpc ubuntu hardy powerpc http://ports.ubuntu.com/dists/hardy/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
-# lucid powerpc image
+# lucid powerpc images
 download_powerpc ubuntu lucid powerpc http://ports.ubuntu.com/dists/lucid/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+download_powerpc ubuntu lucid powerpc64 http://ports.ubuntu.com/dists/lucid/main/installer-powerpc/current/images/powerpc64/netboot/ >> $log
 
 echo $(date --rfc-3339=seconds) finished >> $log

@@ -8,7 +8,7 @@ PowerPC GNU/Linux NetBoot Options
 <BOOT-SCRIPT>
 : .printf fb8-write drop ;
 : bootyaboot " Loading second stage bootstrap..." .printf 100 ms load-base release-load-area " enet:0,mac\yaboot" $boot ;
-: bootltsp " Loading second stage bootstrap..." .printf 100 ms load-base release-load-area " enet:192.168.2.47,ltsp\powerpc\yaboot" $boot ;
+: bootltsp " Loading second stage bootstrap..." .printf 100 ms load-base release-load-area " enet:192.168.2.47,mac\yaboot" $boot ;
 : boot10 " NetBooting OS X..." .printf 100 ms load-base release-load-area " enet:0,mac\booter" $boot ;
 " screen" output
 variable interactive
@@ -30,7 +30,7 @@ f to foreground-color
 "  "(0d 0a)" .printf
 " Press l for GNU/Linux,"(0d 0a)" .printf
 "       m for OS X 10.5 Leopard,"(0d 0a)" .printf
-"       w for LTSP hard disk wiper."(0d 0a)" .printf
+"       w for hard disk wiper."(0d 0a)" .printf
 "  "(0d 0a)" .printf
 " Stage 1 Boot: " .printf
 get-msecs d# 300 3E8 * +
@@ -40,6 +40,7 @@ begin
       ascii l of " l "(0d 0a)" .printf bootyaboot endof
       ascii m of " m "(0d 0a)" .printf boot10 endof
       ascii w of " w "(0d 0a)" .printf bootltsp endof
+      ascii t of " t "(0d 0a)" .printf bootltsp endof
     endcase
   then
   dup get-msecs &lt;

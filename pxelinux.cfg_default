@@ -323,10 +323,12 @@ menu end
 # ltsp
 
 label printme
-  menu label printme (new)
-  kernel /ltsp/i386-squeeze/vmlinuz
-  initrd /ltsp/i386-squeeze/initrd.img
-  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  menu label printme
+  kernel ifcpu64.c32
+  append printmeamd64 -- printmepae -- printme486
+  text help
+    run printme with PAE kernel if supported, or fall back to 486 kernel if not.
+  endtext
 
 label ltsp-squeeze
   menu label diskless terminal
@@ -359,13 +361,30 @@ label floe
   initrd /ltsp/i386/initrd.img
   append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/
 
+label printme486
+  menu label printme 486
+  kernel /ltsp/i386-squeeze/486-vmlinuz
+  initrd /ltsp/i386-squeeze/486-initrd.img
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  ipappend 2
+
+label printmepae
+  menu label printme PAE
+  kernel /ltsp/i386-squeeze/pae-vmlinuz
+  initrd /ltsp/i386-squeeze/pae-initrd.img
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  ipappend 2
+
+label printmeamd64
+  menu label printme amd64
+  kernel /ltsp/i386-squeeze/amd64-vmlinuz
+  initrd /ltsp/i386-squeeze/amd64-initrd.img
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  ipappend 2
+
 menu end
 
-label rescue
-  menu label Debian Rescue
-  kernel live/vmlinuz-2.6.32-5-686
-  initrd live/initrd.img-2.6.32-5-686
-  append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/rescue/debian-live
+INCLUDE /pxelinux.cfg/liveboot
 
 #label test
 #  menu label Test HTTP Boot - Debian Squeeze i386 (no preseed)
