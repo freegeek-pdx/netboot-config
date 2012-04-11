@@ -1,0 +1,27 @@
+# this file goes in whatever directory the PXE boot menu is in, for example:
+# /var/lib/tftpboot/pxelinux.cfg/default
+
+default menu.c32
+prompt 0
+timeout 100
+
+# ltsp
+label ltsp-squeeze
+  menu label diskless terminal
+  kernel /ltsp/i386-squeeze/vmlinuz
+  initrd /ltsp/i386-squeeze/initrd.img
+  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/
+
+label local
+  menu label Boot from local hard drive
+  localboot 0
+
+label hdt
+  menu label Hardware Detection Tool
+  kernel hdt.c32
+
+label memtest
+  menu label Memtest86+
+  kernel /memtest
+
+INCLUDE /pxelinux.cfg/liveboot
