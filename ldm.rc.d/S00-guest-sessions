@@ -1,0 +1,8 @@
+# from:
+# http://sourceforge.net/mailarchive/forum.php?thread_name=1310986533.1915.3.camel%40alkis&forum_name=ltsp-discuss
+
+case "$LDM_USERNAME" in
+    ltsp[1-2][0-9][0-9]|diskless[1-2][0-9][0-9]|build[1-2][0-9][0-9]|class[1-2][0-9][0-9])
+        ssh -S "$LDM_SOCKET" "$LDM_SERVER" 'cd; rm -rf .* *; rsync -a /etc/skel/ .'
+        ;;
+esac
