@@ -1,0 +1,156 @@
+menu begin live
+  menu label Live Boot
+
+label bios-menu-exit
+  menu label Main menu
+  menu exit
+
+menu begin debian-live
+  menu label Debian Live
+
+  label debian-live-gnome
+    menu label Debian Live 6.0.3 Gnome
+    kernel ifcpu64.c32
+    append debian-live-gnome-amd64 -- debian-live-gnome-i386
+    text help
+      64-bit if supported, or 32-bit if not
+    endtext
+
+  label debian-live-rescue
+    menu label Debian Live 6.0.3 Rescue
+    kernel ifcpu64.c32
+    append debian-live-rescue-amd64 -- debian-live-rescue-i386
+    text help
+      64-bit if supported, or 32-bit if not
+    endtext
+
+  menu begin debian-live-arch
+    menu label Debian Live Architectues
+
+    label debian-live-gnome-i386
+      menu label Debian Live 6.0.3 Gnome Desktop (i386)
+      kernel live/debian/6.0.3-i386-gnome/vmlinuz-2.6.32-5-686
+      initrd live/debian/6.0.3-i386-gnome/initrd.img-2.6.32-5-686
+      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/6.0.3-i386-gnome/debian-live
+
+    label debian-live-gnome-amd64
+      menu label Debian Live 6.0.3 Gnome Desktop (amd64)
+      kernel live/debian/6.0.3-amd64-gnome/vmlinuz-2.6.32-5-amd64
+      initrd live/debian/6.0.3-amd64-gnome/initrd.img-2.6.32-5-amd64
+      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/6.0.3-amd64-gnome/debian-live
+
+    label debian-live-rescue-i386
+      menu label Debian Live 6.0.3 Rescue (i386)
+      kernel live/debian/6.0.3-i386-rescue/vmlinuz-2.6.32-5-686
+      initrd live/debian/6.0.3-i386-rescue/initrd.img-2.6.32-5-686
+      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/6.0.3-i386-rescue/debian-live
+
+    label debian-live-rescue-amd64
+      menu label Debian Live 6.0.3 Rescue (amd64)
+      kernel live/debian/6.0.3-amd64-rescue/vmlinuz-2.6.32-5-amd64
+      initrd live/debian/6.0.3-amd64-rescue/initrd.img-2.6.32-5-amd64
+      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/6.0.3-amd64-rescue/debian-live
+
+    menu end
+
+menu end
+
+menu begin xubuntu-live
+  menu label Xubuntu Live
+
+  label xubuntu-live-precise
+    menu label Xubuntu Live - 12.04 Precise Pangolin
+    kernel ifcpu64.c32
+    append xubuntu-live-precise-amd64 -- xubuntu-live-precise-i386
+    text help
+      64-bit if supported, or 32-bit if not
+    endtext
+
+  menu begin xubuntu-live-arch
+    menu label Xubuntu Live Architectues
+
+  label xubuntu-live-precise-i386
+    menu label Xubuntu Live - 12.04 Precise Pangolin (i386)
+    kernel live/xubuntu/12.04-desktop-i386/vmlinuz
+    initrd live/xubuntu/12.04-desktop-i386/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/xubuntu/12.04-desktop-i386
+
+  label xubuntu-live-precise-amd64
+    menu label Xubuntu Live - 12.04 Precise Pangolin (amd64)
+    kernel live/xubuntu/12.04-desktop-amd64/vmlinuz
+    initrd live/xubuntu/12.04-desktop-amd64/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/xubuntu/12.04-desktop-amd64
+
+  menu end
+
+menu end
+
+menu begin ubuntu-live
+  menu label Ubuntu Live
+
+  label ubuntu-live-lucid
+    menu label Ubuntu Live - 10.04.4 Lucid Lynx
+    kernel ifcpu64.c32
+    append ubuntu-live-lucid-amd64 -- ubuntu-live-lucid-i386
+    text help
+      64-bit if supported, or 32-bit if not
+    endtext
+
+  label ubuntu-live-oneiric
+    menu label Ubuntu Live - 11.10 Oneiric Ocelot
+    kernel ifcpu64.c32
+    append ubuntu-live-oneiric-amd64 -- ubuntu-live-oneiric-i386
+    text help
+      64-bit if supported, or 32-bit if not
+    endtext
+
+  label ubuntu-live-precise
+    menu label Ubuntu Live - 12.04 Precise Pangolin Beta 1
+    kernel ifcpu64.c32
+    append ubuntu-live-precise-amd64 -- ubuntu-live-precise-i386
+    text help
+      64-bit if supported, or 32-bit if not
+    endtext
+
+  menu begin ubuntu-live-arch
+    menu label Ubuntu Live Architectues
+
+  label ubuntu-live-lucid-i386
+    menu label Ubuntu Live - 10.04.4 Lucid Lynx (i386)
+    kernel live/ubuntu/10.04.4-desktop-i386/vmlinuz
+    initrd live/ubuntu/10.04.4-desktop-i386/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/10.04.4-desktop-i386
+
+  label ubuntu-live-lucid-amd64
+    menu label Ubuntu Live - 10.04.4 Lucid Lynx (amd64)
+    kernel live/ubuntu/10.04.4-desktop-amd64/vmlinuz
+    initrd live/ubuntu/10.04.4-desktop-amd64/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/10.04.4-desktop-amd64
+
+  label ubuntu-live-oneiric-i386
+    menu label Ubuntu Live - 11.10 Oneiric Ocelot (i386)
+    kernel live/ubuntu/11.10-desktop-i386/vmlinuz
+    initrd live/ubuntu/11.10-desktop-i386/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/11.10-desktop-i386
+
+  label ubuntu-live-oneiric-amd64
+    menu label Ubuntu Live - 11.10 Oneiric Ocelot (amd64)
+    kernel live/ubuntu/11.10-desktop-amd64/vmlinuz
+    initrd live/ubuntu/11.10-desktop-amd64/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/11.10-desktop-amd64
+
+  label ubuntu-live-precise-i386
+    menu label Ubuntu Live - 12.04 Precise Pangolin Beta 1 (i386)
+    kernel live/ubuntu/12.04-beta1-desktop-i386/vmlinuz
+    initrd live/ubuntu/12.04-beta1-desktop-i386/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/12.04-beta1-desktop-i386
+
+  label ubuntu-live-precise-amd64
+    menu label Ubuntu Live - 12.04 Precise Pangolin Beta 1 (amd64)
+    kernel live/ubuntu/12.04-beta1-desktop-amd64/vmlinuz
+    initrd live/ubuntu/12.04-beta1-desktop-amd64/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/12.04-beta1-desktop-amd64
+
+  menu end
+
+menu end
