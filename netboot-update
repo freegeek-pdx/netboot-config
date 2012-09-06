@@ -91,6 +91,8 @@ for CODENAME in $ubuntu_codenames ; do
     done
 done
 
+update_netboot ubuntu precise-non-pae i386 http://us.archive.ubuntu.com/ubuntu/dists/precise/main/installer-i386/current/images/netboot/non-pae/netboot.tar.gz >> $log
+
 download_powerpc(){
     DIST=$1
     CODENAME=$2

@@ -31,6 +31,24 @@ menu begin ubuntu-menu
     menu label Main menu
     menu exit
 
+  label precise32-xubuntu-freekbox
+    menu label Xubuntu 12.04 Precise Pangolin (32 bit) (Freekbox)
+    kernel ubuntu-installer/precise-i386/linux
+    initrd ubuntu-installer/precise-i386/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
+  label precise32-non-pae-xubuntu-freekbox
+    menu label Xubuntu 12.04 Precise Pangolin (32 bit non-PAE) (Freekbox)
+    kernel ubuntu-installer/precise-non-pae-i386/linux
+    initrd ubuntu-installer/precise-non-pae-i386/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
+  label precise64-xubuntu-freekbox
+    menu label Xubuntu 12.04 Precise Pangolin (64 bit) (Freekbox)
+    kernel ubuntu-installer/precise-amd64/linux
+    initrd ubuntu-installer/precise-amd64/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
   label precise32-freekbox
     menu label Ubuntu 12.04 Precise Pangolin (32 bit) (Freekbox)
     kernel ubuntu-installer/precise-i386/linux
@@ -170,13 +188,13 @@ menu end
 
 #debian
 
-label squeeze-server
-  menu label Install Debian 6.0 Squeeze (32/64) (FG Server)
-  kernel ifcpu64.c32
-  append squeeze64-server -- squeeze32-server
-  text help
-    Install preseeded Squeeze 64-bit if supported, or 32-bit if not
-  endtext
+  label wheezy-server
+    menu label Debian 7.0 Wheezy (32/64) (FG Server)
+    kernel ifcpu64.c32
+    append wheezy64-server -- wheezy32-server
+    text help
+      Install preseeded Wheezy 64-bit if supported, or 32-bit if not
+    endtext
 
 menu begin debian-menu
   menu label Debian Installers
@@ -185,45 +203,13 @@ menu begin debian-menu
     menu label Main menu
     menu exit
 
-  label lenny
-    menu label Debian 5.0 Lenny (32/64) (no preseed)
-    kernel ifcpu64.c32
-    append lenny64 -- lenny32
-    text help
-      Install Lenny 64-bit if supported, or 32-bit if not
-    endtext
-
-  label lenny-server
-    menu label Debian 5.0 Lenny (32/64) (FG Server)
-    kernel ifcpu64.c32
-    append lenny64-server -- lenny32-server
-    text help
-      Install preseeded Lenny 64-bit if supported, or 32-bit if not
-    endtext
-
-  label lenny32
-    menu label Debian 5.0 Lenny (32 bit) (no preconfiguration)
-    kernel debian-installer/lenny-i386/linux
-    initrd debian-installer/lenny-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  --
-
-  label lenny32-server
-    menu label Debian 5.0 Lenny (32 bit) (FG Server)
-    kernel debian-installer/lenny-i386/linux
-    initrd debian-installer/lenny-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
-
-  label lenny64
-    menu label Debian 5.0 Lenny (64 bit) (no preconfiguration)
-    kernel debian-installer/lenny-amd64/linux
-    initrd debian-installer/lenny-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  --
-
-  label lenny64-server
-    menu label Debian 5.0 Lenny (64 bit) (FG Server)
-    kernel debian-installer/lenny-amd64/linux
-    initrd debian-installer/lenny-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
+label squeeze-server
+  menu label Install Debian 6.0 Squeeze (32/64) (FG Server)
+  kernel ifcpu64.c32
+  append squeeze64-server -- squeeze32-server
+  text help
+    Install preseeded Squeeze 64-bit if supported, or 32-bit if not
+  endtext
 
   label squeeze
     menu label Debian 6.0 Squeeze (32/64) (no preseed)
@@ -263,14 +249,6 @@ menu begin debian-menu
     append wheezy64 -- wheezy32
     text help
       Install Wheezy 64-bit if supported, or 32-bit if not
-    endtext
-
-  label wheezy-server
-    menu label Debian 7.0 Wheezy (32/64) (FG Server)
-    kernel ifcpu64.c32
-    append wheezy64-server -- wheezy32-server
-    text help
-      Install preseeded Wheezy 64-bit if supported, or 32-bit if not
     endtext
 
   label wheezy32
@@ -342,18 +320,6 @@ menu begin ltsp-menu
   label ltsp-menu-exit
     menu label Main menu
     menu exit
-
-label ltsp
-  menu label diskless terminal (lenny)
-  kernel /ltsp/i386/vmlinuz
-  initrd /ltsp/i386/initrd.img
-  append quiet root=/dev/nfs ip=dhcp boot=nfs
-
-label ltsp-fat
-  menu label fat diskless terminal (lenny, old printme)
-  kernel /ltsp/i386-fat/vmlinuz
-  initrd /ltsp/i386-fat/initrd.img
-  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-fat/
 
 label floe
   menu label LTSP server: floe (disk and other testing)
