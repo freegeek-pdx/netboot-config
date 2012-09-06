@@ -3,11 +3,11 @@
 ARCHES="i386 amd64"
 
 debian_mirror="debian.osuosl.org"
-debian_codenames="lenny squeeze wheezy"
+debian_codenames="squeeze wheezy"
 debian_arches=$ARCHES
 
 ubuntu_mirror="us.archive.ubuntu.com"
-ubuntu_codenames="hardy lucid maverick natty oneiric precise"
+ubuntu_codenames="lucid maverick natty oneiric precise"
 ubuntu_arches=$ARCHES
 
 tftpdir=/var/lib/tftpboot
