@@ -23,6 +23,9 @@ d-i contrychooser/country-name string US
 #take out "/tmp/keyring; cat /tmp/keyring >> " to use our mirror
 d-i preseed/early_command string wget http://preseeds.fglan/freegeek-archive-keyring.gpg -O /tmp/keyring; cat /tmp/keyring >> /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
+d-i partman/early_command string wget http://apt.freegeek.org/external/ubuntu/pool/main/l/lshw/lshw-udeb_02.16-0.2_i386.udeb -O /tmp/lshw-udeb.udeb &&  udpkg -i /tmp/lshw-udeb.udeb && wget http://apt.freegeek.org/external/ubuntu/pool/main/f/fgdiag-disktest-verification-udeb/fgdiag-disktest-verification-udeb_1.5_i386.udeb -O /tmp/fgdiag-disktest-verification-udeb.udeb && udpkg -i /tmp/fgdiag-disktest-verification-udeb.udeb
+#anna-install lshw-udeb .. doesn't use our repo :/
+
 ## CORRECT WAY; NOT TESTED 
 #d-i apt-setup/local0/key string http://preseeds.fglan/freegeek-archive-keyring.gpg
 
