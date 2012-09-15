@@ -12,7 +12,7 @@ d-i mirror/http/proxy string
 d-i time/zone string US/Pacific
 d-i clock-setup/utc boolean true
 
-pkgsel pkgsel/include string memtest86+
+pkgsel pkgsel/include string memtest86+ libsmbios-bin
 
 d-i netcfg/get_hostname string debian-server
 d-i netcfg/get_domain string 
