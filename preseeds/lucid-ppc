@@ -1,0 +1,86 @@
+###########################################################
+# preseed.cfg for macbuild                                #
+# revision 3  Oct 31, 2009                                #
+# updated march 4th, 2010 - vagrant
+# maintainer Thomas Schreiber ubiquill@gmail.com          #
+#                                                         #
+# preeseed file for macbuild installations will           #
+# automagically preconfigure ubuntu installs              #
+###########################################################
+
+# Locale sets language and country.
+d-i debian-installer/locale string en_US
+
+# Keyboard selection.
+d-i console-keymaps-at/keymap select us
+
+# Disable automatic (interactive) keymap detection.
+
+d-i console-setup/ask_detect boolean false
+d-i console-setup/layoutcode string us
+
+# Because we are preseeding over ethernet lets hope this succeeds!
+d-i netcfg/choose_interface select eth0
+
+# Archive Mirror
+d-i mirror/country string manual
+d-i mirror/http/hostname string ports.ubuntu.com
+d-i mirror/http/directory string /
+d-i mirror/http/proxy string
+
+# Hostname and Domain of system
+d-i netcfg/get_hostname string unassigned-hostname
+d-i netcfg/get_domain string fglan
+
+# Uncomment this to auto login to WEP with key
+#d-i netcfg/wireless_web string key-here
+
+# Partitioner settings
+# WARNING: These settings wipe disks
+d-i partman-auto/init_automatically_partition select biggest_free
+d-i partman-auto/method string regular
+d-i partman-auto/purge_lvm_from_device boolean true
+d-i partman-auto/choose_recipe select atomic
+d-i partman-choose_partition select true
+d-i partman/confirm boolean true
+
+# Encrypt home partition?
+d-i user-setup/encrypt-home boolean false
+
+# Time zones
+d-i clock-setup/utc boolean true
+d-i time/zone string US/Pacific
+
+# Add Free Geek Repos
+d-i apt-setup/local0/repository string \
+       deb http://apt.freegeek.org/ubuntu hardy main
+d-i apt-setup/local0/key string \
+       http://apt.freegeek.org/freegeek-archive-keyring.gpg
+
+# Automatic updates
+d-i pkgsel/update-policy select none
+
+# I set up Accounts
+# WARNING: password is in plain text here!
+d-i user-setup/allow-password-weak boolean true
+d-i passwd/user-fullname string oem
+d-i passwd/username string oem
+d-i passwd/user-password password freegeek
+d-i passwd/user-password-again password freegeek
+
+# Let grub install to the mbr
+d-i yaboot-installer/only_debian boolean true
+
+tasksel tasksel/first multiselect standard, ubuntu-desktop
+
+# Don't tell us that the install is done. Just do it!
+d-i finish-install/reboot_in_progress note
+
+# Eject the CD
+d-i cdrom-detect/eject boolean true
+
+# install some packages
+pkgsel pkgsel/include string freegeek-build-utils freegeek-archive-keyring freegeek-extras-pdx freegeek-extras vlc b43-fwcutter k3b smartmontools
+
+# firmware 
+b43-fwcutter b43-fwcutter/cut_firmware boolean true

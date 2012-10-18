@@ -1,0 +1,7 @@
+d-i mirror/country select US
+d-i mirror/http/countries select US
+d-i mirror/http/hostname string us.archive.ubuntu.com
+d-i mirror/http/mirror string us.archive.ubuntu.com
+d-i mirror/http/directory string /ubuntu
+d-i mirror/http/proxy string
+d-i apt-setup/multiverse boolean false

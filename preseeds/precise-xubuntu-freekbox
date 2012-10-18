@@ -1,92 +1,10 @@
-# new stuff
-d-i user-setup/encrypt-home boolean false
-d-i grub-installer/only_debian boolean true
-#d-i grub-installer/bootdev string /dev/sda
-
-pkgsel pkgsel/update-policy select none
-
-# for examples, see: http://d-i.alioth.debian.org/manual/example-preseed.txt
-
-#This takes about 45 minutes to install
-#The newly created system is recommended to have 5gigs of hd, 512megs of ram, and P4 1GHz proc
-#This will ask you one question: which disk to partition
-
-#Do we need you? I think so.
-d-i debian-installer/locale string en_US
-d-i console-keymaps-at/keymap select us
-d-i contrychooser/country-name string US
-
-#:TODO: include the gutsy-mirrors preseed rather than copy it
-#d-i preseed/include string x.cfg???
-
-# hack around the appropriate keyrings, 
-# queue the freegeek-archive-keyring-di udeb for installation
-
-#take out "/tmp/keyring; cat /tmp/keyring >> " to use our mirror
-d-i preseed/early_command string wget http://preseeds.fglan/freegeek-archive-keyring.gpg -O /tmp/keyring; cat /tmp/keyring >> /usr/share/keyrings/ubuntu-archive-keyring.gpg
-
-d-i partman/early_command string wget http://apt.freegeek.org/external/ubuntu/pool/main/l/lshw/lshw-udeb_02.16-0.2_i386.udeb -O /tmp/lshw-udeb.udeb &&  udpkg -i /tmp/lshw-udeb.udeb && wget http://apt.freegeek.org/external/ubuntu/pool/main/f/fgdiag-disktest-verification-udeb/fgdiag-disktest-verification-udeb_1.5_i386.udeb -O /tmp/fgdiag-disktest-verification-udeb.udeb && udpkg -i /tmp/fgdiag-disktest-verification-udeb.udeb
-
-## CORRECT WAY; NOT TESTED 
-#d-i apt-setup/local0/key string http://preseeds.fglan/freegeek-archive-keyring.gpg
-
-# prefer local mirror, configure external mirrors
-d-i mirror/country string enter information manually
-#d-i mirror/http/hostname string apt.freegeek.org
-d-i mirror/http/hostname string archive.ubuntu.com
-d-i mirror/http/mirror string archive.ubuntu.com
-d-i mirror/http/directory string /ubuntu
-d-i mirror/http/proxy string
-
-d-i apt-setup/multiverse boolean false
-
-#d-i apt-setup/local0/repository string http://web.freegeek.org/ freegeek public ubuntu
-d-i apt-setup/local0/repository string http://apt.freegeek.org/ubuntu-install lucid main
-
-## commented out, as we just use the default mirror now, and it causes 
-## duplicate sources.list entries
-#d-i apt-setup/local1/repository string http://us.archive.ubuntu.com/ubuntu hardy main restricted universe
-
-# timezone/clock configuration
-d-i time/zone string US/Pacific
-d-i clock-setup/utc boolean true
-
-# create oem user and set password
-d-i passwd/user-fullname string Default User
-d-i passwd/username string oem
-d-i passwd/user-password password freegeek
-d-i passwd/user-password-again password freegeek
+# include the defaults
+d-i preseed/include string common
 
 #install a shiny new desktop system
 tasksel tasksel/first multiselect standard, xubuntu-desktop
-
+ 
 # install freegeek-extras package, and some others
 # NOTE: additional packages should be added as dependencies of freegeek-extras
 # temporarily we can work around this
-d-i debian-installer/allow_unauthenticated string true
 pkgsel pkgsel/include string freegeek-extras freegeek-default-settings debconf-utils oem-config-gtk freegeek-manual
-
-# select partitioning method
-d-i partman-auto/init_automatically_partition select Guided - use entire disk and set up LVM
-d-i partman-auto/method string lvm
-d-i partman-auto-lvm/guided_size string 100%
-d-i partman-auto-lvm/new_vg_name string freekbox
-d-i partman-auto/purge_lvm_from_device boolean true
-d-i partman-auto/choose_recipe select atomic
-d-i partman/choose_partition select true
-d-i partman/confirm boolean true
-
-#doesnt work...whatever!
-#d-i partman-auto/disk string /dev/sda
-
-# sets it to whatever dhcp says. We work around this in freegeek-extras
-d-i netcfg/get_hostname string freekbox
-d-i netcfg/get_domain string 
-
-
-#time stuff...UNTESTED!
-#  --Ryan52
-#d-i clock-setup/ntp boolean true
-#d-i clock-setup/ntp-server ntp.example.com
-
-d-i debian-installer/add-kernel-opts string rootdelay=60

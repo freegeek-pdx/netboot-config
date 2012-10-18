@@ -1,0 +1,3 @@
+# local mirror
+d-i apt-setup/local0/key string http://apt.freegeek.org/freegeek-archive-keyring.gpg
+d-i apt-setup/local0/repository string http://apt.freegeek.org/ubuntu-install lucid main

@@ -1,0 +1,27 @@
+# new stuff
+d-i user-setup/encrypt-home boolean false
+d-i grub-installer/only_debian boolean true
+pkgsel pkgsel/update-policy select none
+
+# for examples, see: http://d-i.alioth.debian.org/manual/example-preseed.txt
+
+#Do we need you? I think so.
+d-i debian-installer/locale string en_US
+d-i console-keymaps-at/keymap select us
+d-i contrychooser/country-name string US
+
+#:TODO: include the gutsy-mirrors preseed rather than copy it
+d-i preseed/include string ubuntu-mirror freegeek-mirror lvm disk-verify
+
+# timezone/clock configuration
+d-i time/zone string US/Pacific
+d-i clock-setup/utc boolean true
+
+# create oem user and set password
+d-i passwd/user-fullname string Default User
+d-i passwd/username string oem
+d-i passwd/user-password password freegeek
+d-i passwd/user-password-again password freegeek
+
+# make sure the disks get recognized
+d-i debian-installer/add-kernel-opts string rootdelay=60

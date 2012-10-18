@@ -1,0 +1,2 @@
+# load code to check if disk has been wiped.
+d-i partman/early_command string wget http://apt.freegeek.org/external/ubuntu/pool/main/l/lshw/lshw-udeb_02.16-0.2_i386.udeb -O /tmp/lshw-udeb.udeb &&  udpkg -i /tmp/lshw-udeb.udeb && wget http://apt.freegeek.org/external/ubuntu/pool/main/f/fgdiag-disktest-verification-udeb/fgdiag-disktest-verification-udeb_1.5_i386.udeb -O /tmp/fgdiag-disktest-verification-udeb.udeb && udpkg -i /tmp/fgdiag-disktest-verification-udeb.udeb
