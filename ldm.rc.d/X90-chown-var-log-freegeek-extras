@@ -1,0 +1,5 @@
+# install into /opt/ltsp/i386-fat/etc/ldm/rc.d/
+
+# make /var/log/freegeek-extras writeable by the user
+mkdir -p /var/log/freegeek-extras/ || true
+chown -R ${LDM_USERNAME} /var/log/freegeek-extras/ || true
