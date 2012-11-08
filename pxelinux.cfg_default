@@ -47,8 +47,6 @@ menu begin memtest-menu
 
 menu end
 
-#debian
-
   label wheezy-server
     menu label Debian 7.0 Wheezy (32/64) (FG Server)
     kernel ifcpu64.c32
@@ -57,107 +55,7 @@ menu end
       Install preseeded Wheezy 64-bit if supported, or 32-bit if not
     endtext
 
-menu begin debian-menu
-  menu label Debian Installers
-
-  label debian-menu-exit
-    menu label Main menu
-    menu exit
-
-label squeeze-server
-  menu label Install Debian 6.0 Squeeze (32/64) (FG Server)
-  kernel ifcpu64.c32
-  append squeeze64-server -- squeeze32-server
-  text help
-    Install preseeded Squeeze 64-bit if supported, or 32-bit if not
-  endtext
-
-  label squeeze
-    menu label Debian 6.0 Squeeze (32/64) (no preseed)
-    kernel ifcpu64.c32
-    append squeeze64 -- squeeze32
-    text help
-      Install Squeeze 64-bit if supported, or 32-bit if not
-    endtext
-
-  label squeeze32
-    menu label Debian 6.0 Squeeze (32 bit) (no preconfiguration)
-    kernel debian-installer/squeeze-i386/linux
-    initrd debian-installer/squeeze-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  --
-
-  label squeeze32-server
-    menu label Debian 6.0 Squeeze (32 bit) (FG Server)
-    kernel debian-installer/squeeze-i386/linux
-    initrd debian-installer/squeeze-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
-
-  label squeeze64
-    menu label Debian 6.0 Squeeze (64 bit) (no preconfiguration)
-    kernel debian-installer/squeeze-amd64/linux
-    initrd debian-installer/squeeze-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  --
-
-  label squeeze64-server
-    menu label Debian 6.0 Squeeze (64 bit) (FG Server)
-    kernel debian-installer/squeeze-amd64/linux
-    initrd debian-installer/squeeze-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
-
-  label wheezy
-    menu label Debian 7.0 Wheezy (32/64) (no preseed)
-    kernel ifcpu64.c32
-    append wheezy64 -- wheezy32
-    text help
-      Install Wheezy 64-bit if supported, or 32-bit if not
-    endtext
-
-  label wheezy32
-    menu label Debian 7.0 Wheezy (32 bit) (no preconfiguration)
-    kernel debian-installer/wheezy-i386/linux
-    initrd debian-installer/wheezy-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  --
-
-  label wheezy32-server
-    menu label Debian 7.0 Wheezy (32 bit) (FG Server)
-    kernel debian-installer/wheezy-i386/linux
-    initrd debian-installer/wheezy-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
-
-  label wheezy64
-    menu label Debian 7.0 Wheezy (64 bit) (no preconfiguration)
-    kernel debian-installer/wheezy-amd64/linux
-    initrd debian-installer/wheezy-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  --
-
-  label wheezy64-server
-    menu label Debian 7.0 Wheezy (64 bit) (FG Server)
-    kernel debian-installer/wheezy-amd64/linux
-    initrd debian-installer/wheezy-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=http://preseeds.fglan/preseeds/debian-server 
-
-
-  label daily
-    menu label Debian Daily - EXPERIMENTAL (32/64) (no preconfiguration)
-    kernel ifcpu64.c32
-    append daily64 -- daily32
-    text help
-      Install Debian Daily 64-bit if supported, or 32-bit if not
-    endtext
-
-  label daily32
-    menu label Debian Daily - EXPERIMENTAL (32 bit) (no preconfiguration)
-    kernel debian-installer/daily-i386/linux
-    initrd debian-installer/daily-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  --
-
-  label daily64
-    menu label Debian Daily - EXPERIMENTAL (64 bit) (no preconfiguration)
-    kernel debian-installer/daily-amd64/linux
-    initrd debian-installer/daily-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  --
-
-menu end
+INCLUDE /pxelinux.cfg/debian
 
 # ltsp
 
