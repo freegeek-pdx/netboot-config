@@ -7,7 +7,7 @@ debian_codenames="squeeze wheezy"
 debian_arches=$ARCHES
 
 ubuntu_mirror="us.archive.ubuntu.com"
-ubuntu_codenames="lucid maverick natty oneiric precise"
+ubuntu_codenames="lucid maverick natty oneiric precise quantal"
 ubuntu_arches=$ARCHES
 
 tftpdir=/var/lib/tftpboot
@@ -112,11 +112,15 @@ download_powerpc(){
 # debian powerpc images
 download_powerpc debian squeeze powerpc http://$debian_mirror/debian/dists/squeeze/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
 download_powerpc debian squeeze powerpc64 http://$debian_mirror/debian/dists/squeeze/main/installer-powerpc/current/images/powerpc64/netboot/ >> $log
+download_powerpc debian wheezy powerpc http://$debian_mirror/debian/dists/wheezy/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+download_powerpc debian wheezy powerpc64 http://$debian_mirror/debian/dists/wheezy/main/installer-powerpc/current/images/powerpc64/netboot/ >> $log
 download_powerpc debian daily powerpc http://d-i.debian.org/daily-images/powerpc/daily/powerpc/netboot/ >> $log
 download_powerpc debian daily powerpc64 http://d-i.debian.org/daily-images/powerpc/daily/powerpc64/netboot/ >> $log
 
 # lucid powerpc images
 download_powerpc ubuntu lucid powerpc http://ports.ubuntu.com/dists/lucid/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
 download_powerpc ubuntu lucid powerpc64 http://ports.ubuntu.com/dists/lucid/main/installer-powerpc/current/images/powerpc64/netboot/ >> $log
+download_powerpc ubuntu precise powerpc http://ports.ubuntu.com/dists/precise/main/installer-powerpc/current/images/powerpc/netboot/ >> $log
+download_powerpc ubuntu precise powerpc64 http://ports.ubuntu.com/dists/precise/main/installer-powerpc/current/images/powerpc64/netboot/ >> $log
 
 echo $(date --rfc-3339=seconds) finished >> $log
