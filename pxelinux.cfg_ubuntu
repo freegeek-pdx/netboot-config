@@ -21,25 +21,25 @@ label precise-xubuntu-freekbox
     menu label Xubuntu 12.04 Precise Pangolin (32 bit) (Freekbox)
     kernel ubuntu-installer/precise-i386/linux
     initrd ubuntu-installer/precise-i386/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
 
   label precise32-non-pae-xubuntu-freekbox
     menu label Xubuntu 12.04 Precise Pangolin (32 bit non-PAE) (Freekbox)
     kernel ubuntu-installer/precise-non-pae-i386/linux
     initrd ubuntu-installer/precise-non-pae-i386/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
 
   label precise64-xubuntu-freekbox
     menu label Xubuntu 12.04 Precise Pangolin (64 bit) (Freekbox)
     kernel ubuntu-installer/precise-amd64/linux
     initrd ubuntu-installer/precise-amd64/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
 
   label precise32-freekbox
     menu label Ubuntu 12.04 Precise Pangolin (32 bit) (Freekbox)
     kernel ubuntu-installer/precise-i386/linux
     initrd ubuntu-installer/precise-i386/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label precise32
     menu label Ubuntu 12.04 Precise Pangolin (32 bit) (no preconfiguration)
@@ -51,7 +51,7 @@ label precise-xubuntu-freekbox
     menu label Ubuntu 12.04 Precise Pangolin (64 bit) (Freekbox)
     kernel ubuntu-installer/precise-amd64/linux
     initrd ubuntu-installer/precise-amd64/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label precise64
     menu label Ubuntu 12.04 Precise Pangolin (64 bit) (no preconfiguration)
@@ -63,7 +63,7 @@ label precise-xubuntu-freekbox
     menu label Ubuntu 11.10 Oneiric Ocelot (32 bit) (Freekbox)
     kernel ubuntu-installer/oneiric-i386/linux
     initrd ubuntu-installer/oneiric-i386/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label oneiric32
     menu label Ubuntu 11.10 Oneiric Ocelot (32 bit) (no preconfiguration)
@@ -75,7 +75,7 @@ label precise-xubuntu-freekbox
     menu label Ubuntu 11.10 Oneiric Ocelot (64 bit) (Freekbox)
     kernel ubuntu-installer/oneiric-amd64/linux
     initrd ubuntu-installer/oneiric-amd64/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label oneiric64
     menu label Ubuntu 11.10 Oneiric Ocelot (64 bit) (no preconfiguration)
@@ -87,7 +87,7 @@ label precise-xubuntu-freekbox
     menu label Ubuntu 11.04 Natty Narwhal (32 bit) (Freekbox)
     kernel ubuntu-installer/natty-i386/linux
     initrd ubuntu-installer/natty-i386/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label natty32
     menu label Ubuntu 11.04 Natty Narwhal (32 bit) (no preconfiguration)
@@ -99,7 +99,7 @@ label precise-xubuntu-freekbox
     menu label Ubuntu 11.04 Natty Narwhal (64 bit) (Freekbox)
     kernel ubuntu-installer/natty-amd64/linux
     initrd ubuntu-installer/natty-amd64/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label natty64
     menu label Ubuntu 11.04 Natty Narwhal (64 bit) (no preconfiguration)
@@ -111,7 +111,7 @@ label precise-xubuntu-freekbox
     menu label Ubuntu 10.10 Maverick Meerkat (32 bit) (Freekbox)
     kernel ubuntu-installer/maverick-i386/linux
     initrd ubuntu-installer/maverick-i386/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label maverick32
     menu label Ubuntu 10.10 Maverick Meerkat (32 bit) (no preconfiguration)
@@ -123,7 +123,7 @@ label precise-xubuntu-freekbox
     menu label Ubuntu 10.10 Maverick Meerkat (64 bit) (Freekbox)
     kernel ubuntu-installer/maverick-amd64/linux
     initrd ubuntu-installer/maverick-amd64/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label maverick64
     menu label Ubuntu 10.10 Maverick Meerkat (64 bit) (no preconfiguration)
@@ -147,13 +147,13 @@ label precise-xubuntu-freekbox
     menu label Ubuntu 10.04 LTS Lucid Lynx (64 bit) (Freekbox)
     kernel ubuntu-installer/lucid-amd64/linux
     initrd ubuntu-installer/lucid-amd64/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
   label precise64-xubuntu-anon-infrastructure
     menu label Xubuntu 12.04 Precise Pangolin (64 bit) (Infrastructure)
     kernel ubuntu-installer/precise-amd64/linux
     initrd ubuntu-installer/precise-amd64/initrd.gz
-    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=http://preseeds.fglan/preseeds/precise-xubuntu-anon-infrastructure console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/precise-xubuntu-anon-infrastructure console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
 
 
 menu end
