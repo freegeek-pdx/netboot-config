@@ -1,5 +1,5 @@
 # include the defaults
-d-i preseed/include string common
+d-i preseed/include string common freegeek-test-mirror
 
 #install a shiny new desktop system
 tasksel tasksel/first multiselect standard, xubuntu-desktop
@@ -8,10 +8,6 @@ tasksel tasksel/first multiselect standard, xubuntu-desktop
 # NOTE: additional packages should be added as dependencies of freegeek-extras
 # temporarily we can work around this
 pkgsel pkgsel/include string freegeek-extras freegeek-default-settings debconf-utils oem-config-gtk libreoffice freegeek-anonymous-infrastructure
-
-# local mirror
-d-i apt-setup/local1/key string http://apt.freegeek.org/freegeek-archive-keyring.gpg
-d-i apt-setup/local1/repository string http://apt.freegeek.org/ freegeek-test ubuntu public private
 
 # preseed some fgass settings.
 fgass   fgass/assonly   boolean false

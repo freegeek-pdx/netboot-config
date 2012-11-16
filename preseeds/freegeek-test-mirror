@@ -1,0 +1,3 @@
+# local mirror of packages still in development.
+d-i apt-setup/local1/key string http://apt.freegeek.org/freegeek-archive-keyring.gpg
+d-i apt-setup/local1/repository string http://apt.freegeek.org/ freegeek-test debian ubuntu public private
