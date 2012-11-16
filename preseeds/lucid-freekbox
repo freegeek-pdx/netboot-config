@@ -7,4 +7,4 @@ tasksel tasksel/first multiselect standard, ubuntu-desktop
 # install freegeek-extras package, and some others
 # NOTE: additional packages should be added as dependencies of freegeek-extras
 # temporarily we can work around this
-pkgsel pkgsel/include string freegeek-extras debconf-utils oem-config-gtk freegeek-manual
+pkgsel pkgsel/include string freegeek-extras debconf-utils oem-config-gtk freegeek-manual freegeek-ubuntu-pocket-guide
