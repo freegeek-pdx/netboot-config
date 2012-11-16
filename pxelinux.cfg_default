@@ -24,6 +24,14 @@ label lucid32-freekbox
     Wipe drive and install preseeded Lucid Lynx Freekbox
   endtext
 
+label precise-xubuntu-freekbox
+  menu label Install Xubuntu 12.04 Precise Pangolin (64/32/non-pae) (Freekbox)
+  kernel ifcpu64.c32
+  append precise64-xubuntu-freekbox -- precise32-xubuntu-freekbox -- precise32-non-pae-xubuntu-freekbox
+  text help
+    Install Xubuntu (12.04), autodetecting appropriately 64 bit, PAE or non-pae
+  endtext
+
 INCLUDE /pxelinux.cfg/ubuntu
 
 label memtest
@@ -47,12 +55,12 @@ menu begin memtest-menu
 
 menu end
 
-  label wheezy-server
-    menu label Debian 7.0 Wheezy (32/64) (FG Server)
+  label daily-server
+    menu label Debian Daily Server (32/64) (FG Server)
     kernel ifcpu64.c32
-    append wheezy64-server -- wheezy32-server
+    append daily64-server -- daily32-server
     text help
-      Install preseeded Wheezy 64-bit if supported, or 32-bit if not
+      Install Debian Daily 64-bit if supported, or 32-bit if not
     endtext
 
 INCLUDE /pxelinux.cfg/debian
