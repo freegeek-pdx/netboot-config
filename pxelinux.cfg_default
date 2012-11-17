@@ -19,7 +19,7 @@ label lucid32-freekbox
   menu default
   kernel ubuntu-installer/lucid-i386/linux
   initrd ubuntu-installer/lucid-i386/initrd.gz
-  append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://iceberg.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+  append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
   text help
     Wipe drive and install preseeded Lucid Lynx Freekbox
   endtext

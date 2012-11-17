@@ -26,13 +26,13 @@ menu begin debian-menu
     menu label Debian 7.0 Wheezy (64 bit) (FG Server)
     kernel debian-installer/wheezy-amd64/linux
     initrd debian-installer/wheezy-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://iceberg.fglan/preseeds/debian-server 
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://preseeds.fglan/preseeds/debian-server 
 
   label wheezy32-server
     menu label Debian 7.0 Wheezy (32 bit) (FG Server)
     kernel debian-installer/wheezy-i386/linux
     initrd debian-installer/wheezy-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://iceberg.fglan/preseeds/debian-server 
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://preseeds.fglan/preseeds/debian-server 
 
   label squeeze-server
   menu label Install Debian 6.0 Squeeze (32/64) (FG Server)
@@ -46,13 +46,13 @@ menu begin debian-menu
     menu label Debian 6.0 Squeeze (64 bit) (FG Server)
     kernel debian-installer/squeeze-amd64/linux
     initrd debian-installer/squeeze-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://iceberg.fglan/preseeds/debian-server 
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://preseeds.fglan/preseeds/debian-server 
 
   label squeeze32-server
     menu label Debian 6.0 Squeeze (32 bit) (FG Server)
     kernel debian-installer/squeeze-i386/linux
     initrd debian-installer/squeeze-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://iceberg.fglan/preseeds/debian-server 
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://preseeds.fglan/preseeds/debian-server 
 
   label daily-server
     menu label Debian Daily Server - EXPERIMENTAL (32/64) (FG Server)
@@ -66,13 +66,13 @@ menu begin debian-menu
     menu label Debian Daily Server - EXPERIMENTAL (32 bit) (FG Server)
     kernel debian-installer/daily-i386/linux
     initrd debian-installer/daily-i386/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://iceberg.fglan/preseeds/debian-server 
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://preseeds.fglan/preseeds/debian-server 
 
   label daily64
     menu label Debian Daily Server - EXPERIMENTAL (64 bit) (FG Server)
     kernel debian-installer/daily-amd64/linux
     initrd debian-installer/daily-amd64/initrd.gz
-    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://iceberg.fglan/preseeds/debian-server 
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://preseeds.fglan/preseeds/debian-server 
 
   menu end
 
