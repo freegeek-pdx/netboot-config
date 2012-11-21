@@ -40,6 +40,8 @@ label precise32-non-pae-laptops
 
 INCLUDE /pxelinux.cfg/ubuntu
 
+INCLUDE /pxelinux.cfg/hardware-testing
+
 label memtest
   menu label Memtest86+
   kernel /memtest
