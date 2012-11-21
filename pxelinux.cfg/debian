@@ -62,13 +62,13 @@ menu begin debian-menu
       Install Debian Daily 64-bit if supported, or 32-bit if not
     endtext
 
-  label daily32
+  label daily32-server
     menu label Debian Daily Server - EXPERIMENTAL (32 bit) (FG Server)
     kernel debian-installer/daily-i386/linux
     initrd debian-installer/daily-i386/initrd.gz
     append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://preseeds.fglan/preseeds/debian-server 
 
-  label daily64
+  label daily64-server
     menu label Debian Daily Server - EXPERIMENTAL (64 bit) (FG Server)
     kernel debian-installer/daily-amd64/linux
     initrd debian-installer/daily-amd64/initrd.gz
