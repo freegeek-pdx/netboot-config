@@ -63,12 +63,12 @@ menu begin memtest-menu
 
 menu end
 
-  label daily-server
-    menu label Debian Daily Server (32/64) (FG Server)
+  label wheezy-server
+    menu label Debian 7.0 Wheezy (32/64) (FG Server)
     kernel ifcpu64.c32
-    append daily64-server -- daily32-server
+    append wheezy64-server -- wheezy32-server
     text help
-      Install Debian Daily 64-bit if supported, or 32-bit if not
+      Install preseeded Wheezy 64-bit if supported, or 32-bit if not
     endtext
 
 INCLUDE /pxelinux.cfg/debian
