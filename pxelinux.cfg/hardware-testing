@@ -1,24 +1,10 @@
-menu begin hardware-testing-menu
-  menu label Hardware Testing
+INCLUDE /pxelinux.cfg/main-menu
 
-  label hardware-testing-menu-exit
-    menu label Main menu
-    menu exit
+INCLUDE /pxelinux.cfg/keyboard-testing
 
-label keyboard-test
-  menu label Keyboard Testing
-  kernel /ltsp/i386/vmlinuz
-  initrd /ltsp/i386/initrd.img
-  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/ keyboardtest=true
+INCLUDE /pxelinux.cfg/hardware-detection-tool
 
-label mouse-test 
-  menu label Mouse Testing
-  kernel /ltsp/i386/vmlinuz
-  initrd /ltsp/i386/initrd.img
-  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/ mousetest=true
+INCLUDE /pxelinux.cfg/disk-testing
 
-label hardware-detection-tool
-  menu label Hardware Detection Tool
-  kernel hdt.c32
+INCLUDE /pxelinux.cfg/memtest
 
-menu end

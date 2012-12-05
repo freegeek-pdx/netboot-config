@@ -1,2 +1,2 @@
-include pxelinux.cfg/default
+include pxelinux.cfg/default.old
 timeout 1800

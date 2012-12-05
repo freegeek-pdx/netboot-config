@@ -1,0 +1,6 @@
+
+label installers
+  menu label Installers
+  kernel menu.c32
+  append pxelinux.cfg/installers
+

@@ -1,0 +1,6 @@
+
+label main-menu
+  menu label Main Menu
+  kernel menu.c32
+  append pxelinux.cfg/default
+

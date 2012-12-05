@@ -1,9 +1,13 @@
-menu begin live
-  menu label Live Boot
+INCLUDE /pxelinux.cfg/main-menu
 
-label bios-menu-exit
-  menu label Main menu
-  menu exit
+label xubuntu-live-precise-detect
+  menu label Xubuntu Live - 12.04 Precise Pangolin
+  menu default
+  kernel ifcpu64.c32
+  append xubuntu-live-precise-amd64 -- xubuntu-live-precise-i386
+  text help
+    64-bit if supported, or 32-bit if not
+  endtext
 
 menu begin debian-live
   menu label Debian Live
@@ -152,7 +156,5 @@ menu begin ubuntu-live
     append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/12.04-beta1-desktop-amd64
 
   menu end
-
-menu end
 
 menu end

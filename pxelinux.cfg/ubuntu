@@ -11,6 +11,7 @@ menu begin ubuntu-menu
 #ubuntu
 label precise-xubuntu-freekbox
   menu label Xubuntu 12.04 Precise Pangolin (64/32/non-pae) (Freekbox)
+  menu default
   kernel ifcpu64.c32
   append precise64-xubuntu-freekbox -- precise32-xubuntu-freekbox -- precise32-non-pae-xubuntu-freekbox
   text help

@@ -1,0 +1,6 @@
+
+label live-boot
+  menu label Live Boot
+  kernel menu.c32
+  append pxelinux.cfg/live-boot
+

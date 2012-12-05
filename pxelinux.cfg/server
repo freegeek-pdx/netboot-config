@@ -1,0 +1,17 @@
+INCLUDE /pxelinux.cfg/main-menu
+
+label wheezy64-server
+    menu label Debian 7.0 Wheezy (64 bit) (FG Server)
+    kernel debian-installer/wheezy-amd64/linux
+    initrd debian-installer/wheezy-amd64/initrd.gz
+    append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://preseeds.fglan/preseeds/debian-server
+
+INCLUDE /pxelinux.cfg/hdt
+
+INCLUDE /pxelinux.cfg/memtest
+
+INCLUDE /pxelinux.cfg/printme
+
+INCLUDE /pxelinux.cfg/live-boot-include
+
+INCLUDE /pxelinux.cfg/installer-include

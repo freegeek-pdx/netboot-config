@@ -1,0 +1,5 @@
+
+label hdt
+  menu label Hardware Detection Tool
+  kernel hdt.c32
+

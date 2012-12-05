@@ -1,0 +1,5 @@
+INCLUDE /pxelinux.cfg/main-menu
+
+INCLUDE /pxelinux.cfg/ubuntu
+
+INCLUDE /pxelinux.cfg/debian

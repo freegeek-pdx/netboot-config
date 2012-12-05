@@ -1,0 +1,7 @@
+
+label keyboard-test
+  menu label Keyboard and Mouse Testing
+  kernel /ltsp/i386/vmlinuz
+  initrd /ltsp/i386/initrd.img
+  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/ keyboardtest=true
+

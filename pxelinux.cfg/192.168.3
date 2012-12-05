@@ -8,6 +8,7 @@ timeout 100
 # ltsp
 label ltsp-squeeze
   menu label diskless terminal
+  menu default
   kernel /ltsp/i386-squeeze/vmlinuz
   initrd /ltsp/i386-squeeze/initrd.img
   append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/
@@ -24,7 +25,13 @@ label memtest
   menu label Memtest86+
   kernel /memtest
 
-INCLUDE /pxelinux.cfg/liveboot
-INCLUDE /pxelinux.cfg/ubuntu
-INCLUDE /pxelinux.cfg/debian
+label live-boot
+  menu label Live Boot
+  kernel menu.c32
+  append pxelinux.cfg/live-boot
+
+label installers
+  menu label Installers
+  kernel menu.c32
+  append pxelinux.cfg/installers
 
