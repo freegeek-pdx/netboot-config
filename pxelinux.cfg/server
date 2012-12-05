@@ -6,6 +6,8 @@ label wheezy64-server
     initrd debian-installer/wheezy-amd64/initrd.gz
     append vga=normal root=/dev/ram rw  -- locale=en_US console-keymaps-at/keymap=us time/zone=US/Pacific passwd/make-user=false popularity-contest/participate=false preseed/url=tftp://preseeds.fglan/preseeds/debian-server
 
+INCLUDE /pxelinux.cfg/localboot
+
 INCLUDE /pxelinux.cfg/hdt
 
 INCLUDE /pxelinux.cfg/memtest

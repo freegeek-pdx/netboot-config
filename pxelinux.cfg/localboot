@@ -1,0 +1,5 @@
+
+label local
+  menu label Boot from local hard drive
+  localboot 0
+
