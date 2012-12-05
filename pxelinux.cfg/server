@@ -8,7 +8,7 @@ label wheezy64-server
 
 INCLUDE /pxelinux.cfg/localboot
 
-INCLUDE /pxelinux.cfg/hdt
+INCLUDE /pxelinux.cfg/hardware-detection-tool
 
 INCLUDE /pxelinux.cfg/memtest
 
