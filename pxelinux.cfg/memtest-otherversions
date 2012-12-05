@@ -1,0 +1,18 @@
+
+menu begin memtest-menu
+  menu label Other Memtest86+ versions
+
+  label memtest-menu-exit
+    menu label Main menu
+    menu exit
+
+  label memtest-2
+    menu label Memtest86+ 2.0.1-1.1
+    kernel /othermemtest/2.0.1-1.1/boot/memtest
+
+  label memtest-4.1
+    menu label Memtest86+ 4.10-1.1
+    kernel /othermemtest/4.10-1.1/boot/memtest
+
+menu end
+

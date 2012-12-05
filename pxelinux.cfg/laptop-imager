@@ -1,0 +1,3 @@
+default menu.c32
+include pxelinux.cfg/laptop
+timeout 1800

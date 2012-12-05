@@ -1,0 +1,7 @@
+
+INCLUDE /pxelinux.cfg/main-menu
+
+INCLUDE /pxelinux.cfg/bios
+
+INCLUDE /pxelinux.cfg/memtest-otherversions
+
