@@ -1,7 +1,7 @@
 # this file goes in whatever directory the PXE boot menu is in, for example:
 # /var/lib/tftpboot/pxelinux.cfg/default
 
-default menu.c32
+ui menu.c32
 prompt 0
 
 label desktop
