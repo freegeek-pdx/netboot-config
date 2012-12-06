@@ -1,0 +1,14 @@
+
+menu begin should-be-hidden
+  menu label Hidden Menu Entries
+
+INCLUDE pxelinux.cfg/printme
+
+INCLUDE pxelinux.cfg/live-boot
+
+INCLUDE pxelinux.cfg/debian
+
+INCLUDE pxelinux.cfg/ubuntu
+
+menu end
+
