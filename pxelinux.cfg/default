@@ -30,10 +30,6 @@ label live-boot
   append pxelinux.cfg/live-boot
 
 INCLUDE pxelinux.cfg/diskless-terminal 
-#label diskless-terminal
-#  menu label Diskless Terminal
-#  kernel menu.c32
-#  append pxelinux.cfg/diskless-terminal
 
 label hardware-testing
   menu label Hardware Testing
@@ -45,4 +41,6 @@ label other
   kernel menu.c32
   append pxelinux.cfg/other
 
-INCLUDE pxelinux.cfg/diskless-terminal 
+# needed to get ifcpu64 autodetection to work
+INCLUDE pxelinux.cfg/top-level-menu-hack
+

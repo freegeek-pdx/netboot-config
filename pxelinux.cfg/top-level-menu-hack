@@ -1,0 +1,13 @@
+menu begin menu-hack
+  menu label Hacks needed for ifcpu64 autodetection to work do not use.
+
+  label debian-menu-exit
+    menu label Main menu
+    menu exit
+
+INCLUDE pxelinux.cfg/printme
+INCLUDE pxelinux.cfg/debian
+INCLUDE pxelinux.cfg/ubuntu
+INCLUDE pxelinux.cfg/live-boot
+
+menu end
