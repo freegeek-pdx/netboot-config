@@ -42,5 +42,5 @@ label other
   append pxelinux.cfg/other
 
 # needed to get ifcpu64 autodetection to work
-INCLUDE pxelinux.cfg/top-level-menu-hack
+INCLUDE pxelinux.cfg/should-be-hidden
 

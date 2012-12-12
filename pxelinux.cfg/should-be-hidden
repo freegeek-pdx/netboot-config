@@ -1,3 +1,29 @@
+# these hacks are needed to ensure that ifcpu64 works from menus called with 
+# menu.c32.
+
+# FIXME: switch to direct includes and drop all the menu.c32 junk.
+
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
+menu separator
 
 menu begin should-be-hidden
   menu label Hidden Menu Entries
