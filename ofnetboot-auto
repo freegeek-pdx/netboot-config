@@ -11,9 +11,9 @@ load-base release-load-area
 " /cpus/@0" find-package if
  " 64-bit" rot get-package-property 0= if
   2drop
-  " boot eth:0,\mac\yaboot conf=eth:0,\mac\yaboot64.conf" eval
+  " boot enet:0,\mac\yaboot conf=enet:0,\mac\yaboot64.conf" eval
  else
-  " boot eth:0,\mac\yaboot conf=eth:0,\mac\yaboot32.conf" eval
+  " boot enet:0,\mac\yaboot conf=enet:0,\mac\yaboot32.conf" eval
  then
 then
 </BOOT-SCRIPT>
