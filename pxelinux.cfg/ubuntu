@@ -60,7 +60,19 @@ label precise-xubuntu-freekbox
     initrd ubuntu-installer/precise-amd64/initrd.gz
     append vga=normal -- quiet locale=en_US
 
-   label precise32-freekbox
+  label quantal32
+    menu label Ubuntu 12.10 Quantal Quetzal (32 bit) (no preconfiguration)
+    kernel ubuntu-installer/quantal-i386/linux
+    initrd ubuntu-installer/quantal-i386/initrd.gz
+    append vga=normal -- quiet locale=en_US
+
+  label quantal64
+    menu label Ubuntu 12.10 Quantal Quetzal (64 bit) (no preconfiguration)
+    kernel ubuntu-installer/quantal-amd64/linux
+    initrd ubuntu-installer/quantal-amd64/initrd.gz
+    append vga=normal -- quiet locale=en_US
+
+   label oneiric32-freekbox
     menu label Ubuntu 11.10 Oneiric Ocelot (32 bit) (Freekbox)
     kernel ubuntu-installer/oneiric-i386/linux
     initrd ubuntu-installer/oneiric-i386/initrd.gz
