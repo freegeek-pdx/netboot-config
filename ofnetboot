@@ -7,19 +7,15 @@ PowerPC GNU/Linux NetBoot Options
 </DESCRIPTION>
 <BOOT-SCRIPT>
 : .printf fb8-write drop ;
-: bootyaboot " Loading second stage bootstrap..." .printf 100 ms load-base release-load-area " enet:0,mac\yaboot" $boot ;
-: bootltsp " Loading second stage bootstrap..." .printf 100 ms load-base release-load-area " enet:192.168.2.43,mac\yaboot" $boot ;
-: boot104ppc " NetBooting OS X... (10.4 ppc)" .printf 100 ms load-base release-load-area " enet:192.168.2.26,/Library/NetBoot/NetBootSP0/osx-10-4.nbi/booter" $boot ;
-: boot105ppc " NetBooting OS X... (10.5 ppc)" .printf 100 ms load-base release-load-area " enet:192.168.2.26,/Library/NetBoot/NetBootSP0/osx-10-5.nbi/ppc/booter" $boot ;
-: boot105i386 " NetBooting OS X... (10.5 i386)" .printf 100 ms load-base release-load-area " enet:192.168.2.26,/Library/NetBoot/NetBootSP0/osx-10-5.nbi/i386/booter" $boot ;
-: boot107i386 " NetBooting OS X... (10.7 i386)" .printf 100 ms load-base release-load-area " enet:192.168.2.26,/Library/NetBoot/NetBootSP0/osx-10-7.nbi/i386/booter" $boot ;
+: bootlinux " Loading second stage bootstrap..." .printf 100 ms load-base release-load-area " enet:0,mac\ofnetboot-auto" $boot ;
+: boot104ppc " NetBooting OS X... (10.4 ppc)" .printf 100 ms load-base release-load-area " enet:0,mac\osx-10.4-tiger\booter" $boot ;
 
 " screen" output
 variable interactive
 1 interactive !
 
 0 interactive @ = if
-  bootyaboot
+  bootlinux
 then
 
 dev screen
@@ -34,29 +30,20 @@ f to foreground-color
 "  "(0d 0a)" .printf
 " Press l for GNU/Linux,"(0d 0a)" .printf
 "       m for OS X 10.4 (ppc),"(0d 0a)" .printf
-"       p for OS X 10.5 (ppc),"(0d 0a)" .printf
-"       q for OS X 10.5 (i386),"(0d 0a)" .printf
-"       r for OS X 10.5 (i386),"(0d 0a)" .printf
-"       w for hard disk wiper."(0d 0a)" .printf
 "  "(0d 0a)" .printf
 " Stage 1 Boot: " .printf
 get-msecs d# 300 3E8 * +
 begin
   key? if
     key case
-      ascii l of " l "(0d 0a)" .printf bootyaboot endof
+      ascii l of " l "(0d 0a)" .printf bootlinux endof
       ascii m of " m "(0d 0a)" .printf boot104ppc endof
-      ascii p of " p "(0d 0a)" .printf boot105ppc endof
-      ascii q of " q "(0d 0a)" .printf boot105i386 endof
-      ascii r of " r "(0d 0a)" .printf boot107i386 endof
-      ascii w of " w "(0d 0a)" .printf bootltsp endof
-      ascii t of " t "(0d 0a)" .printf bootltsp endof
     endcase
   then
   dup get-msecs &lt;
 until
 drop
-"  "(0d 0a)" .printf bootyaboot
+"  "(0d 0a)" .printf bootlinux
 </BOOT-SCRIPT>
 <OS-BADGE-ICONS>
 1010
