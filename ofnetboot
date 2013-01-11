@@ -9,6 +9,7 @@ PowerPC GNU/Linux NetBoot Options
 : .printf fb8-write drop ;
 : bootlinux " Loading second stage bootstrap..." .printf 100 ms load-base release-load-area " enet:0,mac\ofnetboot-auto" $boot ;
 : boot104ppc " NetBooting OS X... (10.4 ppc)" .printf 100 ms load-base release-load-area " enet:0,mac\osx-10.4-tiger\booter" $boot ;
+: boot105ppc " NetBooting OS X... (10.5 ppc)" .printf 100 ms load-base release-load-area " enet:0,osx-10.5\ppc\booter" $boot ;
 
 " screen" output
 variable interactive
@@ -30,6 +31,7 @@ f to foreground-color
 "  "(0d 0a)" .printf
 " Press l for GNU/Linux,"(0d 0a)" .printf
 "       m for OS X 10.4 (ppc),"(0d 0a)" .printf
+"       n for OS X 10.5 (ppc),"(0d 0a)" .printf
 "  "(0d 0a)" .printf
 " Stage 1 Boot: " .printf
 get-msecs d# 300 3E8 * +
@@ -38,6 +40,7 @@ begin
     key case
       ascii l of " l "(0d 0a)" .printf bootlinux endof
       ascii m of " m "(0d 0a)" .printf boot104ppc endof
+      ascii n of " n "(0d 0a)" .printf boot105ppc endof
     endcase
   then
   dup get-msecs &lt;
