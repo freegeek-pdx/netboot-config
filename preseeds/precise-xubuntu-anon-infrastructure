@@ -13,3 +13,5 @@ pkgsel pkgsel/include string freegeek-extras freegeek-default-settings debconf-u
 fgass   fgass/assonly   boolean false
 fgass   fgass/fg_location       select  internal
 fgass   fgass/expire_passwords  boolean false
+
+d-i unattended-upgrades/enable_auto_updates boolean true
