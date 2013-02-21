@@ -42,6 +42,12 @@ label precise-xubuntu-freekbox
     initrd ubuntu-installer/precise-i386/initrd.gz
     append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
 
+  label precise64-xubuntu-freekbox-nopart
+    menu label Xubuntu 12.04 Precise Pangolin (64 bit) (Manual Disk Partitioning) (Freekbox)
+    kernel ubuntu-installer/precise-amd64/linux
+    initrd ubuntu-installer/precise-amd64/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/precise-xubuntu-freekbox-nopart console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
+
   label precise32
     menu label Ubuntu 12.04 Precise Pangolin (32 bit) (no preconfiguration)
     kernel ubuntu-installer/precise-i386/linux
