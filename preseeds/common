@@ -11,7 +11,7 @@ d-i console-keymaps-at/keymap select us
 d-i contrychooser/country-name string US
 
 #:TODO: include the gutsy-mirrors preseed rather than copy it
-d-i preseed/include string ubuntu-mirror freegeek-mirror lvm disk-verify
+d-i preseed/include string ubuntu-mirror freegeek-mirror disk-verify
 
 # timezone/clock configuration
 d-i time/zone string US/Pacific
