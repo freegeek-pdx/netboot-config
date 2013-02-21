@@ -7,7 +7,7 @@ tasksel tasksel/first multiselect standard, xubuntu-desktop
 # install freegeek-extras package, and some others
 # NOTE: additional packages should be added as dependencies of freegeek-extras
 # temporarily we can work around this
-pkgsel pkgsel/include string freegeek-extras freegeek-default-settings debconf-utils oem-config-gtk libreoffice freegeek-anonymous-infrastructure
+pkgsel pkgsel/include string freegeek-extras freegeek-default-settings debconf-utils oem-config-gtk libreoffice freegeek-preferred-packages freegeek-anonymous-infrastructure
 
 # preseed some fgass settings.
 fgass   fgass/assonly   boolean false
