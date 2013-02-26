@@ -8,3 +8,5 @@ INCLUDE /pxelinux.cfg/main-menu
     text help
       64-bit if supported, or 32-bit if not
     endtext
+
+INCLUDE /pxelinux.cfg/installer-include
