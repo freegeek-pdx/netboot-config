@@ -19,6 +19,11 @@ label server
   kernel menu.c32
   append pxelinux.cfg/server
 
+label techsupport
+  menu label Tech Support
+  kernel menu.c32
+  append pxelinux.cfg/techsupport
+
 label installers
   menu label Installers
   kernel menu.c32

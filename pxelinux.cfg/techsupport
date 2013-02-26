@@ -1,0 +1,10 @@
+INCLUDE /pxelinux.cfg/main-menu
+
+  label debian-live-rescue-techsupport
+    menu label Debian Live Rescue
+    menu default
+    kernel ifcpu64.c32
+    append debian-live-rescue-amd64 -- debian-live-rescue-i386
+    text help
+      64-bit if supported, or 32-bit if not
+    endtext
