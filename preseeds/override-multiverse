@@ -1,0 +1,4 @@
+# override the ubuntu-mirror included from common
+d-i apt-setup/multiverse boolean true
+
+# (I think it needs to be in this file for the processing order, unless we want to apply it for all preseeding)
