@@ -2,7 +2,9 @@
 d-i preseed/include string common lvm override-multiverse
 
 # accept license agreement automatically
-ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula boolean true 
+ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula boolean true
+d-i	msttcorefonts/accepted-mscorefonts-eula string true
+# not sure which is necessary.. got confusing in switching over.
 
 #install a shiny new desktop system
 tasksel tasksel/first multiselect standard, xubuntu-desktop
