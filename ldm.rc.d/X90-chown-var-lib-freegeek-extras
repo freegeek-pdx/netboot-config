@@ -1,5 +1,0 @@
-# install into /opt/ltsp/i386-fat/etc/ldm/rc.d/
-
-# make /var/lib/freegeek-extras writeable by the user
-mkdir -p /var/lib/freegeek-extras/printme || true
-chown -R ${LDM_USERNAME} /var/lib/freegeek-extras/ || true
