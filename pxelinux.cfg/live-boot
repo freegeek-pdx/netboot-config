@@ -1,13 +1,10 @@
 INCLUDE /pxelinux.cfg/main-menu
 
-label xubuntu-live-precise-detect
-  menu label Xubuntu Live - 12.04 Precise Pangolin
-  menu default
-  kernel ifcpu64.c32
-  append xubuntu-live-precise-amd64 -- xubuntu-live-precise-i386
-  text help
-    64-bit if supported, or 32-bit if not
-  endtext
+label freegeek-live-i386-default
+  menu label Freegeek Live Xubuntu 12.04 Precise Pangolin (i386)
+  kernel live/freegeek-live/vmlinuz
+  initrd live/freegeek-live/initrd.lz
+  append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/freegeek-live quiet
 
 menu begin debian-live
   menu label Debian Live
