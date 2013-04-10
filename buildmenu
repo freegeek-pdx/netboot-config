@@ -32,7 +32,7 @@ include RubyTUI
 $TIMEOUT = timeout
 
 choice = menuWithDefault("build boot options","choose a boot option",default,
-    "diskless terminal", "new disk test", "disk test", "root", "Video Card Detector", "keyboard tester")
+    "diskless terminal", "new disk test", "disk test", "root", "Video Card Detector", "keyboard tester", "Proc DB Detection")
 
 def start_shell
     system "/usr/bin/openvt -- /bin/bash --login"
@@ -52,6 +52,8 @@ when "Video Card Detector"
     system "/usr/bin/video-detect || bash"
 when "keyboard tester"
     system "/usr/bin/xinit /usr/bin/wx-keyboard-tester"
+when "Proc DB Detection"
+  system "/usr/sbin/lookup-cpu"
 end
 
 system shutdown

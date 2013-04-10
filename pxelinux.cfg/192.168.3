@@ -17,9 +17,7 @@ label local
   menu label Boot from local hard drive
   localboot 0
 
-label hdt
-  menu label Hardware Detection Tool
-  kernel hdt.c32
+INCLUDE /pxelinux.cfg/hardware-detection-tool
 
 label memtest
   menu label Memtest86+
