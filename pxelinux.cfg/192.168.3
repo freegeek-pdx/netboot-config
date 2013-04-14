@@ -6,12 +6,7 @@ prompt 0
 timeout 100
 
 # ltsp
-label ltsp-squeeze
-  menu label diskless terminal
-  menu default
-  kernel /ltsp/i386-squeeze/vmlinuz
-  initrd /ltsp/i386-squeeze/initrd.img
-  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/
+INCLUDE pxelinux.cfg/diskless-terminal
 
 label local
   menu label Boot from local hard drive
