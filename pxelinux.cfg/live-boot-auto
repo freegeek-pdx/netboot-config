@@ -1,0 +1,4 @@
+ui menu.c32
+include pxelinux.cfg/live-boot
+default freegeek-live-i386-default
+timeout 100
