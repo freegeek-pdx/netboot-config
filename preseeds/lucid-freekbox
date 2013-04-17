@@ -1,5 +1,5 @@
 # include the defaults
-d-i preseed/include string common lvm
+d-i preseed/include string common lvm freegeek-lucid-mirror
 
 #install a shiny new desktop system
 tasksel tasksel/first multiselect standard, ubuntu-desktop
