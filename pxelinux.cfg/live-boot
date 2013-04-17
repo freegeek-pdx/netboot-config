@@ -164,5 +164,11 @@ menu label Freegeek Live
       initrd live/freegeek-live/initrd.lz
       append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/freegeek-live quiet
 
+    label freegeek-live-i386-test
+      menu label TESTING Freegeek Live Xubuntu 12.04 Precise Pangolin (i386)
+      kernel live/freegeek-live-test/vmlinuz
+      initrd live/freegeek-live-test/initrd.lz
+      append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/freegeek-live-test quiet
+
 menu end
 
