@@ -28,6 +28,12 @@ menu separator
 menu begin should-be-hidden
   menu label Hidden Menu Entries
 
+label examine
+  menu label Internal - Examine Results
+  kernel /ltsp/i386/vmlinuz
+  initrd /ltsp/i386/initrd.img
+  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386/ examine=true
+
 INCLUDE pxelinux.cfg/printme
 
 INCLUDE pxelinux.cfg/live-boot
