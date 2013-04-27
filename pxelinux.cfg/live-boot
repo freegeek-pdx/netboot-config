@@ -23,20 +23,20 @@ menu begin debian-live
     label debian-live-rescue-i386
       menu label Debian Live Rescue (i386)
       kernel live/debian/squeeze-i386-rescue/live/vmlinuz
-      kernel live/debian/squeeze-i386-rescue/live/initrd.img
-      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/squeeze-i386-rescue/live
+      initrd live/debian/squeeze-i386-rescue/live/initrd.img
+      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/squeeze-i386-rescue/
 
     label debian-live-rescue-pae
       menu label Debian Live Rescue (i386-pae)
       kernel live/debian/squeeze-i386-rescue/live/vmlinuz2
-      kernel live/debian/squeeze-i386-rescue/live/initrd2.img
-      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/squeeze-i386-rescue/live
+      initrd live/debian/squeeze-i386-rescue/live/initrd2.img
+      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/squeeze-i386-rescue/
 
     label debian-live-rescue-amd64
       menu label Debian Live Rescue (amd64)
       kernel live/debian/squeeze-amd64-rescue/live/vmlinuz
-      kernel live/debian/squeeze-amd64-rescue/live/initrd.img
-      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/squeeze-amd64-rescue/live
+      initrd live/debian/squeeze-amd64-rescue/live/initrd.img
+      append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/squeeze-amd64-rescue/
 
     menu end
 
