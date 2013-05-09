@@ -38,6 +38,12 @@ menu begin debian-live
       initrd live/debian/squeeze-amd64-rescue/live/initrd.img
       append boot=live config netboot=nfs nfsroot=192.168.253.43:/srv/nfs/debian/squeeze-amd64-rescue/
 
+    label debian-live-lxde-i386-pae
+      menu label Debian Live LXDE (i386-pae)
+      kernel live/debian/wheezy-i386-lxde/live/vmlinuz
+      initrd live/debian/wheezy-i386-lxde/live/initrd.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-i386-lxde/
+
     menu end
 
 menu end
