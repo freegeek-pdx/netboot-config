@@ -1,5 +1,5 @@
 # include the defaults
-d-i preseed/include string common lvm override-multiverse
+d-i preseed/include string common nolvm override-multiverse
 
 # accept license agreement automatically
 ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula boolean true

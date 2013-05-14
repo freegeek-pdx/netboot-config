@@ -1,5 +1,5 @@
 # include the defaults
-d-i preseed/include string common lvm
+d-i preseed/include string common nolvm
 
 #install a shiny new desktop system
 tasksel tasksel/first multiselect standard, xubuntu-desktop
