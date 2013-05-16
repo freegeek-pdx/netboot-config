@@ -5,4 +5,4 @@ d-i partman-auto/purge_lvm_from_device boolean true
 d-i partman-auto/choose_recipe select /lib/partman/recipes/30atomic
 d-i partman/choose_partition select true
 #d-i partman/confirm boolean true
-#partman-auto/select_disk select /var/lib/partman/devices/=dev=vda
+partman-auto/select_disk select /var/lib/partman/devices/=dev=sda
