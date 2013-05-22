@@ -64,15 +64,15 @@ menu begin xubuntu-live
 
   label xubuntu-live-precise-i386
     menu label Xubuntu Live - 12.04 Precise Pangolin (i386)
-    kernel live/xubuntu/12.04-desktop-i386/vmlinuz
-    initrd live/xubuntu/12.04-desktop-i386/initrd.lz
-    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/xubuntu/12.04-desktop-i386
+    kernel live/xubuntu/precise-desktop-i386/casper/vmlinuz
+    initrd live/xubuntu/precise-desktop-i386/casper/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/xubuntu/precise-desktop-i386
 
   label xubuntu-live-precise-amd64
     menu label Xubuntu Live - 12.04 Precise Pangolin (amd64)
-    kernel live/xubuntu/12.04-desktop-amd64/vmlinuz
-    initrd live/xubuntu/12.04-desktop-amd64/initrd.lz
-    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/xubuntu/12.04-desktop-amd64
+    kernel live/xubuntu/precise-desktop-amd64/casper/vmlinuz
+    initrd live/xubuntu/precise-desktop-amd64/casper/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/xubuntu/precise-desktop-amd64
 
   menu end
 
@@ -81,24 +81,8 @@ menu end
 menu begin ubuntu-live
   menu label Ubuntu Live
 
-  label ubuntu-live-lucid
-    menu label Ubuntu Live - 10.04.4 Lucid Lynx
-    kernel ifcpu64.c32
-    append ubuntu-live-lucid-amd64 -- ubuntu-live-lucid-i386
-    text help
-      64-bit if supported, or 32-bit if not
-    endtext
-
-  label ubuntu-live-oneiric
-    menu label Ubuntu Live - 11.10 Oneiric Ocelot
-    kernel ifcpu64.c32
-    append ubuntu-live-oneiric-amd64 -- ubuntu-live-oneiric-i386
-    text help
-      64-bit if supported, or 32-bit if not
-    endtext
-
   label ubuntu-live-precise
-    menu label Ubuntu Live - 12.04 Precise Pangolin Beta 1
+    menu label Ubuntu Live - 12.04 Precise Pangolin
     kernel ifcpu64.c32
     append ubuntu-live-precise-amd64 -- ubuntu-live-precise-i386
     text help
@@ -108,41 +92,17 @@ menu begin ubuntu-live
   menu begin ubuntu-live-arch
     menu label Ubuntu Live Architectues
 
-  label ubuntu-live-lucid-i386
-    menu label Ubuntu Live - 10.04.4 Lucid Lynx (i386)
-    kernel live/ubuntu/10.04.4-desktop-i386/vmlinuz
-    initrd live/ubuntu/10.04.4-desktop-i386/initrd.lz
-    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/10.04.4-desktop-i386
-
-  label ubuntu-live-lucid-amd64
-    menu label Ubuntu Live - 10.04.4 Lucid Lynx (amd64)
-    kernel live/ubuntu/10.04.4-desktop-amd64/vmlinuz
-    initrd live/ubuntu/10.04.4-desktop-amd64/initrd.lz
-    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/10.04.4-desktop-amd64
-
-  label ubuntu-live-oneiric-i386
-    menu label Ubuntu Live - 11.10 Oneiric Ocelot (i386)
-    kernel live/ubuntu/11.10-desktop-i386/vmlinuz
-    initrd live/ubuntu/11.10-desktop-i386/initrd.lz
-    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/11.10-desktop-i386
-
-  label ubuntu-live-oneiric-amd64
-    menu label Ubuntu Live - 11.10 Oneiric Ocelot (amd64)
-    kernel live/ubuntu/11.10-desktop-amd64/vmlinuz
-    initrd live/ubuntu/11.10-desktop-amd64/initrd.lz
-    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/11.10-desktop-amd64
+  label ubuntu-live-precise-amd64
+    menu label Ubuntu Live - 12.04 Precise Pangolin (amd64)
+    kernel live/ubuntu/precise-desktop-amd64/casper/vmlinuz
+    initrd live/ubuntu/precise-desktop-amd64/casper/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/precise-desktop-amd64
 
   label ubuntu-live-precise-i386
-    menu label Ubuntu Live - 12.04 Precise Pangolin Beta 1 (i386)
-    kernel live/ubuntu/12.04-beta1-desktop-i386/vmlinuz
-    initrd live/ubuntu/12.04-beta1-desktop-i386/initrd.lz
-    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/12.04-beta1-desktop-i386
-
-  label ubuntu-live-precise-amd64
-    menu label Ubuntu Live - 12.04 Precise Pangolin Beta 1 (amd64)
-    kernel live/ubuntu/12.04-beta1-desktop-amd64/vmlinuz
-    initrd live/ubuntu/12.04-beta1-desktop-amd64/initrd.lz
-    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/12.04-beta1-desktop-amd64
+    menu label Ubuntu Live - 12.04 Precise Pangolin (i386)
+    kernel live/ubuntu/precise-desktop-i386/casper/vmlinuz
+    initrd live/ubuntu/precise-desktop-i386/casper/initrd.lz
+    append boot=casper netboot=nfs nfsroot=192.168.253.43:/srv/nfs/ubuntu/precise-desktop-i386
 
   menu end
 
