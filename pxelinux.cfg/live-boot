@@ -17,32 +17,78 @@ menu begin debian-live
       64-bit if supported, or 32-bit if not
     endtext
 
+  label debian-live-gnome-desktop
+    menu label Debian Live GNOME Desktop
+    kernel ifcpu64.c32
+    append debian-live-gnome-desktop-amd64 -- debian-live-gnome-desktop-pae -- debian-live-gnome-desktop-i386
+    text help
+      64-bit if supported, or 32-bit if not
+    endtext
+
+  label debian-live-lxde-desktop
+    menu label Debian Live LXDE Desktop
+    kernel ifcpu64.c32
+    append debian-live-lxde-desktop-amd64 -- debian-live-lxde-desktop-pae -- debian-live-lxde-desktop-i386
+    text help
+      64-bit if supported, or 32-bit if not
+    endtext
+
   menu begin debian-live-arch
     menu label Debian Live Architectues
 
+    label debian-live-gnome-desktop-i386
+      menu label Debian Live GNOME Desktop (i386)
+      kernel live/debian/wheezy-i386-gnome-desktop/live/vmlinuz1
+      initrd live/debian/wheezy-i386-gnome-desktop/live/initrd1.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-i386-gnome-desktop/
+
+    label debian-live-gnome-desktop-pae
+      menu label Debian Live GNOME Desktop (i386-pae)
+      kernel live/debian/wheezy-i386-gnome-desktop/live/vmlinuz2
+      initrd live/debian/wheezy-i386-gnome-desktop/live/initrd2.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-i386-gnome-desktop/
+
+    label debian-live-gnome-desktop-amd64
+      menu label Debian Live GNOME Desktop (amd64)
+      kernel live/debian/wheezy-amd64-gnome-desktop/live/vmlinuz
+      initrd live/debian/wheezy-amd64-gnome-desktop/live/initrd.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-amd64-gnome-desktop/
+
+    label debian-live-lxde-desktop-i386
+      menu label Debian Live LXDE Desktop (i386)
+      kernel live/debian/wheezy-i386-lxde-desktop/live/vmlinuz1
+      initrd live/debian/wheezy-i386-lxde-desktop/live/initrd1.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-i386-lxde-desktop/
+
+    label debian-live-lxde-desktop-pae
+      menu label Debian Live LXDE Desktop (i386-pae)
+      kernel live/debian/wheezy-i386-lxde-desktop/live/vmlinuz2
+      initrd live/debian/wheezy-i386-lxde-desktop/live/initrd2.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-i386-lxde-desktop/
+
+    label debian-live-lxde-desktop-amd64
+      menu label Debian Live LXDE Desktop (amd64)
+      kernel live/debian/wheezy-amd64-lxde-desktop/live/vmlinuz
+      initrd live/debian/wheezy-amd64-lxde-desktop/live/initrd.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-amd64-lxde-desktop/
+
     label debian-live-rescue-i386
       menu label Debian Live Rescue (i386)
-      kernel live/debian/squeeze-i386-rescue/live/vmlinuz
-      initrd live/debian/squeeze-i386-rescue/live/initrd.img
-      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/squeeze-i386-rescue/
+      kernel live/debian/wheezy-i386-rescue/live/vmlinuz1
+      initrd live/debian/wheezy-i386-rescue/live/initrd1.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-i386-rescue/
 
     label debian-live-rescue-pae
       menu label Debian Live Rescue (i386-pae)
-      kernel live/debian/squeeze-i386-rescue/live/vmlinuz2
-      initrd live/debian/squeeze-i386-rescue/live/initrd2.img
-      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/squeeze-i386-rescue/
+      kernel live/debian/wheezy-i386-rescue/live/vmlinuz2
+      initrd live/debian/wheezy-i386-rescue/live/initrd2.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-i386-rescue/
 
     label debian-live-rescue-amd64
       menu label Debian Live Rescue (amd64)
-      kernel live/debian/squeeze-amd64-rescue/live/vmlinuz
-      initrd live/debian/squeeze-amd64-rescue/live/initrd.img
-      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/squeeze-amd64-rescue/
-
-    label debian-live-lxde-i386-pae
-      menu label Debian Live LXDE (i386-pae)
-      kernel live/debian/wheezy-i386-lxde/live/vmlinuz
-      initrd live/debian/wheezy-i386-lxde/live/initrd.img
-      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-i386-lxde/
+      kernel live/debian/wheezy-amd64-rescue/live/vmlinuz
+      initrd live/debian/wheezy-amd64-rescue/live/initrd.img
+      append boot=live config netboot=nfs nfsroot=/srv/nfs/debian/wheezy-amd64-rescue/
 
     menu end
 
