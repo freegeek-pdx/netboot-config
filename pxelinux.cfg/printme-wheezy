@@ -1,0 +1,33 @@
+
+label printme
+  menu label printme
+  kernel ifcpu64.c32
+  append printmeamd64 -- printmepae -- printme486
+  text help
+    run printme with PAE kernel if supported, or fall back to 486 kernel if not.
+  endtext
+
+label printme486
+  menu hide
+  menu label printme 486
+  kernel /ltsp/i386-squeeze/486-vmlinuz
+  initrd /ltsp/i386-squeeze/486-initrd.img
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  ipappend 2
+
+label printmepae
+  menu hide
+  menu label printme PAE
+  kernel /ltsp/i386-squeeze/pae-vmlinuz
+  initrd /ltsp/i386-squeeze/pae-initrd.img
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  ipappend 2
+
+label printmeamd64
+  menu hide
+  menu label printme amd64
+  kernel /ltsp/i386-squeeze/amd64-vmlinuz
+  initrd /ltsp/i386-squeeze/amd64-initrd.img
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  ipappend 2
+
