@@ -8,3 +8,5 @@ label procdb
   kernel /ltsp/i386/vmlinuz
   initrd /ltsp/i386/initrd.img
   append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386/ procdb=true
+  ipappend 2
+
