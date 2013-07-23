@@ -186,5 +186,17 @@ label precise-xubuntu-freekbox
     initrd ubuntu-installer/precise-amd64/initrd.gz
     append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/precise-xubuntu-anon-infrastructure console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
 
+  label precise32-xubuntu-freekbox-proposed
+    menu label Proposed Updates: Xubuntu 12.04 Precise Pangolin (32 bit) (Freekbox)
+    kernel ubuntu-installer/precise-proposed-i386/linux
+    initrd ubuntu-installer/precise-proposed-i386/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us apt-setup/proposed=true
+
+  label lucid32-freekbox-proposed
+    menu label Proposed Updates: Ubuntu 10.04 LTS Lucid Lynx (32 bit) (Freekbox)
+    kernel ubuntu-installer/lucid-proposed-i386/linux
+    initrd ubuntu-installer/lucid-proposed-i386/initrd.gz
+    append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/lucid-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox
+
 
 menu end
