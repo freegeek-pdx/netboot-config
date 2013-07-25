@@ -12,8 +12,6 @@ INCLUDE /pxelinux.cfg/hardware-detection-tool
 
 INCLUDE /pxelinux.cfg/memtest
 
-INCLUDE /pxelinux.cfg/printme-wheezy
-
 INCLUDE /pxelinux.cfg/printme
 
 INCLUDE /pxelinux.cfg/live-boot-include

@@ -36,8 +36,6 @@ label examine
 
 INCLUDE pxelinux.cfg/printme
 
-INCLUDE pxelinux.cfg/printme-wheezy
-
 INCLUDE pxelinux.cfg/live-boot
 
 INCLUDE pxelinux.cfg/debian

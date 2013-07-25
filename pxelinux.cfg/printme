@@ -1,33 +1,33 @@
 
-label printme
+label printme-wheezy
   menu label printme
   kernel ifcpu64.c32
-  append printmeamd64 -- printmepae -- printme486
+  append printmeamd64-wheezy -- printmepae-wheezy -- printme486-wheezy
   text help
     run printme with PAE kernel if supported, or fall back to 486 kernel if not.
   endtext
 
-label printme486
+label printme486-wheezy
   menu hide
   menu label printme 486
-  kernel /ltsp/i386-squeeze/486-vmlinuz
-  initrd /ltsp/i386-squeeze/486-initrd.img
-  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  kernel /ltsp/i386-wheezy/486-vmlinuz
+  initrd /ltsp/i386-wheezy/486-initrd.img
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ init=/sbin/init-ltsp fatclient=true
   ipappend 2
 
-label printmepae
+label printmepae-wheezy
   menu hide
   menu label printme PAE
-  kernel /ltsp/i386-squeeze/pae-vmlinuz
-  initrd /ltsp/i386-squeeze/pae-initrd.img
-  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  kernel /ltsp/i386-wheezy/pae-vmlinuz
+  initrd /ltsp/i386-wheezy/pae-initrd.img
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ init=/sbin/init-ltsp fatclient=true
   ipappend 2
 
-label printmeamd64
+label printmeamd64-wheezy
   menu hide
   menu label printme amd64
-  kernel /ltsp/i386-squeeze/amd64-vmlinuz
-  initrd /ltsp/i386-squeeze/amd64-initrd.img
-  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/ fatclient=true
+  kernel /ltsp/i386-wheezy/amd64-vmlinuz
+  initrd /ltsp/i386-wheezy/amd64-initrd.img
+  append root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ init=/sbin/init-ltsp fatclient=true
   ipappend 2
 
