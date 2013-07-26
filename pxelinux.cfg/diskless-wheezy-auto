@@ -1,0 +1,4 @@
+ui menu.c32
+include pxelinux.cfg/diskless-wheezy
+default ltsp-wheezy
+timeout 100
