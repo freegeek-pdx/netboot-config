@@ -42,5 +42,7 @@ INCLUDE pxelinux.cfg/debian
 
 INCLUDE pxelinux.cfg/ubuntu
 
+INCLUDE pxelinux.cfg/diskless-wheezy
+
 menu end
 
