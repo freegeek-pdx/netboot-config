@@ -10,10 +10,10 @@ label procdb
   append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386/ procdb=true
   ipappend 2
 
-label procdb-wheezy
-  menu label CPU Lookup (experimental)
-  kernel /ltsp/i386-wheezy/486-vmlinuz
-  initrd /ltsp/i386-wheezy/486-initrd.img
-  append quiet root=/dev/nfs init=/sbin/init-ltsp ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ procdb=true
-  ipappend 2
+#label procdb-wheezy
+#  menu label CPU Lookup (experimental)
+#  kernel /ltsp/i386-wheezy/486-vmlinuz
+#  initrd /ltsp/i386-wheezy/486-initrd.img
+#  append quiet root=/dev/nfs init=/sbin/init-ltsp ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ procdb=true
+#  ipappend 2
 
