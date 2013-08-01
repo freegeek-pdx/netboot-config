@@ -52,6 +52,10 @@ label videotest-wheezy
   initrd /ltsp/i386-wheezy/486-initrd.img
   append quiet root=/dev/nfs init=/sbin/init-ltsp ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ videotest=true
 
+INCLUDE pxelinux.cfg/disk-testing-wheezy
+
+INCLUDE pxelinux.cfg/procdb-wheezy
+
 INCLUDE pxelinux.cfg/printme
 
 INCLUDE pxelinux.cfg/live-boot
