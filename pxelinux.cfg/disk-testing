@@ -1,5 +1,13 @@
+
 label disk-test
   menu label Disk Testing
   kernel /ltsp/i386/vmlinuz
   initrd /ltsp/i386/initrd.img
   append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/ disktest=true
+
+label disk-test-wheezy
+  menu label Disk Testing (experimental)
+  kernel /ltsp/i386-wheezy/vmlinuz
+  initrd /ltsp/i386-wheezy/initrd.img
+  append quiet root=/dev/nfs init=/sbin/init-ltsp ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ disktest=true
+
