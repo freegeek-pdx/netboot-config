@@ -1,7 +1,7 @@
 
 label ltsp-wheezy
   menu label Diskless Terminal
-  kernel /ltsp/i386-wheezy/vmlinuz
-  append ro initrd=/ltsp/i386-wheezy/initrd.img init=/sbin/init-ltsp quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/
+  kernel /ltsp/i386-wheezy/486-vmlinuz
+  append ro initrd=/ltsp/i386-wheezy/486-initrd.img init=/sbin/init-ltsp quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/
   ipappend 2
 

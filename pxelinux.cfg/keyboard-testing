@@ -1,7 +1,7 @@
 
 label keyboard-test-wheezy
   menu label Keyboard and Mouse Testing
-  kernel /ltsp/i386-wheezy/vmlinuz
-  initrd /ltsp/i386-wheezy/initrd.img
+  kernel /ltsp/i386-wheezy/486-vmlinuz
+  initrd /ltsp/i386-wheezy/486-initrd.img
   append quiet init=/sbin/init-ltsp root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ keyboardtest=true
 
