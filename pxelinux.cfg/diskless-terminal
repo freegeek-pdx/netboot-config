@@ -1,8 +1,7 @@
 
-label ltsp-squeeze
+label ltsp-wheezy
   menu label Diskless Terminal
-  kernel /ltsp/i386-squeeze/vmlinuz
-  initrd /ltsp/i386-squeeze/initrd.img
-  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-squeeze/
+  kernel /ltsp/i386-wheezy/vmlinuz
+  append ro initrd=/ltsp/i386-wheezy/initrd.img init=/sbin/init-ltsp quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/
   ipappend 2
 
