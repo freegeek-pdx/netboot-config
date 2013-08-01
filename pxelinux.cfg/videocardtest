@@ -1,0 +1,7 @@
+
+label videotest-wheezy
+  menu label Video Card Testing
+  kernel /ltsp/i386-wheezy/486-vmlinuz
+  initrd /ltsp/i386-wheezy/486-initrd.img
+  append quiet root=/dev/nfs init=/sbin/init-ltsp ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ videotest=true
+

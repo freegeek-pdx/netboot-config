@@ -1,5 +1,7 @@
 INCLUDE /pxelinux.cfg/main-menu
 
+INCLUDE /pxelinux.cfg/videocardtest
+
 INCLUDE /pxelinux.cfg/keyboard-testing
 
 INCLUDE /pxelinux.cfg/hardware-detection-tool

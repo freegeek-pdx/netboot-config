@@ -40,18 +40,6 @@ label examine-wheezy
   initrd /ltsp/i386-wheezy/486-initrd.img
   append quiet root=/dev/nfs init=/sbin/init-ltsp ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ examine=true
 
-label videotest
-  menu label Video Card Testing
-  kernel /ltsp/i386/vmlinuz
-  initrd /ltsp/i386/initrd.img
-  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=192.168.2.44:/opt/ltsp/i386/ videotest=true
-
-label videotest-wheezy
-  menu label Video Card Testing (experimental)
-  kernel /ltsp/i386-wheezy/486-vmlinuz
-  initrd /ltsp/i386-wheezy/486-initrd.img
-  append quiet root=/dev/nfs init=/sbin/init-ltsp ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ videotest=true
-
 INCLUDE pxelinux.cfg/disk-testing-wheezy
 
 INCLUDE pxelinux.cfg/procdb-wheezy
