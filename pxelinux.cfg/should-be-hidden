@@ -42,7 +42,7 @@ label examine-wheezy
 
 INCLUDE pxelinux.cfg/disk-testing-wheezy
 
-INCLUDE pxelinux.cfg/procdb-wheezy
+INCLUDE pxelinux.cfg/procdb
 
 INCLUDE pxelinux.cfg/printme
 

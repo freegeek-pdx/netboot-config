@@ -3,10 +3,4 @@ label hdt
   menu label Hardware Detection Tool
   kernel hdt.c32
 
-label procdb
-  menu label CPU Lookup
-  kernel /ltsp/i386/vmlinuz
-  initrd /ltsp/i386/initrd.img
-  append quiet root=/dev/nfs ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386/ procdb=true
-  ipappend 2
-
+INCLUDE /pxelinux.cfg/procdb
