@@ -1,2 +1,8 @@
 default disk-test-wheezy
-INCLUDE disk-testing-wheezy
+
+label disk-test-wheezy
+  menu label Disk Testing 
+  kernel /ltsp/i386-wheezy/486-vmlinuz
+  initrd /ltsp/i386-wheezy/486-initrd.img
+  append quiet root=/dev/nfs init=/sbin/init-ltsp ip=dhcp boot=nfs nfsroot=/opt/ltsp/i386-wheezy/ disktest=true
+  ipappend 2
