@@ -1,0 +1,3 @@
+sed -e 's,powerpc-vmlinux,powerpc64-vmlinux,g' \
+	-e 's,powerpc-initrd,powerpc64-initrd,g' \
+	-e 's,PPC32,PPC64,g' yaboot32.conf  > yaboot64.conf
