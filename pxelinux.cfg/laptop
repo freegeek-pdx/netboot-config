@@ -3,20 +3,20 @@ INCLUDE /pxelinux.cfg/main-menu
 label precise64-xubuntu-laptops
   menu label Laptops Xubuntu 12.04 Precise Pangolin (64 bit) (Freekbox)
   menu default
-  kernel ubuntu-installer/precise-amd64/linux
-  initrd ubuntu-installer/precise-amd64/initrd.gz
+  kernel ubuntu-installer/precise-updates-amd64/linux
+  initrd ubuntu-installer/precise-updates-amd64/initrd.gz
   append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
 
 label precise32-non-pae-xubuntu-laptops
   menu label Laptops Xubuntu 12.04 Precise Pangolin (32 bit non-PAE) (Freekbox)
-  kernel ubuntu-installer/precise-non-pae-i386/linux
-  initrd ubuntu-installer/precise-non-pae-i386/initrd.gz
+  kernel ubuntu-installer/precise-updates-non-pae-i386/linux
+  initrd ubuntu-installer/precise-updates-non-pae-i386/initrd.gz
   append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
 
 label precise32-xubuntu-laptops
   menu label Laptops Xubuntu 12.04 Precise Pangolin (32 bit) (Freekbox)
-  kernel ubuntu-installer/precise-i386/linux
-  initrd ubuntu-installer/precise-i386/initrd.gz
+  kernel ubuntu-installer/precise-updates-i386/linux
+  initrd ubuntu-installer/precise-updates-i386/initrd.gz
   append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
 
 INCLUDE /pxelinux.cfg/localboot

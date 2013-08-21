@@ -3,8 +3,8 @@ INCLUDE /pxelinux.cfg/main-menu
 label precise64-xubuntu-freekbox
     menu label Xubuntu 12.04 Precise Pangolin (64 bit) (Freekbox)
     menu default
-    kernel ubuntu-installer/precise-amd64/linux
-    initrd ubuntu-installer/precise-amd64/initrd.gz
+    kernel ubuntu-installer/precise-updates-amd64/linux
+    initrd ubuntu-installer/precise-updates-amd64/initrd.gz
     append auto=true vga=normal -- quiet locale=en_US console-setup/ask_detect=false preseed/url=tftp://preseeds.fglan/preseeds/precise-xubuntu-freekbox console-setup/localecode=en_US console-setup/modelcode=SKIP console-setup/locale=en_US console-setup/charmap=UTF-8 netcfg/get_hostname=freekbox keyboard-configuration/layoutcode=us
 
 INCLUDE /pxelinux.cfg/localboot
