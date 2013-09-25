@@ -48,6 +48,8 @@ INCLUDE pxelinux.cfg/printme
 
 INCLUDE pxelinux.cfg/live-boot
 
+INCLUDE pxelinux.cfg/techsupport-live
+
 INCLUDE pxelinux.cfg/debian
 
 INCLUDE pxelinux.cfg/ubuntu

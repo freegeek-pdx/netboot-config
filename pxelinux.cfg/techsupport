@@ -9,22 +9,15 @@ INCLUDE /pxelinux.cfg/main-menu
       64-bit if supported, or 32-bit if not
     endtext
 
-    label live-techsupport-amd64
-      menu label Experimental Tech Support Debian Live Rescue (amd64)
-      kernel live/live-techsupport-amd64/live/vmlinuz
-      initrd live/live-techsupport-amd64/live/initrd.img
-      append boot=live config quiet netboot=nfs nfsroot=/srv/nfs/live-techsupport-amd64 live-config.username=techsupport
+  label live-rescue-techsupport
+    menu label EXPERIMENTAL Debian Live Rescue
+    menu default
+    kernel ifcpu64.c32
+    append live-techsupport-amd64 -- live-techsupport-i386-pae -- live-techsupport-i386
+    text help
+      Detect 64-bit, 32-bit with PAE, or classic 32-bit
+    endtext
 
-    label live-techsupport-i386
-      menu label Experimental Tech Support Debian Live Rescue (i386)
-      kernel live/live-techsupport-i386/live/vmlinuz1
-      initrd live/live-techsupport-i386/live/initrd1.img
-      append boot=live config quiet netboot=nfs nfsroot=/srv/nfs/live-techsupport-i386 live-config.username=techsupport
-
-    label live-techsupport-i386-pae
-      menu label Experimental Tech Support Debian Live Rescue (i386-pae)
-      kernel live/live-techsupport-i386/live/vmlinuz2
-      initrd live/live-techsupport-i386/live/initrd2.img
-      append boot=live config quiet netboot=nfs nfsroot=/srv/nfs/live-techsupport-i386 live-config.username=techsupport
+INCLUDE /pxelinux.cfg/techsupport-live-menu
 
 INCLUDE /pxelinux.cfg/installer-include
